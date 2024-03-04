@@ -18,8 +18,11 @@ class RunningGridItems extends StatefulWidget {
 class _RunningGridItemsState extends State<RunningGridItems> {
   @override
   Widget build(BuildContext context) {
+    print(widget.data);
     return GestureDetector(
       onTap: (){
+        print(widget.data);
+        //Get.rootDelegate.toNamed(RouteClass.orderScreen, arguments: 'test_data');
         Get.toNamed(RouteClass.orderScreen,arguments: widget.data);
       },
       child: Card(

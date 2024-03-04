@@ -29,14 +29,6 @@ class _SplaceScreenState extends State<SplaceScreen> {
     );
   }
 
-   Future<bool> fetchData() async{
-    var map = await SharedPreferencesHelper.getMap(AppConstants.KEY_ORGANISATION_MAP);
-    if(map?.isEmpty == true){
-      return false;
-    }else{
-      return true;
-    }
-  }
 
   @override
   void initState() {
@@ -45,7 +37,7 @@ class _SplaceScreenState extends State<SplaceScreen> {
     Timer(
         const Duration(seconds: 3),
             () async => {
-               if (await fetchData())  Get.off(() => LoginScreen()) else  Get.off(() => EnterUrlScreen())
+                Get.offAndToNamed(RouteClass.getLoginScreen())
             });
   }
 }

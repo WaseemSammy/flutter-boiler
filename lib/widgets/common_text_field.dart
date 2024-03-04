@@ -21,13 +21,15 @@ class _CommonTextFieldState extends State<CommonTextField> {
       textAlignVertical: TextAlignVertical.center,
       style: TextStyle(color: Colors.black,
       ),
+
        decoration: InputDecoration(
          hintText: widget.hint,
-        isDense: true, contentPadding: EdgeInsets.symmetric(horizontal: 13,vertical: 13),
+        isDense: true, contentPadding: EdgeInsets.symmetric(horizontal: 15,vertical: 15),
         fillColor: Colors.white,
           filled: true,
           border: OutlineInputBorder(
-              borderSide: BorderSide.none)
+              borderSide: BorderSide.none),
+
           )
       ,
     );
