@@ -19,7 +19,6 @@ class TableOrderViewModel extends GetxController{
    RxDouble? total = 0.0.obs;
 
    add(Orders? cartItem,Data? data){
-     print("add ${jsonEncode(cartItem!)}");
      print(jsonEncode(cartItemData));
 
      List<CartItemData?> mydata = cartItemData.where((element) => element?.tableId == data?.tableId).toList();
@@ -30,7 +29,7 @@ class TableOrderViewModel extends GetxController{
           if(cartItemData[i]?.tableId == data?.tableId){
             int orderlenght= cartItemData[i]?.orders?.length??0;
              for(var j=0;j < orderlenght;j++){
-               if(cartItemData[i]?.orders?[j].itemId == cartItem.itemId){
+               if(cartItemData[i]?.orders?[j].itemId == cartItem?.itemId){
                  int count = cartItemData[i]?.orders?[j].count??1;
                  cartItemData[i]?.orders?[j].count = count+1;
                  found=true;
@@ -40,8 +39,8 @@ class TableOrderViewModel extends GetxController{
              if(found){
                break;
              }else{
-               cartItem.count = 1;
-               cartItemData[i]?.orders?.add(cartItem);
+               cartItem?.count = 1;
+               cartItemData[i]?.orders?.add(cartItem!);
                found=true;
                break;
              }
@@ -52,7 +51,7 @@ class TableOrderViewModel extends GetxController{
        dummycart.tableId = data?.tableId;
        dummycart.tableName = data?.tableNo.toString();
        dummycart.orders = [];
-       cartItem.count = 1;
+       cartItem?.count = 1;
        dummycart.orders?.add(cartItem!);
        cartItemData.add(dummycart);
      }
@@ -71,9 +70,9 @@ class TableOrderViewModel extends GetxController{
            int orderlenght= cartItemData[i]?.orders?.length??0;
            for(var j=0;j < orderlenght;j++){
              if(cartItemData[i]?.orders?[j].itemId == cartItem?.itemId){
-               int count = cartItemData[i]?.orders?[j].count??1;
+               int count = cartItemData[i]?.orders?[j]?.count??1;
                if(count>1) {
-                 cartItemData[i]?.orders?[j].count = count - 1;
+                 cartItemData[i]?.orders?[j]?.count = count - 1;
                }else if(count==1){
                  cartItemData[i]?.orders?.removeAt(j);
                }else{
@@ -101,7 +100,7 @@ class TableOrderViewModel extends GetxController{
         if(element?.tableId == data?.tableId){
           if(element?.orders?.isNotEmpty==true) {
             Total =
-                element?.orders?.map((item) => item.itemPrice! * item.count!)
+                element?.orders?.map((item) => item!.itemPrice! * item.count!)
                     .reduce((ele1, ele2) => ele1 + ele2);
           }
         }

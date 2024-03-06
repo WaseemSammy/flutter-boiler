@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:my_flutter/models/food_category_response.dart';
 import 'package:my_flutter/models/running_order_response.dart';
 import 'package:my_flutter/screens/category/ui/category_items.dart';
-
+import 'package:my_flutter/utils/responsive.dart';
 import '../constants/dummyJson.dart';
 import '../screens/menu/ui/menu_items.dart';
-import 'big_text.dart';
+
 
 class CommonOrderWidget extends StatefulWidget {
   final int viewType;
@@ -23,11 +23,19 @@ class CommonOrderWidget extends StatefulWidget {
 class _CommonOrderWidgetState extends State<CommonOrderWidget> {
   @override
   Widget build(BuildContext context) {
-    return  Container(
-      child: getWidget(widget.viewType),
-    );
+    return  Responsive(
+        mobile:  Container(
+          child: getWidget(widget.viewType,1),
+        ), 
+        tablet:  Container(
+          child: getWidget(widget.viewType,2),
+        ),
+        desktop:  Container(
+          child: getWidget(widget.viewType,3),
+        ))
+     ;
   }
-  getWidget(int type){
+  getWidget(int type,screenType){
     if(type == 0){
       return Container(
           padding: EdgeInsets.all(5),
@@ -39,7 +47,7 @@ class _CommonOrderWidgetState extends State<CommonOrderWidget> {
           child:  MediaQuery.removePadding(
             removeTop: true,
             context: context,
-            child: GridView.count(crossAxisCount: 3,
+            child: GridView.count(crossAxisCount: getGridViewCount(screenType),
                 mainAxisSpacing: 5.0,
                 crossAxisSpacing: 5.0,
                 children:DummyJson.dummyCategory.data?.map((e) => CategoryItem(e,widget.selectedMenu)).toList()??[]),
@@ -64,5 +72,15 @@ class _CommonOrderWidgetState extends State<CommonOrderWidget> {
           )
       );
     }
+  }
+  getGridViewCount(type){
+    if(type == 1){
+      return 3;
+    }else if(type == 2){
+      return 4;
+    }else{
+      return 7;
+    }
+
   }
 }
