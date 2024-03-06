@@ -11,7 +11,7 @@ import 'package:my_flutter/screens/running/widgets/running_items.dart';
 import 'package:my_flutter/utils/responsive.dart';
 import 'package:my_flutter/widgets/common_order_widget.dart';
 
-import '../../../constants/dummyJson.dart';
+
 import '../../../models/food_category_response.dart';
 import '../../../widgets/big_text.dart';
 import '../../../widgets/bottem_price_and_add.dart';
