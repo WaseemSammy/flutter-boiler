@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:my_flutter/models/running_order_response.dart';
 import 'package:my_flutter/routes/routes.dart';
+import 'package:my_flutter/utils/utils_helper.dart';
 import 'package:my_flutter/widgets/big_text.dart';
 import 'package:my_flutter/widgets/small_text.dart';
 
@@ -23,7 +24,8 @@ class _RunningGridItemsState extends State<RunningGridItems> {
       onTap: (){
         print(widget.data);
         //Get.rootDelegate.toNamed(RouteClass.orderScreen, arguments: 'test_data');
-        Get.toNamed(RouteClass.orderScreen,arguments: widget.data);
+        Utils.intence.showCustomerDialog(context);
+       // Get.toNamed("${RouteClass.orderScreen}${widget.data.tableId}");
       },
       child: Card(
         elevation: 10,

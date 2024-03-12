@@ -2,12 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-import 'package:lottie/lottie.dart';
+import 'package:my_flutter/constants/dummyJson.dart';
 import 'package:my_flutter/models/running_order_response.dart';
 import 'package:my_flutter/routes/routes.dart';
-import 'package:my_flutter/screens/menu/ui/menu_items.dart';
 import 'package:my_flutter/screens/orders/viewmodel/table_order_viewmodel.dart';
-import 'package:my_flutter/screens/running/widgets/running_items.dart';
 import 'package:my_flutter/utils/responsive.dart';
 import 'package:my_flutter/widgets/common_order_widget.dart';
 
@@ -15,7 +13,7 @@ import 'package:my_flutter/widgets/common_order_widget.dart';
 import '../../../models/food_category_response.dart';
 import '../../../widgets/big_text.dart';
 import '../../../widgets/bottem_price_and_add.dart';
-import '../../category/ui/category_items.dart';
+
 
 class OrdersScreen extends StatefulWidget {
   const OrdersScreen({Key? key}) : super(key: key);
@@ -29,7 +27,9 @@ class _OrdersScreenState extends State<OrdersScreen> {
   final _viewModel  = Get.put(TableOrderViewModel());
   @override
   void initState() {
-    data = Get.arguments;
+    String id = Get.parameters['id'] ?? '';
+    print(id);
+    data =DummyJson.allTable.data?.firstWhere((element) => element.tableId.toString() == id);
     super.initState();
   }
 
@@ -138,7 +138,7 @@ class _OrdersScreenState extends State<OrdersScreen> {
                     spacing: 5,
                     crossAxisAlignment: WrapCrossAlignment.center,
                     children: [
-                      Icon(Icons.people_alt_outlined,color: Colors.deepOrangeAccent,
+                      const Icon(Icons.people_alt_outlined,color: Colors.deepOrangeAccent,
                         size: 40,),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -154,9 +154,9 @@ class _OrdersScreenState extends State<OrdersScreen> {
                 ],
               ),
             ),
-            SizedBox(height: 20,),
+            const SizedBox(height: 20,),
             Container(
-                padding: EdgeInsets.all(10),
+                padding: const EdgeInsets.all(10),
                 width: MediaQuery.of(context).size.width,
                 decoration: BoxDecoration(
                     color: Colors.white,

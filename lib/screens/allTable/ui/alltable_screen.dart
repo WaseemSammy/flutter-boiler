@@ -43,6 +43,7 @@ class _RunningOrdersState extends State<AllTableScreen> {
         ),
       ),
       child: SingleChildScrollView(
+        physics: ScrollPhysics(),
         child: Column(
           children: [
             Container(
@@ -66,7 +67,6 @@ class _RunningOrdersState extends State<AllTableScreen> {
             Image.asset("assets/images/table.png",height: 100,),
             Container(
                 padding: EdgeInsets.all(5),
-                height: MediaQuery.of(context).size.height,
                 decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.only(topLeft: Radius.circular(15),topRight: Radius.circular(15))
@@ -76,6 +76,7 @@ class _RunningOrdersState extends State<AllTableScreen> {
                     mainAxisSpacing: 5.0,
                     crossAxisSpacing: 5.0,
                     shrinkWrap: true,
+                    physics: NeverScrollableScrollPhysics(),
                     children:DummyJson.allTable.data?.map((e) => RunningGridItems(e)).toList()??[])),
 
 

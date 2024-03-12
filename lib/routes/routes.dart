@@ -20,7 +20,7 @@ class RouteClass{
   static String login = "/login";
   static String dashboard = "/dashboard";
   static String otpScreen = "/otpscreen";
-  static String orderScreen = "/orderScreen";
+  static String orderScreen = "/order/";
   static String orderConfirm = "/orderConfirm";
   static String runningOrder = "/runningOrder";
   static String alltable = "/alltable";
@@ -40,7 +40,7 @@ class RouteClass{
       GetPage(name: start, page: ()=>const EnterUrlScreen()),
       GetPage(name: login, page: ()=>const LoginScreen(),),
       GetPage(name: dashboard, page: ()=>const DashboadMainScreen(), ),
-      GetPage(name: orderScreen, page: ()=>const OrdersScreen()),
+      GetPage(name: "$orderScreen/:id", page: ()=>const OrdersScreen()),
       GetPage(name: otpScreen, page: ()=>const OtpScreen(phone: "9643916691")),
       GetPage(name: orderConfirm, page: ()=>const ConfirmOrderScreen(),),
       GetPage(name: runningOrder, page: ()=>const RunningOrders()),

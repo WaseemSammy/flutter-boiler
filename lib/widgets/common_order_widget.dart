@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:my_flutter/models/cartItems.dart';
 import 'package:my_flutter/models/food_category_response.dart';
 import 'package:my_flutter/models/running_order_response.dart';
 import 'package:my_flutter/screens/category/ui/category_items.dart';
@@ -20,7 +21,23 @@ class CommonOrderWidget extends StatefulWidget {
   State<CommonOrderWidget> createState() => _CommonOrderWidgetState();
 }
 
+
 class _CommonOrderWidgetState extends State<CommonOrderWidget> {
+
+
+  List<Orders>? _searchedItems = [];
+
+  @override
+  void didUpdateWidget(covariant CommonOrderWidget oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    _searchedItems = widget.categoryData?.menu;
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+  }
   @override
   Widget build(BuildContext context) {
     return  Responsive(
@@ -53,7 +70,8 @@ class _CommonOrderWidgetState extends State<CommonOrderWidget> {
                 children:DummyJson.dummyCategory.data?.map((e) => CategoryItem(e,widget.selectedMenu)).toList()??[]),
           )
       );
-    }else{
+    }
+    else{
       return Container(
           padding: EdgeInsets.all(5),
           height: MediaQuery.of(context).size.height/2,
@@ -61,14 +79,30 @@ class _CommonOrderWidgetState extends State<CommonOrderWidget> {
               color: Colors.white,
               borderRadius: BorderRadius.zero
           ),
-          child:  MediaQuery.removePadding(
-              removeTop: true,
-              context: context,
-              child: ListView.separated(itemBuilder: (context, index) {
-                return MenuItems(widget.categoryData?.menu?[index],widget.data,true);
-              }, separatorBuilder: (context, index) {
-                return Divider(height: 0.5,color: Colors.grey,);
-              }, itemCount: widget.categoryData?.menu?.length??0)
+
+          child:  Column(
+            children: [
+              TextFormField(
+                onChanged: (value) => filter(value),
+                decoration: InputDecoration(
+                    labelText: "Search",
+                    labelStyle: TextStyle(
+                        color: Colors.black
+                    )
+                ),
+              ),
+              Expanded(
+                child: MediaQuery.removePadding(
+                    removeTop: true,
+                    context: context,
+                    child: ListView.separated(itemBuilder: (context, index) {
+                      return MenuItems(_searchedItems?[index],widget.data,true);
+                    }, separatorBuilder: (context, index) {
+                      return Divider(height: 0.5,color: Colors.grey,);
+                    }, itemCount: _searchedItems?.length??0)
+                ),
+              )
+            ],
           )
       );
     }
@@ -83,4 +117,19 @@ class _CommonOrderWidgetState extends State<CommonOrderWidget> {
     }
 
   }
+  void filter(String searchText) {
+    print("object ${widget.categoryData?.menu}");
+    List<Orders>? results = [];
+    if(searchText.isEmpty) {
+      results = widget.categoryData?.menu;
+    } else {
+      results = widget.categoryData?.menu?.where((element) => element.itemName?.toLowerCase().contains(searchText.toLowerCase()) == true).toList();
+    }
+
+    print(" result $results");
+    setState(() {
+      _searchedItems = results;
+    });
+  }
+
 }
