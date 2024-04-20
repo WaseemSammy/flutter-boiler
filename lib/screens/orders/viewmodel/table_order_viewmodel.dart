@@ -10,10 +10,6 @@ class TableOrderViewModel extends GetxController{
    Rx<CartItemData>? cartItembytable = CartItemData().obs;
    Rx<CartItemData>?  tempCartItem = CartItemData().obs;
 
-   @override
-  void onInit() {
-    super.onInit();
-  }
 
 
    RxDouble? total = 0.0.obs;
@@ -22,9 +18,9 @@ class TableOrderViewModel extends GetxController{
      print(jsonEncode(cartItemData));
 
      List<CartItemData?> mydata = cartItemData.where((element) => element?.tableId == data?.tableId).toList();
-     if(mydata.length>0) {
+     if(mydata.isNotEmpty) {
        bool found = false;
-       int lenth= cartItemData?.length??0;
+       int lenth= cartItemData.length??0;
        for (var i = 0; i < lenth; i++) {
           if(cartItemData[i]?.tableId == data?.tableId){
             int orderlenght= cartItemData[i]?.orders?.length??0;
@@ -62,17 +58,17 @@ class TableOrderViewModel extends GetxController{
    remove(Orders? cartItem,Data? data) {
      List<CartItemData?> mydata = cartItemData.where((element) => element?.tableId == data?.tableId).toList();
 
-     if(mydata.length>0) {
+     if(mydata.isNotEmpty) {
        bool found = false;
-       int lenth= cartItemData?.length??0;
+       int lenth= cartItemData.length??0;
        for (var i = 0; i < lenth; i++) {
          if(cartItemData[i]?.tableId == data?.tableId){
            int orderlenght= cartItemData[i]?.orders?.length??0;
            for(var j=0;j < orderlenght;j++){
              if(cartItemData[i]?.orders?[j].itemId == cartItem?.itemId){
-               int count = cartItemData[i]?.orders?[j]?.count??1;
+               int count = cartItemData[i]?.orders?[j].count??1;
                if(count>1) {
-                 cartItemData[i]?.orders?[j]?.count = count - 1;
+                 cartItemData[i]?.orders?[j].count = count - 1;
                }else if(count==1){
                  cartItemData[i]?.orders?.removeAt(j);
                }else{
@@ -96,20 +92,20 @@ class TableOrderViewModel extends GetxController{
    calCulateTotal(Data? data){
      print(jsonEncode(cartItemData));
      double? Total = 0.0;
-     cartItemData.forEach((element) {
+     for (var element in cartItemData) {
         if(element?.tableId == data?.tableId){
           if(element?.orders?.isNotEmpty==true) {
             Total =
-                element?.orders?.map((item) => item!.itemPrice! * item.count!)
+                element?.orders?.map((item) => item.itemPrice! * item.count!)
                     .reduce((ele1, ele2) => ele1 + ele2);
           }
         }
-     });
+     }
      total?.value = Total??0.0;
    }
 
    getOrdersByTableId(Data? data){
-     if(cartItemData.length>0) {
+     if(cartItemData.isNotEmpty) {
        CartItemData? cardItem = cartItemData.firstWhere((item) =>
        item?.tableId == data?.tableId);
        cartItembytable?.value = cardItem ?? CartItemData();
@@ -118,13 +114,13 @@ class TableOrderViewModel extends GetxController{
    }
 
    getItemCountByTableIdAndItems(Data? data,int? itemId){
-     if(cartItemData.length>0) {
+     if(cartItemData.isNotEmpty) {
        List<CartItemData?> mydata = cartItemData.where((element) =>
        element?.tableId == data?.tableId).toList();
-       int cartCount = mydata?.length??0;
+       int cartCount = mydata.length??0;
        if (cartCount > 0) {
-         List<Orders>? myorders = mydata?.first?.orders?.where((element) => element?.itemId == itemId).toList();
-         if(myorders?.length?.isGreaterThan(0) == true) {
+         List<Orders>? myorders = mydata.first?.orders?.where((element) => element.itemId == itemId).toList();
+         if(myorders?.length.isGreaterThan(0) == true) {
            print("return ${myorders?.first.count ?? 0}");
            return myorders?.first.count ?? 0;
          }else{

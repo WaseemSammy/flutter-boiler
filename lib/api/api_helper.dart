@@ -9,7 +9,6 @@ import '../constants/my_globals.dart' as global;
 
 
 
-import '../constants/singleton_constant.dart';
 import '../models/response_data_model.dart';
 import '../services/network_check.dart';
 import '../utils/pretty_json_print.dart';
@@ -40,15 +39,15 @@ class ApiHelper {
   //Gets Token from singleton class which is set either on login or app startup in main.dart
   static Future<Map<String, String>> _getHeaders(bool useAuth, int apiVersion) async {
     String? token = global.loginData?.data?.token;
-    Map<String, String> _map = {
+    Map<String, String> map = {
       //Add or Remove headers from here
       'Content-Type': 'application/json',
       'Authorization': useAuth ? 'Bearer $token' : "",
       'User-Agent' : 'iOS-MydesqAdvisorApp'
     };
 print(useAuth);
-    print(_map.toString());
-    return _map;
+    print(map.toString());
+    return map;
   }
 
   static Future<ResponseData> _handleError(
@@ -98,26 +97,26 @@ print(useAuth);
   }
 
   Future<ResponseData> postRequest(BuildContext? context, var requestUri, Map map,
-      {bool showError: false,
-      bool showMessage: false,
-      bool showLoader: true,
-      bool useAuth: true,
-      String responseName: "",
-      bool showLog: true,
-      bool showConnectivityError: true,
-      int apiVersion: 1}) async {
+      {bool showError = false,
+      bool showMessage = false,
+      bool showLoader = true,
+      bool useAuth = true,
+      String responseName = "",
+      bool showLog = true,
+      bool showConnectivityError = true,
+      int apiVersion = 1}) async {
     ResponseData responseData = ResponseData();
     if (showLog) {
       debugPrint("Requested URL: $requestUri");
       debugPrint("Map: $map");
     }
 
-    var jsonBody = JsonEncoder().convert(map);
+    var jsonBody = const JsonEncoder().convert(map);
     if (await NetworkCheck.isOnline(context!, showConnectivityError)) {
       if (showLoader) LoaderWidget.showLoader(context);
       await http
           .post(requestUri, body: jsonBody, headers: await _getHeaders(useAuth, apiVersion))
-          .timeout(Duration(seconds: _DEFAULT_TIMEOUT))
+          .timeout(const Duration(seconds: _DEFAULT_TIMEOUT))
           .then((http.Response response) async {
         if (showLoader) LoaderWidget.hideLoader(context);
        Map<String,dynamic> data =  jsonDecode(response.body);
@@ -143,27 +142,27 @@ print(useAuth);
     BuildContext? context,
     var requestUri,
     Map map, {
-    bool showError: false,
-    bool showMessage: false,
-    bool showLoader: false,
-    bool useAuth: true,
-    String responseName: "",
-    bool showLog: true,
-    bool showConnectivityError: true,
-    int apiVersion: 1,
+    bool showError = false,
+    bool showMessage = false,
+    bool showLoader = false,
+    bool useAuth = true,
+    String responseName = "",
+    bool showLog = true,
+    bool showConnectivityError = true,
+    int apiVersion = 1,
   }) async {
     ResponseData responseData = ResponseData();
     if (showLog) {
       debugPrint("Requested URL: $requestUri");
       debugPrint("Map: $map");
     }
-    var jsonBody = JsonEncoder().convert(map);
+    var jsonBody = const JsonEncoder().convert(map);
     if (await NetworkCheck.isOnline(context!, showConnectivityError)) {
       if (showLoader) LoaderWidget.showLoader(context);
 
       await http
           .put(requestUri, body: jsonBody, headers: await _getHeaders(useAuth, apiVersion))
-          .timeout(Duration(seconds: _DEFAULT_TIMEOUT))
+          .timeout(const Duration(seconds: _DEFAULT_TIMEOUT))
           .then((http.Response response) async {
         if (showLoader) LoaderWidget.hideLoader(context);
 
@@ -186,28 +185,28 @@ print(useAuth);
   }
 
   Future<ResponseData> patchRequest(BuildContext? context, var requestUri, Map map,
-      {bool showError: false,
-      bool showMessage: false,
-      bool showLoader: false,
-      bool useAuth: true,
-      String responseName: "",
-      bool showLog: true,
-      bool showConnectivityError: true,
-      int apiVersion: 1}) async {
+      {bool showError = false,
+      bool showMessage = false,
+      bool showLoader = false,
+      bool useAuth = true,
+      String responseName = "",
+      bool showLog = true,
+      bool showConnectivityError = true,
+      int apiVersion = 1}) async {
     ResponseData responseData = ResponseData();
     if (showLog) {
       debugPrint("Requested URL: $requestUri");
       debugPrint("Map: $map");
     }
-    var jsonBody = JsonEncoder().convert(map);
+    var jsonBody = const JsonEncoder().convert(map);
     if (await NetworkCheck.isOnline(context!, showConnectivityError)) {
       if (showLoader) LoaderWidget.showLoader(context);
 
       await http
           .patch(requestUri, body: jsonBody, headers: await _getHeaders(useAuth, apiVersion))
-          .timeout(Duration(seconds: _DEFAULT_TIMEOUT))
+          .timeout(const Duration(seconds: _DEFAULT_TIMEOUT))
           .then((http.Response response) async {
-        if (showLoader) LoaderWidget.hideLoader(context!);
+        if (showLoader) LoaderWidget.hideLoader(context);
 
         if (response.statusCode == 200 || response.statusCode == 201) {
           if (showLog) {
@@ -228,14 +227,14 @@ print(useAuth);
   }
 
   Future<ResponseData> getRequest(BuildContext? context, var requestUri,
-      {bool showError: false,
-      bool showMessage: false,
-      bool showLoader: false,
-      bool useAuth: true,
-      String responseName: "",
-      bool showLog: true,
-      bool showConnectivityError: true,
-      int apiVersion: 1}) async {
+      {bool showError = false,
+      bool showMessage = false,
+      bool showLoader = false,
+      bool useAuth = true,
+      String responseName = "",
+      bool showLog = true,
+      bool showConnectivityError = true,
+      int apiVersion = 1}) async {
     ResponseData responseData = ResponseData();
     if (showLog) {
       debugPrint("Requested URL: $requestUri");
@@ -247,7 +246,7 @@ print(useAuth);
 
       await http
           .get(requestUri, headers: await _getHeaders(useAuth, apiVersion))
-          .timeout(Duration(seconds: _DEFAULT_TIMEOUT))
+          .timeout(const Duration(seconds: _DEFAULT_TIMEOUT))
           .then((http.Response response) async {
         if (showLoader) LoaderWidget.hideLoader(context);
 
@@ -270,14 +269,14 @@ print(useAuth);
   }
 
   Future<ResponseData> deleteRequest(BuildContext? context, var requestUri,
-      {bool showError: false,
-      bool showMessage: false,
-      bool showLoader: false,
-      bool useAuth: true,
-      String responseName: "",
-      bool showLog: true,
-      bool showConnectivityError: true,
-      int apiVersion: 1}) async {
+      {bool showError = false,
+      bool showMessage = false,
+      bool showLoader = false,
+      bool useAuth = true,
+      String responseName = "",
+      bool showLog = true,
+      bool showConnectivityError = true,
+      int apiVersion = 1}) async {
     ResponseData responseData = ResponseData();
     if (showLog) {
       debugPrint("Requested URL: $requestUri");
@@ -287,9 +286,9 @@ print(useAuth);
 
       await http
           .delete(requestUri, headers: await _getHeaders(useAuth, apiVersion))
-          .timeout(Duration(seconds: _DEFAULT_TIMEOUT))
+          .timeout(const Duration(seconds: _DEFAULT_TIMEOUT))
           .then((http.Response response) async {
-        if (showLoader) LoaderWidget.hideLoader(context!);
+        if (showLoader) LoaderWidget.hideLoader(context);
 
         if (response.statusCode == 200 || response.statusCode == 201) {
           if (showLog) {
@@ -311,7 +310,7 @@ print(useAuth);
   }
 
   Future<ResponseData> getRequestBG(var requestUri,
-      {bool useAuth: true, String responseName: "", bool showLog: true, int apiVersion: 1}) async {
+      {bool useAuth = true, String responseName = "", bool showLog = true, int apiVersion = 1}) async {
     return await getRequest(null, requestUri,
         showError: false,
         showLog: showLog,
@@ -324,7 +323,7 @@ print(useAuth);
   }
 
   Future<ResponseData> postRequestBG(var requestUri, Map map,
-      {bool useAuth: true, String responseName: "", bool showLog: true, int apiVersion: 1}) async {
+      {bool useAuth = true, String responseName = "", bool showLog = true, int apiVersion = 1}) async {
     return await postRequest(null, requestUri, map,
         showError: false,
         showLog: showLog,
@@ -337,7 +336,7 @@ print(useAuth);
   }
 
   Future<ResponseData> putRequestBG(var requestUri, Map map,
-      {bool useAuth: true, String responseName: "", bool showLog: true, int apiVersion: 1}) async {
+      {bool useAuth = true, String responseName = "", bool showLog = true, int apiVersion = 1}) async {
     return await putRequest(null, requestUri, map,
         showError: false,
         showLog: showLog,
@@ -350,7 +349,7 @@ print(useAuth);
   }
 
   Future<ResponseData> patchRequestBG(var requestUri, Map map,
-      {bool useAuth: true, String responseName: "", bool showLog: true, int apiVersion: 1}) async {
+      {bool useAuth = true, String responseName = "", bool showLog = true, int apiVersion = 1}) async {
     return await patchRequest(null, requestUri, map,
         showError: false,
         showLog: showLog,
@@ -363,7 +362,7 @@ print(useAuth);
   }
 
   Future<ResponseData> deleteRequestBG(var requestUri,
-      {bool useAuth: true, String responseName: "", bool showLog: true, int apiVersion: 1}) async {
+      {bool useAuth = true, String responseName = "", bool showLog = true, int apiVersion = 1}) async {
     return await deleteRequest(null, requestUri,
         showError: false,
         showLog: showLog,

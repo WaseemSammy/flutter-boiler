@@ -5,19 +5,19 @@ class AppSettingModel {
   AppSettingModel({this.data, this.message});
 
   AppSettingModel.fromJson(Map<String, dynamic> json) {
-    data = json['Data'] != null ? new Data.fromJson(json['Data']) : null;
+    data = json['Data'] != null ? Data.fromJson(json['Data']) : null;
 
     message =
-    json['Message'] != null ? new Message.fromJson(json['Message']) : null;
+    json['Message'] != null ? Message.fromJson(json['Message']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     if (this.data != null) {
       data['Data'] = this.data!.toJson();
     }
-    if (this.message != null) {
-      data['Message'] = this.message!.toJson();
+    if (message != null) {
+      data['Message'] = message!.toJson();
     }
     return data;
   }
@@ -67,10 +67,10 @@ class Data {
     localizationModifiedTimestamp = json['LocalizationModifiedTimestamp'] as String?;
     notificationHubBaseUri = json['NotificationHubBaseUri'] as String?;
     loginScreenSetting = json['LoginScreenSetting'] != null
-        ? new LoginScreenSetting.fromJson(json['LoginScreenSetting'])
+        ? LoginScreenSetting.fromJson(json['LoginScreenSetting'])
         : null;
     appVersionInfo = json['AppVersionInfo'] != null
-        ? new AppVersionInfo.fromJson(json['AppVersionInfo'])
+        ? AppVersionInfo.fromJson(json['AppVersionInfo'])
         : null;
     activeFlag = json['ActiveFlag'] as bool?;
     createUser = json['CreateUser'] as int?;
@@ -83,27 +83,27 @@ class Data {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['OrganizationId'] = this.organizationId;
-    data['OrganizationName'] = this.organizationName;
-    data['OrganizationNameShort'] = this.organizationNameShort;
-    data['ScreenLockInterval'] = this.screenLockInterval;
-    data['LocalizationModifiedTimestamp'] = this.localizationModifiedTimestamp;
-    data['NotificationHubBaseUri'] = this.notificationHubBaseUri;
-    if (this.loginScreenSetting != null) {
-      data['LoginScreenSetting'] = this.loginScreenSetting!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['OrganizationId'] = organizationId;
+    data['OrganizationName'] = organizationName;
+    data['OrganizationNameShort'] = organizationNameShort;
+    data['ScreenLockInterval'] = screenLockInterval;
+    data['LocalizationModifiedTimestamp'] = localizationModifiedTimestamp;
+    data['NotificationHubBaseUri'] = notificationHubBaseUri;
+    if (loginScreenSetting != null) {
+      data['LoginScreenSetting'] = loginScreenSetting!.toJson();
     }
-    if (this.appVersionInfo != null) {
-      data['AppVersionInfo'] = this.appVersionInfo!.toJson();
+    if (appVersionInfo != null) {
+      data['AppVersionInfo'] = appVersionInfo!.toJson();
     }
-    data['ActiveFlag'] = this.activeFlag;
-    data['CreateUser'] = this.createUser;
-    data['CreateUserName'] = this.createUserName;
-    data['UpdateUser'] = this.updateUser;
-    data['UpdateUserName'] = this.updateUserName;
-    data['CreateTime'] = this.createTime;
-    data['UpdateTime'] = this.updateTime;
-    data['ExtBusinessKey'] = this.extBusinessKey;
+    data['ActiveFlag'] = activeFlag;
+    data['CreateUser'] = createUser;
+    data['CreateUserName'] = createUserName;
+    data['UpdateUser'] = updateUser;
+    data['UpdateUserName'] = updateUserName;
+    data['CreateTime'] = createTime;
+    data['UpdateTime'] = updateTime;
+    data['ExtBusinessKey'] = extBusinessKey;
     return data;
   }
 }
@@ -188,31 +188,31 @@ class LoginScreenSetting {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['IosSplashLogo'] = this.iosSplashLogo;
-    data['IosSplashBackground'] = this.iosSplashBackground;
-    data['IosXCoord'] = this.iosXCoord;
-    data['IosYCoord'] = this.iosYCoord;
-    data['IosLoginBoxWidth'] = this.iosLoginBoxWidth;
-    data['IosLoginBoxHeight'] = this.iosLoginBoxHeight;
-    data['WinSplashLogo'] = this.winSplashLogo;
-    data['WinSplashBackground'] = this.winSplashBackground;
-    data['WinXCoord'] = this.winXCoord;
-    data['WinYCoord'] = this.winYCoord;
-    data['WinLoginBoxWidth'] = this.winLoginBoxWidth;
-    data['WinLoginBoxHeight'] = this.winLoginBoxHeight;
-    data['MobileSplashLogo'] = this.mobileSplashLogo;
-    data['MobileSplashBackground'] = this.mobileSplashBackground;
-    data['MobileXCoord'] = this.mobileXCoord;
-    data['MobileYCoord'] = this.mobileYCoord;
-    data['MobileLoginBoxWidth'] = this.mobileLoginBoxWidth;
-    data['MobileLoginBoxHeight'] = this.mobileLoginBoxHeight;
-    data['LoginBoxColor'] = this.loginBoxColor;
-    data['LoginButtonColor'] = this.loginButtonColor;
-    data['LoginButtonText'] = this.loginButtonText;
-    data['LoginButtonTextColor'] = this.loginButtonTextColor;
-    data['LoginBoxOpacity'] = this.loginBoxOpacity;
-    data['MydesqInvalidLogin'] = this.mydesqInvalidLogin;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['IosSplashLogo'] = iosSplashLogo;
+    data['IosSplashBackground'] = iosSplashBackground;
+    data['IosXCoord'] = iosXCoord;
+    data['IosYCoord'] = iosYCoord;
+    data['IosLoginBoxWidth'] = iosLoginBoxWidth;
+    data['IosLoginBoxHeight'] = iosLoginBoxHeight;
+    data['WinSplashLogo'] = winSplashLogo;
+    data['WinSplashBackground'] = winSplashBackground;
+    data['WinXCoord'] = winXCoord;
+    data['WinYCoord'] = winYCoord;
+    data['WinLoginBoxWidth'] = winLoginBoxWidth;
+    data['WinLoginBoxHeight'] = winLoginBoxHeight;
+    data['MobileSplashLogo'] = mobileSplashLogo;
+    data['MobileSplashBackground'] = mobileSplashBackground;
+    data['MobileXCoord'] = mobileXCoord;
+    data['MobileYCoord'] = mobileYCoord;
+    data['MobileLoginBoxWidth'] = mobileLoginBoxWidth;
+    data['MobileLoginBoxHeight'] = mobileLoginBoxHeight;
+    data['LoginBoxColor'] = loginBoxColor;
+    data['LoginButtonColor'] = loginButtonColor;
+    data['LoginButtonText'] = loginButtonText;
+    data['LoginButtonTextColor'] = loginButtonTextColor;
+    data['LoginBoxOpacity'] = loginBoxOpacity;
+    data['MydesqInvalidLogin'] = mydesqInvalidLogin;
     return data;
   }
 }
@@ -229,9 +229,9 @@ class AppVersionInfo {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['DatabaseVersion'] = this.databaseVersion;
-    data['ApiVersion'] = this.apiVersion;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['DatabaseVersion'] = databaseVersion;
+    data['ApiVersion'] = apiVersion;
     return data;
   }
 }
@@ -253,11 +253,11 @@ class Message {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['MessageCode'] = this.messageCode;
-    data['MessageType'] = this.messageType;
-    data['Message'] = this.message;
-    data['MessageSource'] = this.messageSource;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['MessageCode'] = messageCode;
+    data['MessageType'] = messageType;
+    data['Message'] = message;
+    data['MessageSource'] = messageSource;
     return data;
   }
 }

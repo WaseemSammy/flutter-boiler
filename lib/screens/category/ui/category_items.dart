@@ -1,10 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:my_flutter/models/food_category_response.dart';
 
-import '../../../routes/routes.dart';
 import '../../../widgets/big_text.dart';
 
 class CategoryItem extends StatefulWidget {

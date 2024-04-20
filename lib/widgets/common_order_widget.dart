@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:my_flutter/models/cartItems.dart';
 import 'package:my_flutter/models/food_category_response.dart';
@@ -30,13 +29,13 @@ class _CommonOrderWidgetState extends State<CommonOrderWidget> {
   @override
   void didUpdateWidget(covariant CommonOrderWidget oldWidget) {
     super.didUpdateWidget(oldWidget);
-    _searchedItems = widget.categoryData?.menu;
+
   }
 
   @override
   void initState() {
     super.initState();
-
+    _searchedItems = widget.categoryData?.menu;
   }
   @override
   Widget build(BuildContext context) {
@@ -55,9 +54,9 @@ class _CommonOrderWidgetState extends State<CommonOrderWidget> {
   getWidget(int type,screenType){
     if(type == 0){
       return Container(
-          padding: EdgeInsets.all(5),
+          padding: const EdgeInsets.all(5),
           height: MediaQuery.of(context).size.height/2,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.zero
           ),
@@ -73,9 +72,9 @@ class _CommonOrderWidgetState extends State<CommonOrderWidget> {
     }
     else{
       return Container(
-          padding: EdgeInsets.all(5),
+          padding: const EdgeInsets.all(5),
           height: MediaQuery.of(context).size.height/2,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.zero
           ),
@@ -84,7 +83,7 @@ class _CommonOrderWidgetState extends State<CommonOrderWidget> {
             children: [
               TextFormField(
                 onChanged: (value) => filter(value),
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                     labelText: "Search",
                     labelStyle: TextStyle(
                         color: Colors.black
@@ -95,10 +94,12 @@ class _CommonOrderWidgetState extends State<CommonOrderWidget> {
                 child: MediaQuery.removePadding(
                     removeTop: true,
                     context: context,
-                    child: ListView.separated(itemBuilder: (context, index) {
+                    child: ListView.separated(
+                      shrinkWrap: true,
+                        itemBuilder: (context, index) {
                       return MenuItems(_searchedItems?[index],widget.data,true);
                     }, separatorBuilder: (context, index) {
-                      return Divider(height: 0.5,color: Colors.grey,);
+                      return const Divider(height: 0.5,color: Colors.grey,);
                     }, itemCount: _searchedItems?.length??0)
                 ),
               )

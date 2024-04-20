@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_flutter/models/running_order_response.dart';
@@ -48,7 +47,6 @@ class _ConfirmOrderScreenState extends State<ConfirmOrderScreen> {
     return Scaffold(
        floatingActionButton: FloatingActionButton(
            elevation: 0.0,
-           child: Icon(Icons.add),
            backgroundColor: Colors.deepOrangeAccent,
            onPressed: (){
              showModalBottomSheet(
@@ -57,10 +55,11 @@ class _ConfirmOrderScreenState extends State<ConfirmOrderScreen> {
              ).whenComplete(() {
                 refresh();
              });
-           }
+           },
+           child: const Icon(Icons.add)
        ),
         body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
@@ -74,7 +73,7 @@ class _ConfirmOrderScreenState extends State<ConfirmOrderScreen> {
           child: Column(
             children: [
               Container(
-                padding: EdgeInsets.only(top: 50,left: 20,right: 20),
+                padding: const EdgeInsets.only(top: 50,left: 20,right: 20),
                 width: MediaQuery.of(context).size.width,
                 height: MediaQuery.of(context).size.height*.22,
           
@@ -87,15 +86,15 @@ class _ConfirmOrderScreenState extends State<ConfirmOrderScreen> {
                         onTap: () {
                           Get.back();
                         },
-                        child: Icon(Icons.arrow_back,size: 25,color: Colors.white,)),
+                        child: const Icon(Icons.arrow_back,size: 25,color: Colors.white,)),
                     BigText(text: "Order detail",color: Colors.white,size: 23,),
                     Container()
                   ],
                 ),
               ),
               Container(
-                padding: EdgeInsets.only(left: 10,top: 10,bottom: 10,right: 10),
-                margin: EdgeInsets.symmetric(horizontal: 5),
+                padding: const EdgeInsets.only(left: 10,top: 10,bottom: 10,right: 10),
+                margin: const EdgeInsets.symmetric(horizontal: 5),
                 height: 80,
                 decoration: BoxDecoration(
                     color: Colors.white,
@@ -122,7 +121,7 @@ class _ConfirmOrderScreenState extends State<ConfirmOrderScreen> {
                       spacing: 5,
                       crossAxisAlignment: WrapCrossAlignment.center,
                       children: [
-                        Icon(Icons.people_alt_outlined,color: Colors.deepOrangeAccent,
+                        const Icon(Icons.people_alt_outlined,color: Colors.deepOrangeAccent,
                           size: 40,),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -138,11 +137,11 @@ class _ConfirmOrderScreenState extends State<ConfirmOrderScreen> {
                   ],
                 ),
               ),
-              SizedBox(height: 20,),
+              const SizedBox(height: 20,),
               Container(
-                  padding: EdgeInsets.symmetric(vertical: 10,horizontal: 15),
+                  padding: const EdgeInsets.symmetric(vertical: 10,horizontal: 15),
                   width: MediaQuery.of(context).size.width,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.only(topLeft: Radius.circular(15),topRight: Radius.circular(15))
           
@@ -161,9 +160,9 @@ class _ConfirmOrderScreenState extends State<ConfirmOrderScreen> {
                     height: 500,
                   child: Obx(() {
                     return  Container(
-                                    padding: EdgeInsets.all(5),
+                                    padding: const EdgeInsets.all(5),
                                     height: MediaQuery.of(context).size.height,
-                                    decoration: BoxDecoration(
+                                    decoration: const BoxDecoration(
                                         color: Colors.white,
                                         borderRadius: BorderRadius.zero
                                     ),
@@ -173,7 +172,7 @@ class _ConfirmOrderScreenState extends State<ConfirmOrderScreen> {
                                     child: ListView.separated(itemBuilder: (context, index) {
                                       return MenuItems(_viewModel.cartItembytable?.value.orders?[index],data,false);
                                     }, separatorBuilder: (context, index) {
-                                      return Divider(height: 0.5,color: Colors.grey,);
+                                      return const Divider(height: 0.5,color: Colors.grey,);
                                     }, itemCount: _viewModel.cartItembytable?.value.orders?.length??0)
                     ));
                   }),
@@ -186,11 +185,11 @@ class _ConfirmOrderScreenState extends State<ConfirmOrderScreen> {
 
           child: Container(
 
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               borderRadius: BorderRadius.zero,
               color: Colors.deepOrangeAccent,
             ),
-            padding: EdgeInsets.all(10),
+            padding: const EdgeInsets.all(10),
             width: double.infinity,
             child: BigTextCenter(text: "Confirm Order",color: Colors.white,size: 20,),),
         ),

@@ -1,12 +1,11 @@
 import 'dart:convert';
 
-import 'package:flutter/cupertino.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 /// Common shared preference helper class
 class SharedPreferencesHelper {
-  static final String _authToken = "authToken";
-  static final String _customURL = "customURL";
+  static const String _authToken = "authToken";
+  static const String _customURL = "customURL";
 
   static Future<SharedPreferences> get _instance async => prefs ??= await SharedPreferences.getInstance();
   static SharedPreferences? prefs;

@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:my_flutter/models/running_order_response.dart';
 
@@ -40,9 +39,9 @@ class _CustomeBottemSheetState extends State<CustomeBottemSheet> {
       child: Column(
         children: [
           Container(
-              padding: EdgeInsets.all(10),
+              padding: const EdgeInsets.all(10),
               width: MediaQuery.of(context).size.width,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.only(topLeft: Radius.circular(15),topRight: Radius.circular(15))
       
@@ -56,7 +55,7 @@ class _CustomeBottemSheetState extends State<CustomeBottemSheet> {
                         onTap: () {
                           selectedCategory();
                         },
-                        child: Icon(Icons.arrow_back,size: 23,color: Colors.black,)),
+                        child: const Icon(Icons.arrow_back,size: 23,color: Colors.black,)),
                   ),
                   BigText(text: viewType==0?"Category List":"Menu List",color: Colors.black,size: 23,),
                   Container()],

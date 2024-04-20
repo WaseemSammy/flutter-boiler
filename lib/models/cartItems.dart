@@ -7,13 +7,13 @@ class CartItems {
     if (json['data'] != null) {
       data = <CartItemData>[];
       json['data'].forEach((v) {
-        data!.add(new CartItemData.fromJson(v));
+        data!.add(CartItemData.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     if (this.data != null) {
       data['data'] = this.data!.map((v) => v.toJson()).toList();
     }
@@ -34,7 +34,7 @@ class CartItemData {
     if (json['orders'] != null) {
       orders = <Orders>[];
       json['orders'].forEach((v) {
-        orders!.add(new Orders.fromJson(v));
+        orders!.add(Orders.fromJson(v));
       });
     }else{
       orders = <Orders>[];
@@ -42,11 +42,11 @@ class CartItemData {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['tableId'] = this.tableId;
-    data['tableName'] = this.tableName;
-    if (this.orders != null) {
-      data['orders'] = this.orders!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['tableId'] = tableId;
+    data['tableName'] = tableName;
+    if (orders != null) {
+      data['orders'] = orders!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -83,14 +83,14 @@ class Orders {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['itemId'] = this.itemId;
-    data['quantity'] = this.quantity;
-    data['itemName'] = this.itemName;
-    data['itemDescription'] = this.itemDescription;
-    data['itemType'] = this.itemType;
-    data['itemPrice'] = this.itemPrice;
-    data['count'] = this.count;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['itemId'] = itemId;
+    data['quantity'] = quantity;
+    data['itemName'] = itemName;
+    data['itemDescription'] = itemDescription;
+    data['itemType'] = itemType;
+    data['itemPrice'] = itemPrice;
+    data['count'] = count;
     return data;
   }
 }

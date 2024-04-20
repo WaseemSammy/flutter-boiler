@@ -20,7 +20,7 @@ class ResponseData {
   Map<String,dynamic>? body;
 
   ResponseData(
-      {this.statusCode, this.data, this.message, this.errors, this.ok: false, this.okAndContainsData: false, this.rawResponseBody,this.response,this.body});
+      {this.statusCode, this.data, this.message, this.errors, this.ok = false, this.okAndContainsData = false, this.rawResponseBody,this.response,this.body});
 
   factory ResponseData.fromResponse(http.Response response) {
     var parsedJson = jsonDecode(response.body);
@@ -28,13 +28,13 @@ class ResponseData {
       response: response,
       statusCode: response.statusCode,
       ok: (response.statusCode == 200 || response.statusCode == 201),
-      data: parsedJson['data'] != null ? parsedJson['data'] : null,
-      rawResponseBody: response.body != null ? response.body : null,
+      data: parsedJson['data'],
+      rawResponseBody: response.body,
       okAndContainsData: (response.statusCode == 200 || response.statusCode == 201) && (parsedJson['data'] != null),
-      message: parsedJson['message'] != null ? parsedJson['message'] : "",
+      message: parsedJson['message'] ?? "",
       errors: parsedJson['errors'] != null
           ? parsedJson['errors'].runtimeType == String
-              ? new ResponseErrors(message: parsedJson['errors'])
+              ? ResponseErrors(message: parsedJson['errors'])
               : ResponseErrors.fromJson(parsedJson['errors'])
           : parsedJson['error'] != null
               ? ResponseErrors(message: parsedJson['error'])
@@ -53,7 +53,7 @@ class ResponseErrors {
 
   factory ResponseErrors.fromJson(Map<String, dynamic> parsedJson) {
     return ResponseErrors(
-      message: parsedJson['message'] != null ? parsedJson['message'] : "",
+      message: parsedJson['message'] ?? "",
     );
   }
 }

@@ -1,5 +1,4 @@
 import 'package:dotted_border/dotted_border.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -46,7 +45,7 @@ class _MenuItemsState extends State<MenuItems> {
     print("Menu Item build");
     int Itemcount = _viewModel.getItemCountByTableIdAndItems(widget.data,widget.menu?.itemId);
     return  Container(
-      padding: EdgeInsets.all(10),
+      padding: const EdgeInsets.all(10),
        child: Row(
          mainAxisAlignment: MainAxisAlignment.spaceBetween,
          children: [
@@ -56,7 +55,7 @@ class _MenuItemsState extends State<MenuItems> {
              children: [
                DottedBorder(
                  color: Colors.grey,
-                   child: Container(
+                   child: const SizedBox(
                  height: 30,
                  width: 30,
 
@@ -65,7 +64,7 @@ class _MenuItemsState extends State<MenuItems> {
                  crossAxisAlignment: CrossAxisAlignment.start,
                  children: [
                    BigText(text: widget.menu?.itemName??"", size: 18,color: Colors.black54,),
-                   SizedBox(height: 5,),
+                   const SizedBox(height: 5,),
                    SmallText(text: widget.visibility == true ? "${widget.menu?.itemPrice}" : "${widget.menu?.count}", size: 12,
                    color: Colors.grey,),
                  ],
@@ -85,14 +84,14 @@ class _MenuItemsState extends State<MenuItems> {
                       refresh();
 
                    },
-                   child: CircleAvatar(
+                   child: const CircleAvatar(
                      maxRadius: 15,
                      backgroundColor: Colors.black,
                      child: Icon(Icons.remove,color: Colors.white,
                        size: 20,),
                    ),
                  ),
-                 BigText(text: "${Itemcount}"),
+                 BigText(text: "$Itemcount"),
                  InkWell(
                    onTap: (){
                      final copyMenu = Orders.clone(widget.menu);
@@ -101,7 +100,7 @@ class _MenuItemsState extends State<MenuItems> {
 
 
                    },
-                   child: CircleAvatar(
+                   child: const CircleAvatar(
                      maxRadius: 15,
                      backgroundColor: Colors.black,
                      child: Icon(Icons.add,color: Colors.white,

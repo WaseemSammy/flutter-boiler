@@ -1,25 +1,25 @@
 class LoginModelResponse {
   Data? data;
-  Null? filter;
+  dynamic filter;
   Message? message;
 
   LoginModelResponse({this.data, this.filter, this.message});
 
   LoginModelResponse.fromJson(Map<String, dynamic> json) {
-    data = json['Data'] != null ? new Data.fromJson(json['Data']) : null;
+    data = json['Data'] != null ? Data.fromJson(json['Data']) : null;
     filter = json['Filter'];
     message =
-    json['Message'] != null ? new Message.fromJson(json['Message']) : null;
+    json['Message'] != null ? Message.fromJson(json['Message']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     if (this.data != null) {
       data['Data'] = this.data!.toJson();
     }
-    data['Filter'] = this.filter;
-    if (this.message != null) {
-      data['Message'] = this.message!.toJson();
+    data['Filter'] = filter;
+    if (message != null) {
+      data['Message'] = message!.toJson();
     }
     return data;
   }
@@ -28,8 +28,8 @@ class LoginModelResponse {
 class Data {
   String? userName;
   int? countryId;
-  Null? login;
-  Null? picture;
+  dynamic login;
+  dynamic picture;
   String? firstName;
   String? lastName;
   int? systemType;
@@ -40,7 +40,7 @@ class Data {
   int? accountId;
   int? tmpClientId;
   int? portfolioId;
-  Null? functionalProfiles;
+  dynamic functionalProfiles;
   int? userId;
   int? orgId;
   int? languageId;
@@ -93,27 +93,27 @@ class Data {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['UserName'] = this.userName;
-    data['CountryId'] = this.countryId;
-    data['Login'] = this.login;
-    data['Picture'] = this.picture;
-    data['FirstName'] = this.firstName;
-    data['LastName'] = this.lastName;
-    data['SystemType'] = this.systemType;
-    data['DisplayName'] = this.displayName;
-    data['UserAgent'] = this.userAgent;
-    data['TwoFactorAuth'] = this.twoFactorAuth;
-    data['IsWorkflowCompleted'] = this.isWorkflowCompleted;
-    data['AccountId'] = this.accountId;
-    data['TmpClientId'] = this.tmpClientId;
-    data['PortfolioId'] = this.portfolioId;
-    data['FunctionalProfiles'] = this.functionalProfiles;
-    data['UserId'] = this.userId;
-    data['OrgId'] = this.orgId;
-    data['LanguageId'] = this.languageId;
-    data['Token'] = this.token;
-    data['ExpiresOn'] = this.expiresOn;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['UserName'] = userName;
+    data['CountryId'] = countryId;
+    data['Login'] = login;
+    data['Picture'] = picture;
+    data['FirstName'] = firstName;
+    data['LastName'] = lastName;
+    data['SystemType'] = systemType;
+    data['DisplayName'] = displayName;
+    data['UserAgent'] = userAgent;
+    data['TwoFactorAuth'] = twoFactorAuth;
+    data['IsWorkflowCompleted'] = isWorkflowCompleted;
+    data['AccountId'] = accountId;
+    data['TmpClientId'] = tmpClientId;
+    data['PortfolioId'] = portfolioId;
+    data['FunctionalProfiles'] = functionalProfiles;
+    data['UserId'] = userId;
+    data['OrgId'] = orgId;
+    data['LanguageId'] = languageId;
+    data['Token'] = token;
+    data['ExpiresOn'] = expiresOn;
     return data;
   }
 }
@@ -135,11 +135,11 @@ class Message {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['MessageCode'] = this.messageCode;
-    data['MessageType'] = this.messageType;
-    data['Message'] = this.message;
-    data['MessageSource'] = this.messageSource;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['MessageCode'] = messageCode;
+    data['MessageType'] = messageType;
+    data['Message'] = message;
+    data['MessageSource'] = messageSource;
     return data;
   }
 }

@@ -1,9 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 class LabTestWidget extends StatefulWidget {
-  const LabTestWidget(this.labTestId,this.labtestlabel,this.backgroundImageUrl) ;
+  const LabTestWidget(this.labTestId,this.labtestlabel,this.backgroundImageUrl, {super.key}) ;
   final String labTestId;
   final String labtestlabel;
   final String backgroundImageUrl;
@@ -19,7 +18,7 @@ class _LabTestWiState extends State<LabTestWidget> {
       height: 100,
       width: 150,
       child: Card(
-        margin: EdgeInsets.all(5),
+        margin: const EdgeInsets.all(5),
         child: Stack(
           children: [
            SvgPicture.asset(

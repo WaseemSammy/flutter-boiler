@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class CommonTextField extends StatefulWidget {
-  CommonTextField({Key? key, required this.controller, required this.label, required this.hint, required this.isPassword}) : super(key: key);
+  const CommonTextField({Key? key, required this.controller, required this.label, required this.hint, required this.isPassword}) : super(key: key);
 
   final TextEditingController controller;
   final String label;
@@ -19,15 +19,15 @@ class _CommonTextFieldState extends State<CommonTextField> {
       controller: widget.controller,
       obscureText: widget.isPassword,
       textAlignVertical: TextAlignVertical.center,
-      style: TextStyle(color: Colors.black,
+      style: const TextStyle(color: Colors.black,
       ),
 
        decoration: InputDecoration(
          hintText: widget.hint,
-        isDense: true, contentPadding: EdgeInsets.symmetric(horizontal: 15,vertical: 15),
+        isDense: true, contentPadding: const EdgeInsets.symmetric(horizontal: 15,vertical: 15),
         fillColor: Colors.white,
           filled: true,
-          border: OutlineInputBorder(
+          border: const OutlineInputBorder(
               borderSide: BorderSide.none),
 
           )

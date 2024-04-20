@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
 class AlertBar {
-  static final int LENGTH_SHORT = 1; //1 seconds
-  static final int LENGTH_LONG = 2; // 2 seconds
-  static final int LENGTH_VERY_LONG = 3; // 3 seconds
+  static const int LENGTH_SHORT = 1; //1 seconds
+  static const int LENGTH_LONG = 2; // 2 seconds
+  static const int LENGTH_VERY_LONG = 3; // 3 seconds
 
-  static final int TOP = 1;
-  static final int BOTTOM = 2;
+  static const int TOP = 1;
+  static const int BOTTOM = 2;
 
   static void show(BuildContext context,
       {required String? title, required String? description,  int? duration,  int? gravity,  Color? backgroundColor,  IconData? icon}) {
@@ -16,7 +16,7 @@ class AlertBar {
 }
 
 class OverlayView {
-  static final OverlayView _singleton = new OverlayView._internal();
+  static final OverlayView _singleton = OverlayView._internal();
 
   factory OverlayView() {
     return _singleton;
@@ -39,10 +39,10 @@ class OverlayView {
         return EdgeOverlay(
           title: title,
           description: description,
-          overlayDuration: duration == null ? AlertBar.LENGTH_SHORT : duration,
-          gravity: gravity == null ? AlertBar.TOP : gravity,
-          backgroundColor: backgroundColor == null ? Colors.grey : backgroundColor,
-          icon: icon == null ? Icons.notifications : icon,
+          overlayDuration: duration ?? AlertBar.LENGTH_SHORT,
+          gravity: gravity ?? AlertBar.TOP,
+          backgroundColor: backgroundColor ?? Colors.grey,
+          icon: icon ?? Icons.notifications,
         );
       });
 
@@ -67,7 +67,7 @@ class EdgeOverlay extends StatefulWidget {
   final Color? backgroundColor;
   final IconData? icon;
 
-  EdgeOverlay({required this.title, required this.description,  this.overlayDuration,  this.gravity,  this.backgroundColor,  this.icon});
+  const EdgeOverlay({super.key, required this.title, required this.description,  this.overlayDuration,  this.gravity,  this.backgroundColor,  this.icon});
 
   @override
   _EdgeOverlayState createState() => _EdgeOverlayState();
@@ -82,12 +82,12 @@ class _EdgeOverlayState extends State<EdgeOverlay> with SingleTickerProviderStat
   void initState() {
     super.initState();
 
-    _controller = AnimationController(vsync: this, duration: Duration(milliseconds: 750));
+    _controller = AnimationController(vsync: this, duration: const Duration(milliseconds: 750));
 
     if (widget.gravity == 1) {
-      _positionTween = Tween<Offset>(begin: Offset(0.0, -1.0), end: Offset.zero);
+      _positionTween = Tween<Offset>(begin: const Offset(0.0, -1.0), end: Offset.zero);
     } else {
-      _positionTween = Tween<Offset>(begin: Offset(0.0, 1.0), end: Offset(0.0, 0));
+      _positionTween = Tween<Offset>(begin: const Offset(0.0, 1.0), end: const Offset(0.0, 0));
     }
 
     _positionAnimation = _positionTween.animate(CurvedAnimation(parent: _controller, curve: Curves.fastOutSlowIn));
@@ -102,7 +102,7 @@ class _EdgeOverlayState extends State<EdgeOverlay> with SingleTickerProviderStat
       if (listener == AnimationStatus.completed) {
         await Future.delayed(Duration(seconds: widget.overlayDuration!));
         _controller.reverse();
-        await Future.delayed(Duration(milliseconds: 700));
+        await Future.delayed(const Duration(milliseconds: 700));
         OverlayView.dismiss();
       }
     });
@@ -145,7 +145,7 @@ class OverlayWidget extends StatelessWidget {
   final String description;
   final IconData iconData;
 
-  OverlayWidget({this.title = '', this.description = '', required this.iconData});
+  const OverlayWidget({super.key, this.title = '', this.description = '', required this.iconData});
 
   @override
   Widget build(BuildContext context) {
@@ -154,7 +154,7 @@ class OverlayWidget extends StatelessWidget {
       child: Row(
         children: <Widget>[
           AnimatedIcon(iconData: iconData),
-          Padding(padding: EdgeInsets.only(right: 15)),
+          const Padding(padding: EdgeInsets.only(right: 15)),
           Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -162,17 +162,17 @@ class OverlayWidget extends StatelessWidget {
                   title == null
                       ? Container()
                       : Padding(
-                    padding: EdgeInsets.only(bottom: 10),
+                    padding: const EdgeInsets.only(bottom: 10),
                     child: Text(
                       title,
-                      style: TextStyle(color: Colors.white, fontSize: 22),
+                      style: const TextStyle(color: Colors.white, fontSize: 22),
                     ),
                   ),
                   description == null
                       ? Container()
                       : Text(
                     description,
-                    style: TextStyle(color: Colors.white, fontSize: 14),
+                    style: const TextStyle(color: Colors.white, fontSize: 14),
                   )
                 ],
               )),
@@ -185,7 +185,7 @@ class OverlayWidget extends StatelessWidget {
 class AnimatedIcon extends StatefulWidget {
   final IconData iconData;
 
-  AnimatedIcon({required this.iconData});
+  const AnimatedIcon({super.key, required this.iconData});
 
   @override
   _AnimatedIconState createState() => _AnimatedIconState();
@@ -197,7 +197,7 @@ class _AnimatedIconState extends State<AnimatedIcon> with SingleTickerProviderSt
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(vsync: this, lowerBound: 0.8, upperBound: 1.1, duration: Duration(milliseconds: 600));
+    _controller = AnimationController(vsync: this, lowerBound: 0.8, upperBound: 1.1, duration: const Duration(milliseconds: 600));
 
     _controller.forward();
     listenToAnimation();

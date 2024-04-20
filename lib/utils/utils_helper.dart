@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:math';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -33,12 +32,12 @@ class Utils{
     OrgSettingResponse orgSettingResponse = await getOrgSetting();
    var mainCOlor =  orgSettingResponse.data?.where((element) => element.paramName == "main_color");
     print("Waseem");
-    global.bgColor = mainCOlor?.first?.paramValue;
+    global.bgColor = mainCOlor?.first.paramValue;
   }
 
   Future<Map<String,dynamic>>segregateSubscribed(List<ObjectData>? mainList,List<ObjectData> subscribe,List<ObjectData> unsubscribe) async {
     if(mainList!=null) {
-      for (var element in mainList!) {
+      for (var element in mainList) {
         if (element.isSubscribed == true) {
           subscribe.add(element);
         } else {
@@ -55,77 +54,113 @@ class Utils{
     return forw+last;
   }
 
-  void showCustomerDialog(BuildContext ctx){
+  void showCustomerDialog(BuildContext ctx, void Function(int number) selectPerson){
    showDialog(context: ctx, builder: (BuildContext context){
+     
       return Responsive(
-         mobile: getWidget(1,context),
-         tablet: getWidget(2,context),
-         desktop: getWidget(3,context),
+         mobile: getWidget(1,context,selectPerson),
+         tablet: getWidget(2,context,selectPerson),
+         desktop: getWidget(3,context,selectPerson),
        );
    });
   }
 
-  Widget getWidget(type,BuildContext ctx){
-    return Dialog(
-      child: Container(
-        decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.only(topLeft: Radius.circular(15),topRight: Radius.circular(15),bottomLeft:Radius.circular(15) ,bottomRight:Radius.circular(15))
+  Widget getWidget(type,BuildContext ctx, void Function(int number) selectPerson){
+    int selectedCard = -1;
+    return StatefulBuilder(
+        builder: (context, setState) {
+          return Dialog(
+            child: Container(
+              decoration: const BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.only(topLeft: Radius.circular(15),
+                      topRight: Radius.circular(15),
+                      bottomLeft: Radius.circular(15),
+                      bottomRight: Radius.circular(15))
 
-        ),
-        child: SingleChildScrollView(
-          physics: ScrollPhysics(),
-          child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.center,
+              ),
+              child: SingleChildScrollView(
+                physics: const ScrollPhysics(),
+                child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.center,
 
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: BigText(text: "Select Customer",color: CupertinoColors.black,size: 20,),
-                ),
-                SizedBox(
-                  height: (type == 1) ? MediaQuery.of(ctx).size.height/3 : MediaQuery.of(ctx).size.height/2 ,
-                  child: MediaQuery.removePadding(
-                    removeBottom: true,
-                    context: ctx,
-                    child: GridView.count(
-                        crossAxisCount: (type == 1) ? 5 : 10,
-                        shrinkWrap: true,
-                        primary: false,
-                        physics: NeverScrollableScrollPhysics(),
-                        children: List.generate(20, (index) {
-                          return Container(
-                            margin: const EdgeInsets.all(6),
-                            child: Card(
-                              elevation: 2,
-                              color: Colors.white,
-                              child: Center(
-                                child: Text(
-                                  '${index+1}',
-                                  style: const TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 20,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: BigText(text: "Select Customer",
+                          color: CupertinoColors.black,
+                          size: 20,),
+                      ),
+                      SizedBox(
+                        height: (type == 1) ? MediaQuery
+                            .of(ctx)
+                            .size
+                            .height / 3 : MediaQuery
+                            .of(ctx)
+                            .size
+                            .height / 2,
+                        child: MediaQuery.removePadding(
+                          removeBottom: true,
+                          context: ctx,
+                          child: GridView.count(
+                              crossAxisCount: (type == 1) ? 5 : 10,
+                              shrinkWrap: true,
+                              primary: false,
+                              physics: const NeverScrollableScrollPhysics(),
+                              children: List.generate(20, (index) {
+                                return Container(
+                                  margin: const EdgeInsets.all(6),
+                                  child: InkWell(
+                                    onTap: () =>
+                                    {
+                                     // selectPerson(index + 1)
+                                      setState((){
+                                       // print(selectedCard);
+                                        selectedCard = index;
+                                        //print(selectedCard);
+                                      })
+                                    },
+                                    child: Card(
+                                      elevation: 2,
+                                      color: (selectedCard == index) ? Colors.black : Colors.white,
+                                      child: Center(
+                                        child: BigText(text: "${index+1}",color: (selectedCard == index) ? Colors.white : Colors.black, size: 20,)
+                                      ),
+                                    ),
                                   ),
-                                ),
-                              ),
-                            ),
-                          );
+                                );
+                              },
+                              )
+                          ),
+                        ),),
+                      InkWell(
+                        onTap: ()=>{
+                          if(selectedCard!=-1){
+                            selectPerson(selectedCard + 1),
+
+                          }else{
+                            Get.snackbar("Customer Selection", "Please select customer count",colorText: Colors.white,backgroundColor: Colors.red)
+                          }
                         },
-                        )
-                    ),
-                  ),),
-                Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.only(bottomLeft:Radius.circular(15) ,bottomRight:Radius.circular(15)),
-                    color: Colors.black,
-                  ),
-                  padding: EdgeInsets.all(10),
-                  width: double.infinity,
-                  child: BigTextCenter(text: "Next",color: Colors.white,size: 20,),),
-              ]),
-        ),
-      ),
+                        child: Container(
+                          decoration: const BoxDecoration(
+                            borderRadius: BorderRadius.only(
+                                bottomLeft: Radius.circular(15),
+                                bottomRight: Radius.circular(15)),
+                            color: Colors.black,
+                          ),
+                          padding: const EdgeInsets.all(10),
+                          width: double.infinity,
+                          child: BigTextCenter(
+                            text: "Next", color: Colors.white, size: 20,),),
+                      ),
+                    ]),
+              ),
+            ),
+          );
+
+        }
     );
   }
 }

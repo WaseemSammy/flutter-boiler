@@ -31,16 +31,17 @@ class NetworkCheck {
       return true;
     }
     debugPrint("No Internet");
-    if (showError)
+    if (showError) {
       AlertBar.show(context,
           title: 'No Connectivity', description: 'Please Check Internet Connection', gravity: AlertBar.TOP, backgroundColor: Colors.red, duration: 0, icon: null);
+    }
 
     return false;
   }
 
   dynamic checkInternet(Function func) {
     check().then((internet) {
-      if (internet != null && internet) {
+      if (internet) {
         func(true);
       } else {
         func(false);

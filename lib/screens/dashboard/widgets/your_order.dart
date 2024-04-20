@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../../widgets/big_text.dart';
@@ -15,6 +14,7 @@ class _YourOrderState extends State<YourOrder> {
   Widget build(BuildContext context) {
     return Container(
       color: Colors.white,
+      padding: const EdgeInsets.symmetric(vertical: 10),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
@@ -25,7 +25,6 @@ class _YourOrderState extends State<YourOrder> {
 
         ],
       ),
-      padding: EdgeInsets.symmetric(vertical: 10),
     );
   }
 }

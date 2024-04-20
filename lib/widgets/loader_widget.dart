@@ -3,18 +3,18 @@ import 'package:getwidget/components/loader/gf_loader.dart';
 import 'package:getwidget/types/gf_loader_type.dart';
 
 class LoaderWidget {
-  static OverlayEntry? _overlayEntry = null;
+  static OverlayEntry? _overlayEntry;
   static bool _onScreen = false;
 
   static bool isLoaderOn() => _onScreen;
 
   static void showLoader(BuildContext context) {
-    FocusScope.of(context).requestFocus(new FocusNode());
+    FocusScope.of(context).requestFocus(FocusNode());
 
     hideLoader(context);
 
     _overlayEntry = createOverlayEntry(context);
-    Overlay.of(context)?.insert(_overlayEntry!);
+    Overlay.of(context).insert(_overlayEntry!);
     _onScreen = true;
   }
 
@@ -31,8 +31,8 @@ class LoaderWidget {
         builder: (context) =>  Center(
           child: Container(
       height: 70,
-      width: 70,
-      child :  GFLoader(type: GFLoaderType.ios),decoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.all(Radius.circular(10))),),
+      width: 70,decoration: const BoxDecoration(color: Colors.white,borderRadius: BorderRadius.all(Radius.circular(10))),
+      child :  const GFLoader(type: GFLoaderType.ios),),
         ));
   }
 }

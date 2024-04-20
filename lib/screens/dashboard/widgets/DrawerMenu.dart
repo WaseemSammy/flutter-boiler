@@ -2,20 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:my_flutter/constants/app_constants.dart';
-import 'package:my_flutter/screens/clients/ui/clients_list_Screen.dart';
 import 'package:my_flutter/widgets/big_text.dart';
 
 
 class DrawerMenu extends StatelessWidget {
 
-   DrawerMenu({Key? key, required this.callback}) : super(key: key);
+   const DrawerMenu({Key? key, required this.callback}) : super(key: key);
    final Function callback;
 
   @override
   Widget build(BuildContext context) {
     return GFDrawer(
       child: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
             image: DecorationImage(
                 image: AssetImage("assets/images/left_menu_blur_img_new_bg.png"),
                 fit: BoxFit.cover)),
@@ -32,12 +31,12 @@ class DrawerMenu extends StatelessWidget {
                     alignment: WrapAlignment.start,
                     children: [
 
-                  Icon(
+                  const Icon(
                     Icons.file_copy_outlined,
                     color: Colors.black54,
                     size: 15.0,
                   ),
-                  SizedBox(width: 10,),
+                  const SizedBox(width: 10,),
                   BigText(text: "Clients",color: Colors.white,size: 15,)
                 ]),
                 onTap: () {
@@ -45,18 +44,18 @@ class DrawerMenu extends StatelessWidget {
 
                   callback(0,AppConstants.Clients);
                 }),
-            Divider(
+            const Divider(
               height: 1,
               color: Colors.black,
             ),
             ListTile(
-              title: Text("Portfolios"),
+              title: const Text("Portfolios"),
               onTap: (){
                 Get.back();
                 callback(1,AppConstants.Consolidations);
               },
             ),
-            ListTile(
+            const ListTile(
               title: Text("Accounts"),
             ),
           ],

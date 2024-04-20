@@ -13,21 +13,21 @@ class ObjectTypeResponse {
       });
     }
     filter =
-    json['Filter'] != null ? new Filter.fromJson(json['Filter']) : null;
+    json['Filter'] != null ? Filter.fromJson(json['Filter']) : null;
     message =
-    json['Message'] != null ? new Message.fromJson(json['Message']) : null;
+    json['Message'] != null ? Message.fromJson(json['Message']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     if (this.data != null) {
       data['Data'] = this.data!.map((v) => v.toJson()).toList();
     }
-    if (this.filter != null) {
-      data['Filter'] = this.filter!.toJson();
+    if (filter != null) {
+      data['Filter'] = filter!.toJson();
     }
-    if (this.message != null) {
-      data['Message'] = this.message!.toJson();
+    if (message != null) {
+      data['Message'] = message!.toJson();
     }
     return data;
   }
@@ -143,62 +143,62 @@ class ObjectData {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['ListId'] = this.listId;
-    data['ListName'] = this.listName;
-    data['ListDesc'] = this.listDesc;
-    data['ListPicture'] = this.listPicture;
-    data['ListTypeId'] = this.listTypeId;
-    data['ObjectTypeId'] = this.objectTypeId;
-    data['ShareId'] = this.shareId;
-    data['UserId'] = this.userId;
-    data['MenuItemId'] = this.menuItemId;
-    data['SelectAll'] = this.selectAll;
-    data['HasSearchText'] = this.hasSearchText;
-    data['CountryId'] = this.countryId;
-    data['IsRecommneded'] = this.isRecommneded;
-    data['IsSubscribed'] = this.isSubscribed;
-    data['ListOrder'] = this.listOrder;
-    data['OwnerUserId'] = this.ownerUserId;
-    data['ListType'] = this.listType;
-    data['ObjectDesc'] = this.objectDesc;
-    data['ShareType'] = this.shareType;
-    data['CountryDesc'] = this.countryDesc;
-    data['FirstName'] = this.firstName;
-    data['LastName'] = this.lastName;
-    data['MenuItemDesc'] = this.menuItemDesc;
-    data['IsDefault'] = this.isDefault;
-    data['InstrumentTypeId'] = this.instrumentTypeId;
-    data['IsBlacklist'] = this.isBlacklist;
-    data['ActiveFlag'] = this.activeFlag;
-    data['CreateUser'] = this.createUser;
-    data['CreateUserName'] = this.createUserName;
-    data['UpdateUser'] = this.updateUser;
-    data['UpdateUserName'] = this.updateUserName;
-    data['CreateTime'] = this.createTime;
-    data['UpdateTime'] = this.updateTime;
-    data['ExtBusinessKey'] = this.extBusinessKey;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['ListId'] = listId;
+    data['ListName'] = listName;
+    data['ListDesc'] = listDesc;
+    data['ListPicture'] = listPicture;
+    data['ListTypeId'] = listTypeId;
+    data['ObjectTypeId'] = objectTypeId;
+    data['ShareId'] = shareId;
+    data['UserId'] = userId;
+    data['MenuItemId'] = menuItemId;
+    data['SelectAll'] = selectAll;
+    data['HasSearchText'] = hasSearchText;
+    data['CountryId'] = countryId;
+    data['IsRecommneded'] = isRecommneded;
+    data['IsSubscribed'] = isSubscribed;
+    data['ListOrder'] = listOrder;
+    data['OwnerUserId'] = ownerUserId;
+    data['ListType'] = listType;
+    data['ObjectDesc'] = objectDesc;
+    data['ShareType'] = shareType;
+    data['CountryDesc'] = countryDesc;
+    data['FirstName'] = firstName;
+    data['LastName'] = lastName;
+    data['MenuItemDesc'] = menuItemDesc;
+    data['IsDefault'] = isDefault;
+    data['InstrumentTypeId'] = instrumentTypeId;
+    data['IsBlacklist'] = isBlacklist;
+    data['ActiveFlag'] = activeFlag;
+    data['CreateUser'] = createUser;
+    data['CreateUserName'] = createUserName;
+    data['UpdateUser'] = updateUser;
+    data['UpdateUserName'] = updateUserName;
+    data['CreateTime'] = createTime;
+    data['UpdateTime'] = updateTime;
+    data['ExtBusinessKey'] = extBusinessKey;
     return data;
   }
 }
 
 class Filter {
   Page? page;
-  Null? searchText;
+  dynamic searchText;
 
   Filter({this.page, this.searchText});
 
   Filter.fromJson(Map<String, dynamic> json) {
-    page = json['Page'] != null ? new Page.fromJson(json['Page']) : null;
+    page = json['Page'] != null ? Page.fromJson(json['Page']) : null;
     searchText = json['SearchText'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.page != null) {
-      data['Page'] = this.page!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (page != null) {
+      data['Page'] = page!.toJson();
     }
-    data['SearchText'] = this.searchText;
+    data['SearchText'] = searchText;
     return data;
   }
 }
@@ -208,7 +208,7 @@ class Page {
   int? pageIndex;
   int? totalRecords;
   int? sortOrder;
-  Null? orderBy;
+  dynamic orderBy;
 
   Page(
       {this.pageSize,
@@ -226,12 +226,12 @@ class Page {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['PageSize'] = this.pageSize;
-    data['PageIndex'] = this.pageIndex;
-    data['TotalRecords'] = this.totalRecords;
-    data['SortOrder'] = this.sortOrder;
-    data['OrderBy'] = this.orderBy;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['PageSize'] = pageSize;
+    data['PageIndex'] = pageIndex;
+    data['TotalRecords'] = totalRecords;
+    data['SortOrder'] = sortOrder;
+    data['OrderBy'] = orderBy;
     return data;
   }
 }
@@ -253,11 +253,11 @@ class Message {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['MessageCode'] = this.messageCode;
-    data['MessageType'] = this.messageType;
-    data['Message'] = this.message;
-    data['MessageSource'] = this.messageSource;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['MessageCode'] = messageCode;
+    data['MessageType'] = messageType;
+    data['Message'] = message;
+    data['MessageSource'] = messageSource;
     return data;
   }
 }

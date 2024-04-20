@@ -2,9 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:getwidget/components/loader/gf_loader.dart';
 import 'package:getwidget/getwidget.dart';
-import 'package:my_flutter/api/ApiResponse.dart';
 import 'package:my_flutter/api/Status.dart';
 import 'package:my_flutter/constants/app_constants.dart';
 import 'package:my_flutter/models/AppSettingModel.dart';
@@ -13,7 +11,6 @@ import 'package:my_flutter/screens/splace/viewmodel/input_url_viewmodel.dart';
 import 'package:my_flutter/constants/my_globals.dart' as global;
 import 'package:my_flutter/utils/shared_preferences_helper.dart';
 
-import '../../../routes/routes.dart';
 class EnterUrlScreen extends StatefulWidget {
   const EnterUrlScreen({Key? key}) : super(key: key);
 
@@ -53,7 +50,7 @@ class _EnterUrlScreenState extends State<EnterUrlScreen> {
     }
 
     SharedPreferencesHelper.setMap(AppConstants.KEY_ORGANISATION_MAP,jsonEncode(myMap));
-    Get.off(() => LoginScreen());
+    Get.off(() => const LoginScreen());
   }
 
   @override
@@ -68,7 +65,7 @@ class _EnterUrlScreenState extends State<EnterUrlScreen> {
                   height: MediaQuery.of(context).size.height,
                   fit: BoxFit.cover),
               Container(
-                  margin: EdgeInsets.symmetric(vertical: 10),
+                  margin: const EdgeInsets.symmetric(vertical: 10),
                   alignment: Alignment.topCenter,
                   child: Image.asset("assets/images/mydesqlogo.png")),
               Center(
@@ -88,7 +85,7 @@ class _EnterUrlScreenState extends State<EnterUrlScreen> {
                         ),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 10,
                     ),
                     InkWell(
@@ -97,7 +94,7 @@ class _EnterUrlScreenState extends State<EnterUrlScreen> {
                           height: 40,
                           width: 40,
                           color: Colors.blue,
-                          child: Icon(
+                          child: const Icon(
                             Icons.arrow_forward_ios,
                             color: Colors.white,
                           )),

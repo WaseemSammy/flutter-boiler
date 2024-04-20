@@ -5,7 +5,7 @@ class CustomLoadingBarrier extends StatelessWidget {
 
   final String? path;
 
-  CustomLoadingBarrier({this.path});
+  const CustomLoadingBarrier({super.key, this.path});
 
   @override
   Widget build(BuildContext context) {

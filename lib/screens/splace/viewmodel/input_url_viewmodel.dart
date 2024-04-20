@@ -1,14 +1,9 @@
-import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:my_flutter/api/ApiResponse.dart';
-import 'package:my_flutter/api/Status.dart';
-import 'package:my_flutter/constants/app_colors.dart';
 import 'package:my_flutter/constants/app_constants.dart';
 import 'package:my_flutter/models/login/login_response_model.dart';
-import 'package:my_flutter/models/login/org_setting_response.dart';
-import 'package:my_flutter/routes/routes.dart';
 import 'package:my_flutter/screens/dashboard/ui/dashboard_main_screen.dart';
 import 'package:my_flutter/services/api_service.dart';
 import 'package:my_flutter/services/hub_connection_helper.dart';
@@ -25,10 +20,6 @@ class InputUrlViewModel extends GetxController {
     var loginResponse = ApiResponse.error("");
 
 
-    @override
-    void onInit() {
-      super.onInit();
-    }
 
   getAppSetting(BuildContext context,String url) async {
     appSettingResponse = ApiResponse.loading();
@@ -72,7 +63,7 @@ class InputUrlViewModel extends GetxController {
           SharedPreferencesHelper.saveValue(AppConstants.KEY_ORGANISATION_LIST,
               orgsetting.rawResponseBody ?? "");
           Utils.intence.setColorsToGlobals();
-          ResponseData default_tree = await ApiService().getOrgSetting(
+          ResponseData defaultTree = await ApiService().getOrgSetting(
               context: context);
           ResponseData notificationUrl = await ApiService().getNotificationUrl(
               context: context);
@@ -81,7 +72,7 @@ class InputUrlViewModel extends GetxController {
           HubConnectionHelper.getInstance("${appSettingModel?.data
               ?.notificationHubBaseUri}/notificationHub?token=$token");
 
-          Get.offAll(()=>DashboadMainScreen());
+          Get.offAll(()=>const DashboadMainScreen());
         }
 
        // update();

@@ -1,7 +1,6 @@
-import 'package:flutter/cupertino.dart';
+import 'package:buttons_tabbar/buttons_tabbar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:my_flutter/constants/dummyJson.dart';
 import 'package:my_flutter/models/running_order_response.dart';
 import 'package:my_flutter/routes/routes.dart';
@@ -24,12 +23,16 @@ class OrdersScreen extends StatefulWidget {
 
 class _OrdersScreenState extends State<OrdersScreen> {
   Data? data;
+  String? numberCustomer;
   final _viewModel  = Get.put(TableOrderViewModel());
+
   @override
   void initState() {
     String id = Get.parameters['id'] ?? '';
+    numberCustomer = Get.parameters['nc'] ?? '';
     print(id);
     data =DummyJson.allTable.data?.firstWhere((element) => element.tableId.toString() == id);
+
     super.initState();
   }
 
@@ -37,7 +40,7 @@ class _OrdersScreenState extends State<OrdersScreen> {
   void dispose() {
     super.dispose();
   }
-  int viewType = 0;
+  int viewType = 1;
   CategoryData? categoryData;
 
 
@@ -78,7 +81,7 @@ class _OrdersScreenState extends State<OrdersScreen> {
 
   Widget getWidget(type){
     return Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
@@ -88,74 +91,106 @@ class _OrdersScreenState extends State<OrdersScreen> {
           ],
         ),
       ),
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-            Container(
-              padding: EdgeInsets.only(top:40,left: 20,right: 20,bottom: 30),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
+      child: Column(
+        children: [
+          Container(
+            padding: const EdgeInsets.only(top:40,left: 20,right: 20,bottom: 30),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
 
-                  InkWell(
-                      onTap: () {
-                        Get.back();
-                      },
-                      child: Icon(Icons.arrow_back,size: 25,color: Colors.white,)),
-                  BigText(text: "Select Menu",color: Colors.white,size: 23,),
-                  Container()
-                ],
+                InkWell(
+                    onTap: () {
+                      Get.back();
+                    },
+                    child: const Icon(Icons.arrow_back,size: 25,color: Colors.white,)),
+                BigText(text: "Select Menu",color: Colors.white,size: 23,),
+                Container()
+              ],
 
-              ),
             ),
-            Container(
-              padding: EdgeInsets.only(left: 10,top: 10,bottom: 10,right: 10),
-              margin: EdgeInsets.symmetric(horizontal: 5),
-              height: 80,
-              decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(5)
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Wrap (
-                    spacing: 5,
-                    crossAxisAlignment: WrapCrossAlignment.center,
-                    children: [
-                      Image.asset("assets/icons/table.png",width: 40,height: 40,),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          BigText(text: "Table No.", size: 16,),
-                          BigText(text: "${data?.tableNo}", size: 27,),
-                        ],
-                      )
-
-                    ],),
-                  Wrap (
-                    spacing: 5,
-                    crossAxisAlignment: WrapCrossAlignment.center,
-                    children: [
-                      const Icon(Icons.people_alt_outlined,color: Colors.deepOrangeAccent,
-                        size: 40,),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          BigText(text: "Customers.", size: 16,),
-                          BigText(text:  "${data?.noOfPerson}", size: 27,),
-                        ],
-                      )
-
-                    ],),
-
-
-                ],
-              ),
+          ),
+          Container(
+            padding: const EdgeInsets.only(left: 10,top: 10,bottom: 10,right: 10),
+            margin: const EdgeInsets.symmetric(horizontal: 5),
+            height: 80,
+            decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(5)
             ),
-            const SizedBox(height: 20,),
-            Container(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Wrap (
+                  spacing: 5,
+                  crossAxisAlignment: WrapCrossAlignment.center,
+                  children: [
+                    Image.asset("assets/icons/table.png",width: 40,height: 40,),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        BigText(text: "Table No.", size: 16,),
+                        BigText(text: "${data?.tableNo}", size: 27,),
+                      ],
+                    )
+
+                  ],),
+                Wrap (
+                  spacing: 5,
+                  crossAxisAlignment: WrapCrossAlignment.center,
+                  children: [
+                    const Icon(Icons.people_alt_outlined,color: Colors.deepOrangeAccent,
+                      size: 40,),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        BigText(text: "Customers.", size: 16,),
+                        BigText(text:  "$numberCustomer", size: 27,),
+                      ],
+                    )
+
+                  ],),
+
+
+              ],
+            ),
+          ),
+          const SizedBox(height: 20,),
+         DefaultTabController(
+           initialIndex: 0,
+           length: DummyJson.dummyCategory.data?.length??0,
+           child: Expanded(
+             child: Column(
+               mainAxisSize: MainAxisSize.min,
+               children: [
+                 ButtonsTabBar(
+                 center: false,
+                 backgroundColor: Colors.orangeAccent,
+                 unselectedBackgroundColor: Colors.grey[300],
+                 unselectedLabelStyle: const TextStyle(color: Colors.black),
+                 labelStyle: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                 tabs: DummyJson.dummyCategory.data?.map((e) => Tab(
+                   icon: const ImageIcon(
+                       AssetImage('assets/icons/dining.png')
+                   ),
+                   text: e.categoryName,
+                 )).toList()??[]),
+                 Flexible(
+                   child: TabBarView(
+                       children: DummyJson.dummyCategory.data?.map((e) => CommonOrderWidget(1, selectedCategory, selectedMenu, e, data)).toList()??[]
+                   ),
+                 )
+               ],
+             ),
+           ),
+         ),
+
+        ],
+      ),
+
+
+          /*  Container(
                 padding: const EdgeInsets.all(10),
                 width: MediaQuery.of(context).size.width,
                 decoration: BoxDecoration(
@@ -180,11 +215,9 @@ class _OrdersScreenState extends State<OrdersScreen> {
             ),
             SizedBox(
                 height: 500,
-                child: CommonOrderWidget(viewType,selectedCategory,selectedMenu, categoryData,data))
+                child: CommonOrderWidget(viewType,selectedCategory,selectedMenu, categoryData,data))*/
 
-          ],
-        ),
-      ),
+
     );
   }
 

@@ -3,7 +3,7 @@ import 'package:my_flutter/utils/shared_preferences_helper.dart';
 import 'package:uuid/uuid.dart';
 
 class UUIDHelper {
- static final  uuid = Uuid();
+ static const  uuid = Uuid();
   
   static Future<String?> getuniqueId(String username) async {
     var id = await checkSaveId();

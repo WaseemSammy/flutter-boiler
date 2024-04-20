@@ -1,28 +1,18 @@
 import 'dart:convert';
 
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:getwidget/components/dropdown/gf_dropdown.dart';
-import 'package:getwidget/getwidget.dart';
-import 'package:my_flutter/constants/api_constants.dart';
 import 'package:my_flutter/constants/app_constants.dart';
 import 'package:my_flutter/models/AppSettingModel.dart';
-import 'package:my_flutter/models/login_model.dart';
 
 import 'package:my_flutter/utils/shared_preferences_helper.dart';
 import 'package:my_flutter/constants/my_globals.dart' as globals;
-import 'package:my_flutter/utils/uuid_helper.dart';
 import 'package:my_flutter/widgets/big_text.dart';
 import 'package:my_flutter/widgets/small_text.dart';
 
-import '../../../api/Status.dart';
 import '../../../routes/routes.dart';
 import '../../../widgets/common_text_field.dart';
-import '../../dashboard/ui/dashboard_main_screen.dart';
-import '../../dashboard/widgets/DrawerMenu.dart';
 import '../../splace/viewmodel/input_url_viewmodel.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -70,7 +60,7 @@ class _LoginScreenState extends State<LoginScreen> {
       appSettingModel = model;
       listmap = fmap;
       globals.baseUrl =  listmap?[dropDownText];
-      print("object : " +globals.baseUrl + "  "+listmap?[dropDownText]);
+      print("object : ${globals.baseUrl}  "+listmap?[dropDownText]);
     });
   }
 
@@ -129,7 +119,7 @@ class _LoginScreenState extends State<LoginScreen> {
                Container(
                  width: w,
                  height: h*.3,
-                 decoration: BoxDecoration(
+                 decoration: const BoxDecoration(
                    image: DecorationImage(image:
                    AssetImage("assets/images/signup.png"),
                      fit: BoxFit.cover
@@ -137,60 +127,59 @@ class _LoginScreenState extends State<LoginScreen> {
                  ),
                ),
                Container(
-                 margin: EdgeInsets.only(left: 20),
+                 margin: const EdgeInsets.only(left: 20),
                  width: w,
                  child: Column(
                    crossAxisAlignment: CrossAxisAlignment.start,
                    children: [
                      BigText(text: "Hello",size: 30,color: Colors.black,),
                      SmallText(text: "Welcome",color: Colors.grey,),
-                     SizedBox(height: 50,)
+                     const SizedBox(height: 50,)
                    ],
                  ),
                ),
                Container(
-               padding: EdgeInsets.symmetric(horizontal: 20),
+               padding: const EdgeInsets.symmetric(horizontal: 20),
                child: Column(
                  mainAxisAlignment: MainAxisAlignment.end,
                  children: [
                    Container(
-                       child: CommonTextField(controller: usernameController,label: "",hint: "Username",isPassword: false),
-                     decoration: BoxDecoration(
+                       decoration: BoxDecoration(
                        boxShadow: [
                          BoxShadow(
                            blurRadius: 5,
-                           offset: Offset(.5, .5),
+                           offset: const Offset(.5, .5),
                            color: Colors.grey.withOpacity(0.5)
                          )
                        ]
                      ),
+                       child: CommonTextField(controller: usernameController,label: "",hint: "Username",isPassword: false),
                    ),
-                   SizedBox(height: 20,),
-                   Container(child: CommonTextField(controller: passswordController,label: "",hint: "Password",isPassword: true),
-                       decoration: BoxDecoration(
+                   const SizedBox(height: 20,),
+                   Container(decoration: BoxDecoration(
                            boxShadow: [
                              BoxShadow(
                                  blurRadius: 5,
-                                 offset: Offset(.5, .5),
+                                 offset: const Offset(.5, .5),
                                  color: Colors.grey.withOpacity(0.5)
                              )
                            ]
-                       )),
+                       ), child: CommonTextField(controller: passswordController,label: "",hint: "Password",isPassword: true)),
            
-                   SizedBox(height: 20,),
+                   const SizedBox(height: 20,),
                    SizedBox(
                      width: MediaQuery
                          .of(context)
                          .size
                          .width,
                      child: Container(
-                       padding: EdgeInsets.symmetric(horizontal: 10,vertical: 10),
+                       padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 10),
                        decoration: BoxDecoration(
                          borderRadius: BorderRadius.circular(30),
                        ),
                          child: ElevatedButton(
                              style: ElevatedButton.styleFrom(
-                               primary: Colors.deepOrangeAccent[200],
+                               backgroundColor: Colors.deepOrangeAccent[200],
                                shape: RoundedRectangleBorder(
                                  borderRadius: BorderRadius.circular(20),
                                ),

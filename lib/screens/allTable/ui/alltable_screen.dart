@@ -2,13 +2,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:lottie/lottie.dart';
 import 'package:my_flutter/constants/dummyJson.dart';
 import 'package:my_flutter/utils/responsive.dart';
 
 import '../../../widgets/big_text.dart';
-import '../../dashboard/widgets/your_order.dart';
 import '../widgets/running_items.dart';
 
 class AllTableScreen extends StatefulWidget {
@@ -32,7 +29,7 @@ class _RunningOrdersState extends State<AllTableScreen> {
 
   Widget getWidget(type){
   return  Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
@@ -43,11 +40,11 @@ class _RunningOrdersState extends State<AllTableScreen> {
         ),
       ),
       child: SingleChildScrollView(
-        physics: ScrollPhysics(),
+        physics: const ScrollPhysics(),
         child: Column(
           children: [
             Container(
-              padding: EdgeInsets.only(top:40,left: 20,right: 20,bottom: 30),
+              padding: const EdgeInsets.only(top:40,left: 20,right: 20,bottom: 30),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -57,7 +54,7 @@ class _RunningOrdersState extends State<AllTableScreen> {
                       onTap: () {
                         Get.back();
                       },
-                      child: Icon(Icons.arrow_back,size: 25,color: Colors.white,)),
+                      child: const Icon(Icons.arrow_back,size: 25,color: Colors.white,)),
                   BigText(text: "Table",color: Colors.white,size: 23,),
                   Container()
 
@@ -66,8 +63,8 @@ class _RunningOrdersState extends State<AllTableScreen> {
             ),
             Image.asset("assets/images/table.png",height: 100,),
             Container(
-                padding: EdgeInsets.all(5),
-                decoration: BoxDecoration(
+                padding: const EdgeInsets.all(5),
+                decoration: const BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.only(topLeft: Radius.circular(15),topRight: Radius.circular(15))
 
@@ -76,7 +73,7 @@ class _RunningOrdersState extends State<AllTableScreen> {
                     mainAxisSpacing: 5.0,
                     crossAxisSpacing: 5.0,
                     shrinkWrap: true,
-                    physics: NeverScrollableScrollPhysics(),
+                    physics: const NeverScrollableScrollPhysics(),
                     children:DummyJson.allTable.data?.map((e) => RunningGridItems(e)).toList()??[])),
 
 

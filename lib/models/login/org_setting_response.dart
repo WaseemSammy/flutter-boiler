@@ -1,6 +1,6 @@
 class OrgSettingResponse {
   List<Data>? data;
-  Null? filter;
+  dynamic filter;
   Message? message;
 
   OrgSettingResponse({this.data, this.filter, this.message});
@@ -18,13 +18,13 @@ class OrgSettingResponse {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data =  Map<String, dynamic>();
+    final Map<String, dynamic> data =  <String, dynamic>{};
     if (this.data != null) {
       data['Data'] = this.data!.map((v) => v.toJson()).toList();
     }
-    data['Filter'] = this.filter;
-    if (this.message != null) {
-      data['Message'] = this.message!.toJson();
+    data['Filter'] = filter;
+    if (message != null) {
+      data['Message'] = message!.toJson();
     }
     return data;
   }
@@ -80,21 +80,21 @@ class Data {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data =  Map<String, dynamic>();
-    data['RecordId'] = this.recordId;
-    data['ParamGroup'] = this.paramGroup;
-    data['ParamName'] = this.paramName;
-    data['ParamValue'] = this.paramValue;
-    data['Comment'] = this.comment;
-    data['IsSecure'] = this.isSecure;
-    data['ActiveFlag'] = this.activeFlag;
-    data['CreateUser'] = this.createUser;
-    data['CreateUserName'] = this.createUserName;
-    data['UpdateUser'] = this.updateUser;
-    data['UpdateUserName'] = this.updateUserName;
-    data['CreateTime'] = this.createTime;
-    data['UpdateTime'] = this.updateTime;
-    data['ExtBusinessKey'] = this.extBusinessKey;
+    final Map<String, dynamic> data =  <String, dynamic>{};
+    data['RecordId'] = recordId;
+    data['ParamGroup'] = paramGroup;
+    data['ParamName'] = paramName;
+    data['ParamValue'] = paramValue;
+    data['Comment'] = comment;
+    data['IsSecure'] = isSecure;
+    data['ActiveFlag'] = activeFlag;
+    data['CreateUser'] = createUser;
+    data['CreateUserName'] = createUserName;
+    data['UpdateUser'] = updateUser;
+    data['UpdateUserName'] = updateUserName;
+    data['CreateTime'] = createTime;
+    data['UpdateTime'] = updateTime;
+    data['ExtBusinessKey'] = extBusinessKey;
     return data;
   }
 }
@@ -116,11 +116,11 @@ class Message {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
-    data['MessageCode'] = this.messageCode;
-    data['MessageType'] = this.messageType;
-    data['Message'] = this.message;
-    data['MessageSource'] = this.messageSource;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['MessageCode'] = messageCode;
+    data['MessageType'] = messageType;
+    data['Message'] = message;
+    data['MessageSource'] = messageSource;
     return data;
   }
 }

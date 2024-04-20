@@ -1,11 +1,10 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:my_flutter/models/running_order_response.dart';
 import 'package:my_flutter/routes/routes.dart';
 import 'package:my_flutter/widgets/big_text.dart';
 import 'package:my_flutter/widgets/small_text.dart';
+
 
 class RunningGridItems extends StatefulWidget {
   final Data data;
@@ -21,12 +20,13 @@ class _RunningGridItemsState extends State<RunningGridItems> {
     return GestureDetector(
       onTap: (){
         print(widget.data);
-        Get.toNamed(RouteClass.orderScreen,arguments: widget.data);
+       // Utils.intence.showCustomerDialog(context);
+         Get.toNamed("${RouteClass.orderScreen}${widget.data.tableId}");
       },
       child: Card(
         elevation: 10,
         child: Container(
-          padding: EdgeInsets.all(5),
+          padding: const EdgeInsets.all(5),
            child: Column(
              crossAxisAlignment: CrossAxisAlignment.start,
              mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -35,7 +35,7 @@ class _RunningGridItemsState extends State<RunningGridItems> {
                Row(
                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                  children: [
-                   Icon(Icons.people_alt_outlined,color: Colors.deepOrangeAccent,
+                   const Icon(Icons.people_alt_outlined,color: Colors.deepOrangeAccent,
                    size: 30,),
                    BigText(text: "T${widget.data.tableNo}"
                    ,size: 25,)

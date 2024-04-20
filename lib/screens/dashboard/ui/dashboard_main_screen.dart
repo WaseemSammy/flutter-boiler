@@ -1,12 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:my_flutter/screens/clients/clients_view_model.dart';
 import 'package:my_flutter/screens/dashboard/ui/home_screen.dart';
 
 import 'package:my_flutter/screens/dashboard/widgets/DrawerMenu.dart';
 import '../../../constants/app_constants.dart';
-import '../../clients/ui/clients_list_Screen.dart';
 
 class DashboadMainScreen extends StatefulWidget {
   const DashboadMainScreen({Key? key}) : super(key: key);
@@ -42,7 +38,7 @@ class _DashboadMainScreenState extends State<DashboadMainScreen> {
   getWidgetScreen(int pos){
      switch(pos){
        case 0 :
-         return HomeScreen();
+         return const HomeScreen();
        case 1 :
          return Container();
      }

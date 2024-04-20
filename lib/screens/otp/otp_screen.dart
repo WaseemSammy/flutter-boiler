@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:my_flutter/screens/otp/white_container.dart';
 import 'package:sms_autofill/sms_autofill.dart';
@@ -66,7 +65,7 @@ class _OtpScreenState extends State<OtpScreen> {
                           headerText: "Enter OTP",
                           labelText:
                           "OTP has been successfully sent to your \n ${widget.phone}",
-                          child: Container(
+                          child: SizedBox(
                             height: 70,
                             width: MediaQuery.of(context).size.width,
                             child: Column(
@@ -74,8 +73,8 @@ class _OtpScreenState extends State<OtpScreen> {
                                 PinFieldAutoFill(
                                   currentCode: otpCode,
                                   decoration:  BoxLooseDecoration(
-                                      radius: Radius.circular(12),
-                                      strokeColorBuilder: FixedColorBuilder(
+                                      radius: const Radius.circular(12),
+                                      strokeColorBuilder: const FixedColorBuilder(
                                           Color(0xFF8C4A52))),
                                   codeLength: 6,
                                   onCodeChanged: (code) {

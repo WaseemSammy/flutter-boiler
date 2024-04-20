@@ -1,10 +1,7 @@
 
 
-import 'package:flutter/gestures.dart';
 import 'package:signalr_netcore/hub_connection.dart';
 import 'package:signalr_netcore/hub_connection_builder.dart';
-import 'package:signalr_netcore/itransport.dart';
-import 'package:signalr_netcore/msgpack_hub_protocol.dart';
 
 import 'package:logging/logging.dart';
 
@@ -25,7 +22,7 @@ class HubConnectionHelper {
   }
 
   static initPlatformState(String url) async {
-    _instance =  await HubConnectionBuilder()
+    _instance =  HubConnectionBuilder()
         .withUrl(url)
     /* Configure the Hub with msgpack protocol */
         .configureLogging(Logger("SignalR - transport"))
@@ -36,18 +33,18 @@ class HubConnectionHelper {
   }
 
   static  checkConnection() async{
-   return  await _instance?.state;
+   return  _instance?.state;
 
   }
   connect() async {
-    var connectionState = await _instance?.state;
+    var connectionState = _instance?.state;
     if(connectionState!=true) {
      await _instance?.start();
     }
   }
 
   disconnect() async {
-    var connectionState = await _instance?.state;
+    var connectionState = _instance?.state;
     if(connectionState==true) {
      await _instance?.stop();
     }

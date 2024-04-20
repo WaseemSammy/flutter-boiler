@@ -1,8 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:my_flutter/widgets/big_text.dart';
 
 import '../screens/orders/viewmodel/table_order_viewmodel.dart';
 import 'big_text_center.dart';
@@ -42,14 +39,14 @@ class _BottemOrderScreenState extends State<BottemOrderScreen> {
                   width: 150,
                   color: Colors.black,
                   child: Padding(
-                    padding: EdgeInsets.all(10),
+                    padding: const EdgeInsets.all(10),
                     child: Wrap(
                       alignment: WrapAlignment.spaceBetween,
                       children:[
                         BigTextCenter(text:"Confirm"
                           ,color: Colors.white,
                           size: 20,),
-                        Icon(Icons.arrow_forward,size: 25,color: Colors.white,)
+                        const Icon(Icons.arrow_forward,size: 25,color: Colors.white,)
                       ]
                     ),
                   ),

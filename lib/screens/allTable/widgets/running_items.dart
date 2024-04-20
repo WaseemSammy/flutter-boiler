@@ -1,7 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:my_flutter/models/running_order_response.dart';
 import 'package:my_flutter/routes/routes.dart';
 import 'package:my_flutter/utils/utils_helper.dart';
@@ -9,6 +7,7 @@ import 'package:my_flutter/widgets/big_text.dart';
 import 'package:my_flutter/widgets/small_text.dart';
 
 class RunningGridItems extends StatefulWidget {
+
   final Data data;
   const RunningGridItems(this.data, {Key? key}) : super(key: key);
 
@@ -17,6 +16,16 @@ class RunningGridItems extends StatefulWidget {
 }
 
 class _RunningGridItemsState extends State<RunningGridItems> {
+
+  int selectedPerson =0;
+
+  void selectPerson(number){
+   // print("Selected $number");
+    Navigator.pop(context, "");
+    Get.toNamed("${RouteClass.orderScreen}${widget.data.tableId}/$number");
+  }
+
+
   @override
   Widget build(BuildContext context) {
     print(widget.data);
@@ -24,14 +33,14 @@ class _RunningGridItemsState extends State<RunningGridItems> {
       onTap: (){
         print(widget.data);
         //Get.rootDelegate.toNamed(RouteClass.orderScreen, arguments: 'test_data');
-        Utils.intence.showCustomerDialog(context);
+        Utils.intence.showCustomerDialog(context,selectPerson);
        // Get.toNamed("${RouteClass.orderScreen}${widget.data.tableId}");
       },
       child: Card(
         elevation: 10,
+        color: Colors.white,
         child: Container(
-          padding: EdgeInsets.all(5),
-
+          padding: const EdgeInsets.all(5),
            child: Column(
              crossAxisAlignment: CrossAxisAlignment.start,
              mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -40,7 +49,7 @@ class _RunningGridItemsState extends State<RunningGridItems> {
                Row(
                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                  children: [
-                   Icon(Icons.people_alt_outlined,color: Colors.deepOrangeAccent,
+                   const Icon(Icons.people_alt_outlined,color: Colors.deepOrangeAccent,
                    size: 30,),
                    BigText(text: "T${widget.data.tableNo}"
                    ,size: 25,)

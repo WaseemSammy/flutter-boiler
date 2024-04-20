@@ -11,13 +11,13 @@ class FoodCatergoryResponse {
     if (json['data'] != null) {
       data = <CategoryData>[];
       json['data'].forEach((v) {
-        data!.add(new CategoryData.fromJson(v));
+        data!.add(CategoryData.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     if (this.data != null) {
       data['data'] = this.data!.map((v) => v.toJson()).toList();
     }
@@ -44,11 +44,11 @@ class CategoryData {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['categoryId'] = this.categoryId;
-    data['categoryName'] = this.categoryName;
-    if (this.menu != null) {
-      data['menu'] = this.menu!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['categoryId'] = categoryId;
+    data['categoryName'] = categoryName;
+    if (menu != null) {
+      data['menu'] = menu!.map((v) => v.toJson()).toList();
     }
     return data;
   }
