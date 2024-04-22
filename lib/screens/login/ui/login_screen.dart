@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_flutter/constants/app_constants.dart';
 import 'package:my_flutter/models/AppSettingModel.dart';
+import 'package:my_flutter/models/login_model.dart';
 
 import 'package:my_flutter/utils/shared_preferences_helper.dart';
 import 'package:my_flutter/constants/my_globals.dart' as globals;
@@ -39,8 +40,8 @@ class _LoginScreenState extends State<LoginScreen> {
   void initState() {
     print("inint");
    // fetchAppSetting();
-    usernameController.text = 'migration';
-    passswordController.text = 'migration';
+    usernameController.text = 'sayeedahmad7@gmail.com';
+    passswordController.text = '123456';
     super.initState();
   }
 
@@ -98,8 +99,9 @@ class _LoginScreenState extends State<LoginScreen> {
       return;
     }
 
-    print("clicked");
-    Get.offAndToNamed(RouteClass.getDashboard());
+    var login = LoginModel(email: username,password: password,DeviceId: '',NotificationDeviceToken: '');
+    _viewModel.loginUser(context, login);
+
 
   }
   @override

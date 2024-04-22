@@ -10,7 +10,7 @@ import 'app_constants.dart';
 ///Api Paths are set here
 class ApiConstants {
   //Check if build is production or staging and use url accordingly      PRODUCTION     :     STAGING
-  static const String SERVER_BASE_URL = AppConstants.isProdBuild ? "https://dev.mydesq.com/MydesqApi.NextRelease/" : "https://dev.mydesq.com/MydesqApi.NextRelease/";
+  static const String SERVER_BASE_URL = AppConstants.isProdBuild ? "http://192.168.1.6:8081/api" : "http://192.168.1.6:8081/api";
 
   ///NOTE: DO NOT TWEAK
   ///Assigning Application's base url which app is going to use. Can use URL from custom page or from SERVER_BASE_URL.
@@ -20,7 +20,7 @@ class ApiConstants {
 
   //Login end point
   //For new end points always start with "/".
-  static const String LOGIN = "/api/Auth/Authenticate";
+  static const String LOGIN = "/Auth/Authentication";
   static const String FLIGHT_LIST = "/api/unknown";
   static const String NEW_APP_SERVER_URL = "/api/AppSettings";
   static const String ORF_SETTINGS = "/api/AppSettings/OrgSettings/Reporting";

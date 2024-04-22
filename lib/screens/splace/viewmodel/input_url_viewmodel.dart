@@ -14,6 +14,7 @@ import '../../../models/AppSettingModel.dart';
 import '../../../models/login_model.dart';
 import '../../../models/response_data_model.dart';
 import '../../../constants/my_globals.dart' as globals;
+import '../../../routes/routes.dart';
 
 class InputUrlViewModel extends GetxController {
     var appSettingResponse = ApiResponse.error("");
@@ -43,7 +44,7 @@ class InputUrlViewModel extends GetxController {
     }
   }
 
-  loginUser(BuildContext context,LoginModel loginModel, AppSettingModel? appSettingModel) async{
+  loginUser(BuildContext context,LoginModel loginModel) async{
 
 
     try {
@@ -51,29 +52,12 @@ class InputUrlViewModel extends GetxController {
       update();
       ResponseData response = await ApiService()
           .loginUser(context: context, logInWithCommonLoader: true,loginModel: loginModel);
-
+      Get.offAndToNamed(RouteClass.getDashboard());
       if (response.statusCode == 200) {
         var data = LoginModelResponse.fromJson(response.body!);
         loginResponse  = ApiResponse.completed(data);
         globals.loginData = loginResponse.data;
-
-        if(data.message?.messageCode==200) {
-          ResponseData orgsetting = await ApiService().getOrgSetting(
-              context: context);
-          SharedPreferencesHelper.saveValue(AppConstants.KEY_ORGANISATION_LIST,
-              orgsetting.rawResponseBody ?? "");
-          Utils.intence.setColorsToGlobals();
-          ResponseData defaultTree = await ApiService().getOrgSetting(
-              context: context);
-          ResponseData notificationUrl = await ApiService().getNotificationUrl(
-              context: context);
-          var json = notificationUrl.body!["Data"];
-          String token = json["Result"];
-          HubConnectionHelper.getInstance("${appSettingModel?.data
-              ?.notificationHubBaseUri}/notificationHub?token=$token");
-
-          Get.offAll(()=>const DashboadMainScreen());
-        }
+        Get.offAndToNamed(RouteClass.getDashboard());
 
        // update();
       }else{

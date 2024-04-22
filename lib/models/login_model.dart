@@ -1,11 +1,11 @@
 class LoginModel {
-  final String? UserName;
-  final String? Password;
+  final String? email;
+  final String? password;
   final String? DeviceId;
   final String? NotificationDeviceToken;
   LoginModel({
-    this.UserName,
-    this.Password,
+    this.email,
+    this.password,
     this.DeviceId,
     this.NotificationDeviceToken,
 
@@ -13,16 +13,16 @@ class LoginModel {
 
   factory LoginModel.fromJson(Map<String, dynamic> json) {
     return LoginModel(
-      UserName: json['UserName'],
-      Password: json['Password'],
+      email: json['email'],
+      password: json['password'],
       DeviceId: json['DeviceId'],
       NotificationDeviceToken: json['NotificationDeviceToken'],
     );
   }
 
   Map<String, dynamic> toMap() => {
-        'UserName': UserName,
-        'Password': Password,
+        'email': email,
+        'password': password,
         'DeviceId': DeviceId,
         'NotificationDeviceToken': NotificationDeviceToken,
       };

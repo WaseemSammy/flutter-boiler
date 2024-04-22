@@ -43,7 +43,7 @@ class ApiHelper {
       //Add or Remove headers from here
       'Content-Type': 'application/json',
       'Authorization': useAuth ? 'Bearer $token' : "",
-      'User-Agent' : 'iOS-MydesqAdvisorApp'
+      'apikey' : 'localhost:5233'
     };
 print(useAuth);
     print(map.toString());
@@ -120,7 +120,7 @@ print(useAuth);
           .then((http.Response response) async {
         if (showLoader) LoaderWidget.hideLoader(context);
        Map<String,dynamic> data =  jsonDecode(response.body);
-        if (response.statusCode == 200 && data["Message"]["MessageCode"]==200 || response.statusCode == 201 && data["Message"]["MessageCode"]==201) {
+        if (response.statusCode == 200 || response.statusCode == 201 && data["success"]==true) {
           if (showLog) {
             debugPrint("$responseName Response: ${prettyJson(jsonDecode(response.body))}");
           }
