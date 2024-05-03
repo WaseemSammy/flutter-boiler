@@ -13,6 +13,7 @@ class ApiResponse<T> {
   ApiResponse.completed(this.data) : status = Status.COMPLETED;
 
   ApiResponse.error(this.message) : status = Status.ERROR;
+  ApiResponse.idle() : status = Status.IDLE;
 
   @override
   String toString() {

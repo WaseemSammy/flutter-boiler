@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:connectivity/connectivity.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 
 
@@ -13,7 +13,9 @@ import '../widgets/alert_bar.dart';
 ///
 class NetworkCheck {
   static Future<bool> check() async {
+    print("Check internet");
     var connectivityResult = await (Connectivity().checkConnectivity());
+    print("Check internet $connectivityResult");
     if (connectivityResult == ConnectivityResult.mobile) {
       return true;
     } else if (connectivityResult == ConnectivityResult.wifi) {
@@ -24,10 +26,15 @@ class NetworkCheck {
   }
 
   static Future<bool> isOnline(BuildContext context, bool showError) async {
+    print("Check internet");
     var connectivityResult = await (Connectivity().checkConnectivity());
+    print("Check internet type $connectivityResult");
+    print("Check internet ${connectivityResult  == ConnectivityResult.wifi}");
     if (connectivityResult == ConnectivityResult.mobile) {
+      print("mobile");
       return true;
-    } else if (connectivityResult == ConnectivityResult.wifi) {
+    } else if (connectivityResult.contains(ConnectivityResult.wifi)) {
+      print("wifi");
       return true;
     }
     debugPrint("No Internet");

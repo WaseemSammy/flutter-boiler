@@ -5,12 +5,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../constants/font_family_constants.dart';
 
 
-class BigText extends StatelessWidget {
+class BigTextForHeading extends StatelessWidget {
    Color? color;
   final String text;
   double size;
   TextOverflow overflow;
-   BigText({Key? key,
+   BigTextForHeading({Key? key,
     this.color = const Color(0xFF077bd7),
     required this.text,
     this.overflow = TextOverflow.ellipsis,
@@ -28,7 +28,7 @@ class BigText extends StatelessWidget {
         color: color,
        fontSize: size,
         fontFamily: 'Raleway',
-
+        fontWeight: FontWeight.bold
 
     )
     );

@@ -1,13 +1,16 @@
 import 'package:get/get_navigation/src/routes/get_route.dart';
-import 'package:my_flutter/screens/dashboard/ui/dashboard_main_screen.dart';
-import 'package:my_flutter/screens/orders/ui/confirm_order_screen.dart';
-import 'package:my_flutter/screens/orders/ui/order_screen.dart';
-import 'package:my_flutter/screens/otp/otp_screen.dart';
-import 'package:my_flutter/screens/splace/ui/splaceScreen.dart';
-import 'package:my_flutter/screens/running/ui/running_screen.dart';
-import '../screens/allTable/ui/alltable_screen.dart';
-import '../screens/login/ui/login_screen.dart';
-import '../screens/splace/ui/enter_url_screen.dart';
+import 'package:my_flutter/screens/mobile/running/ui/running_screen.dart';
+import 'package:my_flutter/screens/web/web_dashboard/web_dashboard_screen.dart';
+
+import '../screens/mobile/allTable/ui/alltable_screen.dart';
+import '../screens/mobile/dashboard/ui/dashboard_main_screen.dart';
+import '../screens/mobile/login/ui/login_screen.dart';
+import '../screens/mobile/orders/ui/confirm_order_screen.dart';
+import '../screens/mobile/orders/ui/order_screen.dart';
+import '../screens/mobile/otp/otp_screen.dart';
+import '../screens/mobile/splace/ui/enter_url_screen.dart';
+import '../screens/mobile/splace/ui/splaceScreen.dart';
+
 
 
 class RouteClass{

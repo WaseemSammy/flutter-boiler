@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:my_flutter/models/cartItems.dart';
 import 'package:my_flutter/models/food_category_response.dart';
 import 'package:my_flutter/models/running_order_response.dart';
-import 'package:my_flutter/screens/category/ui/category_items.dart';
+
 import 'package:my_flutter/utils/responsive.dart';
 import '../constants/dummyJson.dart';
-import '../screens/menu/ui/menu_items.dart';
+import '../screens/mobile/category/ui/category_items.dart';
+import '../screens/mobile/menu/ui/menu_items.dart';
+
 
 
 class CommonOrderWidget extends StatefulWidget {

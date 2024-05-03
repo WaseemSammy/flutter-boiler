@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../screens/orders/viewmodel/table_order_viewmodel.dart';
+
+import '../screens/mobile/orders/viewmodel/table_order_viewmodel.dart';
 import 'big_text_center.dart';
 
 
