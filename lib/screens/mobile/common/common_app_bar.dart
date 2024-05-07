@@ -2,6 +2,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:my_flutter/constants/color_constants.dart';
 import 'package:my_flutter/widgets/big_text.dart';
 
@@ -19,13 +20,16 @@ class _CommonAppBarState extends State<CommonAppBar> {
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      scrolledUnderElevation: 0,
       backgroundColor: ColorConstants.AppBackgroundColor,
       title: Center(child: BigTextForHeading(text: widget.appTitle,size: 22,color: Colors.black,)),
       leading: Visibility(
-        visible: widget.appTitle == "" ? true :false,
+        visible: widget.appTitle == "" || widget.appTitle == "TABLES"? true :false,
         child: IconButton(
           icon: Icon(Icons.arrow_back,size: 28),
-          onPressed: () {},
+          onPressed: () {
+            Get.back();
+          },
         ),
       ),
       actions: [

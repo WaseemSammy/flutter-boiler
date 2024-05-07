@@ -52,7 +52,7 @@ class _HomeScreenState extends State<HomeScreen> {
           return SafeArea(
             child: Scaffold(
               appBar: PreferredSize(
-                preferredSize: Size.fromHeight(50), child: CommonAppBar("Orders"),
+                preferredSize: Size.fromHeight(50), child: CommonAppBar("ORDERS"),
               ),
               body: Container(
                 color: ColorConstants.AppBackgroundColor,
@@ -83,7 +83,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             DashboardTabBar(),
                             SizedBox(height: 20,),
                             DashboardFloorFilter(),
-                           SizedBox(height: 20,),
+                            SizedBox(height: 20,),
                             Expanded(
                               child: TabBarView(
                                   children: [

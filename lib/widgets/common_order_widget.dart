@@ -59,7 +59,7 @@ class _CommonOrderWidgetState extends State<CommonOrderWidget> {
           padding: const EdgeInsets.all(5),
           height: MediaQuery.of(context).size.height/2,
           decoration: const BoxDecoration(
-              color: Colors.white,
+
               borderRadius: BorderRadius.zero
           ),
           child:  MediaQuery.removePadding(
@@ -75,23 +75,14 @@ class _CommonOrderWidgetState extends State<CommonOrderWidget> {
     else{
       return Container(
           padding: const EdgeInsets.all(5),
-          height: MediaQuery.of(context).size.height/2,
           decoration: const BoxDecoration(
-              color: Colors.white,
+
               borderRadius: BorderRadius.zero
           ),
 
           child:  Column(
             children: [
-              TextFormField(
-                onChanged: (value) => filter(value),
-                decoration: const InputDecoration(
-                    labelText: "Search",
-                    labelStyle: TextStyle(
-                        color: Colors.black
-                    )
-                ),
-              ),
+
               Expanded(
                 child: MediaQuery.removePadding(
                     removeTop: true,

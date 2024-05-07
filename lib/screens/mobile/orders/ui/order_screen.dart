@@ -1,6 +1,7 @@
 import 'package:buttons_tabbar/buttons_tabbar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:getwidget/components/dropdown/gf_dropdown.dart';
 import 'package:my_flutter/constants/color_constants.dart';
 import 'package:my_flutter/constants/dummyJson.dart';
 import 'package:my_flutter/models/running_order_response.dart';
@@ -9,6 +10,7 @@ import 'package:my_flutter/screens/mobile/common/common_app_bar.dart';
 
 import 'package:my_flutter/utils/responsive.dart';
 import 'package:my_flutter/widgets/big_text.dart';
+import 'package:my_flutter/widgets/big_text_for_heading.dart';
 import 'package:my_flutter/widgets/bottem_price_and_add.dart';
 import 'package:my_flutter/widgets/common_order_widget.dart';
 
@@ -29,6 +31,12 @@ class _OrdersScreenState extends State<OrdersScreen> {
   Data? data;
   String? numberCustomer;
   final _viewModel  = Get.put(TableOrderViewModel());
+  String dropdownvalue = 'Floor 1';
+  var items = [
+    'Floor 1',
+    'Floor 2',
+    'Floor 3',
+  ];
 
   @override
   void initState() {
@@ -36,6 +44,7 @@ class _OrdersScreenState extends State<OrdersScreen> {
     numberCustomer = Get.parameters['nc'] ?? '';
     print(id);
     data =DummyJson.allTable.data?.firstWhere((element) => element.tableId.toString() == id);
+    items = DummyJson.allTable.data!.map((e) => "${e.tableNo}").toList();
 
     super.initState();
   }
@@ -92,79 +101,138 @@ class _OrdersScreenState extends State<OrdersScreen> {
       color: ColorConstants.AppBackgroundColor,
       child: Column(
         children: [
-          
-          Container(
-            padding: const EdgeInsets.only(left: 10,top: 10,bottom: 10,right: 10),
-            margin: const EdgeInsets.symmetric(horizontal: 5),
-            height: 80,
-            decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(5)
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Wrap (
-                  spacing: 5,
-                  crossAxisAlignment: WrapCrossAlignment.center,
-                  children: [
-                    Image.asset("assets/icons/table.png",width: 40,height: 40,),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        BigText(text: "Table No.", size: 16,),
-                        BigText(text: "${data?.tableNo}", size: 27,),
-                      ],
-                    )
+          Divider(),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Column(
+                children: [
+                  BigTextForHeading(text: "Floor",color: Colors.black,size: 16),
+                  Container(
 
-                  ],),
-                Wrap (
-                  spacing: 5,
-                  crossAxisAlignment: WrapCrossAlignment.center,
-                  children: [
-                    const Icon(Icons.people_alt_outlined,color: Colors.deepOrangeAccent,
-                      size: 40,),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        BigText(text: "Customers.", size: 16,),
-                        BigText(text:  "$numberCustomer", size: 27,),
-                      ],
-                    )
+                    width: 100,
+                    child: DropdownButtonHideUnderline(
+                      child: GFDropdown(
+                        isExpanded: true,
+                        padding: const EdgeInsets.all(10),
+                        borderRadius: BorderRadius.circular(5),
+                        border: const BorderSide(
+                            color: Colors.black12, width: 1),
+                        dropdownButtonColor: Colors.white,
 
-                  ],),
+                        // Initial Value
+                        value: items[0],
+                        // Down Arrow Icon
+                        icon: const Icon(Icons.keyboard_arrow_down),
 
 
-              ],
-            ),
+                        // Array list of items
+                        items: items.map((String items) {
+                          return DropdownMenuItem(
+                            value: items,
+                            child: Text(items),
+                          );
+                        }).toList(),
+                        // After selecting the desired option,it will
+                        // change button value to selected value
+                        onChanged: (String? newValue) {
+                          setState(() {
+                            dropdownvalue = newValue!;
+                          });
+                        },
+                      ),
+                    ),
+                  )
+                ],
+              ),
+              Column(
+                children: [
+                  BigTextForHeading(text: "Table",color: Colors.black,size: 16),
+                  Container(
+
+                    width: 100,
+                    child: DropdownButtonHideUnderline(
+                      child: GFDropdown(
+                        isExpanded: true,
+                        padding: const EdgeInsets.all(10),
+                        borderRadius: BorderRadius.circular(5),
+                        border: const BorderSide(
+                            color: Colors.black12, width: 1),
+                        dropdownButtonColor: Colors.white,
+
+                      // Initial Value
+                      value: items[0],
+                      // Down Arrow Icon
+                      icon: const Icon(Icons.keyboard_arrow_down),
+
+
+                      // Array list of items
+                      items: items.map((String items) {
+                        return DropdownMenuItem(
+                          value: items,
+                          child: Text(items),
+                        );
+                      }).toList(),
+                      // After selecting the desired option,it will
+                      // change button value to selected value
+                      onChanged: (String? newValue) {
+                        setState(() {
+                          dropdownvalue = newValue!;
+                        });
+                      },
+                    ),
+                  ),
+                  )
+                ],
+              ),
+            ],
           ),
           const SizedBox(height: 20,),
-         DefaultTabController(
-           initialIndex: 0,
-           length: DummyJson.dummyCategory.data?.length??0,
-           child: Expanded(
-             child: Column(
-               mainAxisSize: MainAxisSize.min,
-               children: [
-                 ButtonsTabBar(
-                 center: false,
-                 backgroundColor: Colors.orangeAccent,
-                 unselectedBackgroundColor: Colors.grey[300],
-                 unselectedLabelStyle: const TextStyle(color: Colors.black),
-                 labelStyle: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-                 tabs: DummyJson.dummyCategory.data?.map((e) => Tab(
-                   icon: const ImageIcon(
-                       AssetImage('assets/icons/dining.png')
-                   ),
-                   text: e.categoryName,
-                 )).toList()??[]),
-                 Flexible(
-                   child: TabBarView(
-                       children: DummyJson.dummyCategory.data?.map((e) => CommonOrderWidget(1, selectedCategory, selectedMenu, e, data)).toList()??[]
-                   ),
-                 )
-               ],
-             ),
+          Container(
+            height: 70,
+            padding: EdgeInsets.all(10),
+            child: TextFormField(
+              onChanged: (value) => {},//filter(value),
+              decoration: const InputDecoration(
+                prefixIcon: Icon(Icons.search),
+                  contentPadding: EdgeInsets.symmetric(vertical: 6, horizontal: 12),
+                  border:  OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(20)),
+
+                  ),
+                  labelText: "Search items",
+                  labelStyle: TextStyle(
+                      color: Colors.black
+                  )
+              ),
+            ),
+          ),
+         Expanded(
+           child: Column(
+             mainAxisSize: MainAxisSize.min,
+             children: [
+               Container(
+                 height:50,
+                 padding: const EdgeInsets.all(5),
+                 child: ListView(
+                   scrollDirection: Axis.horizontal,
+                   children: DummyJson.dummyCategory.data!.map((e) =>Container(
+                     margin: EdgeInsets.all(5),
+                     width: 100,
+                     decoration: BoxDecoration(
+                         borderRadius: BorderRadius.circular(50),
+                         border: Border.all(color: Colors.black)),
+                     child: Align(
+                       alignment: Alignment.center,
+                       child: Text("${e.categoryName}"),
+                     ),
+                   )
+                   ).toList()
+                 ),
+               ),
+               Flexible(
+                 child:CommonOrderWidget(1, selectedCategory, selectedMenu, DummyJson.dummyCategory.data?[0], data))
+             ],
            ),
          ),
 
