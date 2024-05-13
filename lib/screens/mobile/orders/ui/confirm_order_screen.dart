@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:my_flutter/constants/color_constants.dart';
 import 'package:my_flutter/models/running_order_response.dart';
 import 'package:my_flutter/widgets/big_text.dart';
 import 'package:my_flutter/widgets/big_text_center.dart';
 import 'package:my_flutter/widgets/custome_bottem_sheet.dart';
 
 
+import '../../common/common_app_bar.dart';
 import '../../menu/ui/menu_items.dart';
 import '../viewmodel/table_order_viewmodel.dart';
 
@@ -46,6 +48,10 @@ class _ConfirmOrderScreenState extends State<ConfirmOrderScreen> {
       });
     }
     return Scaffold(
+      appBar: const PreferredSize(
+        preferredSize: Size.fromHeight(70),
+        child: CommonAppBar("DETAIL",true),
+      ),
        floatingActionButton: FloatingActionButton(
            elevation: 0.0,
            backgroundColor: Colors.deepOrangeAccent,
@@ -60,126 +66,96 @@ class _ConfirmOrderScreenState extends State<ConfirmOrderScreen> {
            child: const Icon(Icons.add)
        ),
         body: Container(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [
-              Colors.orange,
-              Colors.purple,
-            ],
-          ),
-        ),
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Container(
-                padding: const EdgeInsets.only(top: 50,left: 20,right: 20),
-                width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height*.22,
-          
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
+        color: ColorConstants.AppBackgroundColor,
+        child: Column(
+          children: [
 
-                    InkWell(
-                        onTap: () {
-                          Get.back();
-                        },
-                        child: const Icon(Icons.arrow_back,size: 25,color: Colors.white,)),
-                    BigText(text: "Order detail",color: Colors.white,size: 23,),
-                    Container()
-                  ],
-                ),
+            Container(
+              padding: const EdgeInsets.only(left: 10,top: 10,bottom: 10,right: 10),
+              margin: const EdgeInsets.symmetric(horizontal: 5),
+              height: 80,
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(5)
               ),
-              Container(
-                padding: const EdgeInsets.only(left: 10,top: 10,bottom: 10,right: 10),
-                margin: const EdgeInsets.symmetric(horizontal: 5),
-                height: 80,
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(5)
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Wrap (
-                      spacing: 5,
-                      crossAxisAlignment: WrapCrossAlignment.center,
-                      children: [
-                        Image.asset("assets/icons/table.png",width: 40,height: 40,),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            BigText(text: "Table No.", size: 16,),
-                            BigText(text: "${data?.tableNo}", size: 27,),
-                          ],
-                        )
-
-                      ],),
-                    Wrap (
-                      spacing: 5,
-                      crossAxisAlignment: WrapCrossAlignment.center,
-                      children: [
-                        const Icon(Icons.people_alt_outlined,color: Colors.deepOrangeAccent,
-                          size: 40,),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            BigText(text: "Customers.", size: 16,),
-                            BigText(text: "${data?.noOfPerson}", size: 27,),
-                          ],
-                        )
-
-                      ],),
-
-
-                  ],
-                ),
-              ),
-              const SizedBox(height: 20,),
-              Container(
-                  padding: const EdgeInsets.symmetric(vertical: 10,horizontal: 15),
-                  width: MediaQuery.of(context).size.width,
-                  decoration: const BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.only(topLeft: Radius.circular(15),topRight: Radius.circular(15))
-          
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Wrap (
+                    spacing: 5,
+                    crossAxisAlignment: WrapCrossAlignment.center,
                     children: [
-                      BigTextCenter(text: "Items",color: Colors.black,size: 20,),
-                      Obx(() {
-                       return BigTextCenter(text: "Total-${_viewModel.total}", color: Colors.black, size: 20,);
-                      })
-                    ],
-                  )
+                      Image.asset("assets/icons/table.png",width: 40,height: 40,),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          BigText(text: "Table No.", size: 16,),
+                          BigText(text: "${data?.tableNo}", size: 27,),
+                        ],
+                      )
+
+                    ],),
+                  Wrap (
+                    spacing: 5,
+                    crossAxisAlignment: WrapCrossAlignment.center,
+                    children: [
+                      const Icon(Icons.people_alt_outlined,color: Colors.deepOrangeAccent,
+                        size: 40,),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          BigText(text: "Customers.", size: 16,),
+                          BigText(text: "${data?.noOfPerson}", size: 27,),
+                        ],
+                      )
+
+                    ],),
+
+
+                ],
               ),
-                SizedBox(
-                    height: 500,
-                  child: Obx(() {
-                    return  Container(
-                                    padding: const EdgeInsets.all(5),
-                                    height: MediaQuery.of(context).size.height,
-                                    decoration: const BoxDecoration(
-                                        color: Colors.white,
-                                        borderRadius: BorderRadius.zero
-                                    ),
-                      child : MediaQuery.removePadding(
-                                    removeTop: true,
-                                    context: context,
-                                    child: ListView.separated(itemBuilder: (context, index) {
-                                      return MenuItems(_viewModel.cartItembytable?.value.orders?[index],data,false);
-                                    }, separatorBuilder: (context, index) {
-                                      return const Divider(height: 0.5,color: Colors.grey,);
-                                    }, itemCount: _viewModel.cartItembytable?.value.orders?.length??0)
-                    ));
-                  }),
+            ),
+            const SizedBox(height: 20,),
+            Container(
+                padding: const EdgeInsets.symmetric(vertical: 10,horizontal: 15),
+                width: MediaQuery.of(context).size.width,
+                decoration: const BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.only(topLeft: Radius.circular(15),topRight: Radius.circular(15))
+
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    BigTextCenter(text: "Items",color: Colors.black,size: 20,),
+                    Obx(() {
+                     return BigTextCenter(text: "Total-${_viewModel.total}", color: Colors.black, size: 20,);
+                    })
+                  ],
                 )
-            ],
-          ),
+            ),
+              SizedBox(
+                  height: 500,
+                child: Obx(() {
+                  return  Container(
+                                  padding: const EdgeInsets.all(5),
+                                  height: MediaQuery.of(context).size.height,
+                                  decoration: const BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.zero
+                                  ),
+                    child : MediaQuery.removePadding(
+                                  removeTop: true,
+                                  context: context,
+                                  child: ListView.separated(itemBuilder: (context, index) {
+                                    return MenuItems(_viewModel.cartItembytable?.value.orders?[index],data,false);
+                                  }, separatorBuilder: (context, index) {
+                                    return const Divider(height: 0.5,color: Colors.grey,);
+                                  }, itemCount: _viewModel.cartItembytable?.value.orders?.length??0)
+                  ));
+                }),
+              )
+          ],
         ),
       ),
         bottomNavigationBar: InkWell(

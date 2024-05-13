@@ -10,7 +10,7 @@ import 'app_constants.dart';
 ///Api Paths are set here
 class ApiConstants {
   //Check if build is production or staging and use url accordingly      PRODUCTION     :     STAGING
-  static const String SERVER_BASE_URL = AppConstants.isProdBuild ? "http://192.168.1.4:8081/api" : "http://192.168.1.4:8081/api";
+  static const String SERVER_BASE_URL = AppConstants.isProdBuild ? "http://192.168.1.11:8083/api" : "http://192.168.1.11:8083/api";
 
   ///NOTE: DO NOT TWEAK
   ///Assigning Application's base url which app is going to use. Can use URL from custom page or from SERVER_BASE_URL.
@@ -21,7 +21,8 @@ class ApiConstants {
   //Login end point
   //For new end points always start with "/".
   static const String LOGIN = "/Auth/Authentication";
-  static const String DASHBOARD_DATA = "/Dashboard/Dashboard";
+  static const String HOME_DATA = "/Home/Home?RestaurantId=";
+  static const String ALLTABLE_DATA = "/Home/GetAllTables?RestaurantId=";
   static const String NEW_APP_SERVER_URL = "/api/AppSettings";
   static const String ORF_SETTINGS = "/api/AppSettings/OrgSettings/Reporting";
   static const String IMAGE_BACKGROUND_URL = "/api/Files/OrganizationFile?filePath=Images/AppBackgrounds/";

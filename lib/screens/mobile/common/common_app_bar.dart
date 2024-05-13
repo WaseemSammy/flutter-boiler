@@ -10,7 +10,8 @@ import '../../../widgets/big_text_for_heading.dart';
 
 class CommonAppBar extends StatefulWidget {
   final String appTitle;
-  const CommonAppBar(this.appTitle, {super.key});
+  final bool isBack;
+  const CommonAppBar(this.appTitle, this.isBack, {super.key});
 
   @override
   State<CommonAppBar> createState() => _CommonAppBarState();
@@ -24,7 +25,7 @@ class _CommonAppBarState extends State<CommonAppBar> {
       backgroundColor: ColorConstants.AppBackgroundColor,
       title: Center(child: BigTextForHeading(text: widget.appTitle,size: 22,color: Colors.black,)),
       leading: Visibility(
-        visible: widget.appTitle == "" || widget.appTitle == "TABLES"? true :false,
+        visible: widget.isBack? true :false,
         child: IconButton(
           icon: Icon(Icons.arrow_back,size: 28),
           onPressed: () {

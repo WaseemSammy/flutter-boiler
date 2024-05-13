@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_flutter/constants/app_constants.dart';
+import 'package:my_flutter/constants/color_constants.dart';
 import 'package:my_flutter/models/login/org_setting_response.dart';
 import 'package:my_flutter/utils/responsive.dart';
 import 'package:my_flutter/utils/shared_preferences_helper.dart';
@@ -17,23 +18,7 @@ class Utils{
   Utils._();
   static final intence = Utils._();
 
-  Future<OrgSettingResponse> getOrgSetting() async {
-    String? rawResponse = await SharedPreferencesHelper.getValue(AppConstants.KEY_ORGANISATION_LIST);
-    if(rawResponse!=null) {
-      var response = json.decode(rawResponse);
-      return OrgSettingResponse.fromJson(response);
-    }else{
-      return OrgSettingResponse();
-    }
 
-  }
-
-  setColorsToGlobals() async {
-    OrgSettingResponse orgSettingResponse = await getOrgSetting();
-   var mainCOlor =  orgSettingResponse.data?.where((element) => element.paramName == "main_color");
-    print("Waseem");
-    global.bgColor = mainCOlor?.first.paramValue;
-  }
 
   Future<Map<String,dynamic>>segregateSubscribed(List<ObjectData>? mainList,List<ObjectData> subscribe,List<ObjectData> unsubscribe) async {
     if(mainList!=null) {
@@ -52,6 +37,33 @@ class Utils{
     var forw = fname?.substring(0,1)??"";
     var last = lastName?.substring(0,1)??"";
     return forw+last;
+  }
+
+  Color getTableBackgroundColor(type){
+    switch(type){
+      case 1 :
+        return Colors.orangeAccent;
+      case 2 :
+        return Colors.green;
+      case 3 :
+        return Colors.grey.shade300;
+
+      default :
+        return Colors.white;
+    }
+  }
+  Color getTextAndIconColor(type){
+    switch(type){
+      case 1 :
+        return Colors.white;
+      case 2 :
+        return Colors.white;
+      case 3 :
+        return Colors.black;
+
+      default :
+        return Colors.white;
+    }
   }
 
   void showCustomerDialog(BuildContext ctx, void Function(int number) selectPerson){

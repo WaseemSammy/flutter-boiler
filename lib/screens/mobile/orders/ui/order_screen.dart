@@ -83,7 +83,7 @@ class _OrdersScreenState extends State<OrdersScreen> {
     return Scaffold(
       appBar: const PreferredSize(
         preferredSize: Size.fromHeight(50),
-        child: CommonAppBar(""),
+        child: CommonAppBar("",true),
       ),
       body: Responsive(
         mobile: getWidget(1),

@@ -129,6 +129,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.7.10"
+  dio:
+    dependency: "direct main"
+    description:
+      name: dio
+      sha256: "11e40df547d418cc0c4900a9318b26304e665da6fa4755399a9ff9efd09034b5"
+      url: "https://pub.dev"
+    source: hosted
+    version: "5.4.3+1"
   dotted_border:
     dependency: "direct main"
     description:
@@ -190,6 +198,54 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "5.7.0"
+  flutter_secure_storage:
+    dependency: "direct main"
+    description:
+      name: flutter_secure_storage
+      sha256: c0f402067fb0498934faa6bddd670de0a3db45222e2ca9a068c6177c9a2360a4
+      url: "https://pub.dev"
+    source: hosted
+    version: "9.1.1"
+  flutter_secure_storage_linux:
+    dependency: transitive
+    description:
+      name: flutter_secure_storage_linux
+      sha256: "4d91bfc23047422cbcd73ac684bc169859ee766482517c22172c86596bf1464b"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.2.1"
+  flutter_secure_storage_macos:
+    dependency: transitive
+    description:
+      name: flutter_secure_storage_macos
+      sha256: "8cfa53010a294ff095d7be8fa5bb15f2252c50018d69c5104851303f3ff92510"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.1.0"
+  flutter_secure_storage_platform_interface:
+    dependency: transitive
+    description:
+      name: flutter_secure_storage_platform_interface
+      sha256: "301f67ee9b87f04aef227f57f13f126fa7b13543c8e7a93f25c5d2d534c28a4a"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.1.1"
+  flutter_secure_storage_web:
+    dependency: transitive
+    description:
+      name: flutter_secure_storage_web
+      sha256: f4ebff989b4f07b2656fb16b47852c0aab9fed9b4ec1c70103368337bc1886a9
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.2.1"
+  flutter_secure_storage_windows:
+    dependency: transitive
+    description:
+      name: flutter_secure_storage_windows
+      sha256: b20b07cb5ed4ed74fc567b78a72936203f587eba460af1df11281c9326cd3709
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.1.2"
   flutter_spinkit:
     dependency: "direct main"
     description:
@@ -701,6 +757,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.3.2"
+  url_strategy:
+    dependency: "direct main"
+    description:
+      name: url_strategy
+      sha256: "42b68b42a9864c4d710401add17ad06e28f1c1d5500c93b98c431f6b0ea4ab87"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.2.0"
   uuid:
     dependency: "direct main"
     description:
@@ -737,10 +801,10 @@ packages:
     dependency: transitive
     description:
       name: win32
-      sha256: "5a751eddf9db89b3e5f9d50c20ab8612296e4e8db69009788d6c8b060a84191c"
+      sha256: f2add6fa510d3ae152903412227bda57d0d5a8da61d2c39c1fb022c9429a41c0
       url: "https://pub.dev"
     source: hosted
-    version: "4.1.4"
+    version: "5.0.6"
   xdg_directories:
     dependency: transitive
     description:

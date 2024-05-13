@@ -16,8 +16,8 @@ class UUIDHelper {
   }
 
   static Future<String?> checkSaveId() async{
-   var Id = await SharedPreferencesHelper.getValue(AppConstants.KEY_DEVICE_ID);
-   return Id;
+   //var Id = await SharedPreferencesHelper.getValue(AppConstants.KEY_DEVICE_ID);
+   return "";
   }
 
 }

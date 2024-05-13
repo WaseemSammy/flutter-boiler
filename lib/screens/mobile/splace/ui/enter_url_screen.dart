@@ -38,7 +38,7 @@ class _EnterUrlScreenState extends State<EnterUrlScreen> {
   }
   saveAppSetting(AppSettingModel appSettingModel) async {
 
-    var json = jsonEncode(appSettingModel.toJson());
+    /*var json = jsonEncode(appSettingModel.toJson());
     SharedPreferencesHelper.saveValue(AppConstants.KEY_APPSETTINGS, json);
     SharedPreferencesHelper.saveBooleanValue(AppConstants.KEY_ISSERVER_CONFIGURED, true);
     SharedPreferencesHelper.saveValue(AppConstants.KEY_SELECTED_LAST_INDEX, appSettingModel.data?.organizationName??"");
@@ -52,7 +52,7 @@ class _EnterUrlScreenState extends State<EnterUrlScreen> {
     }
 
     SharedPreferencesHelper.setMap(AppConstants.KEY_ORGANISATION_MAP,jsonEncode(myMap));
-    Get.off(() => const LoginScreen());
+    Get.off(() => const LoginScreen());*/
   }
 
   @override

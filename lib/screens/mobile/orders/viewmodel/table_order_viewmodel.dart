@@ -110,7 +110,6 @@ class TableOrderViewModel extends GetxController{
        item?.tableId == data?.tableId);
        cartItembytable?.value = cardItem ?? CartItemData();
      }
-
    }
 
    getItemCountByTableIdAndItems(Data? data,int? itemId){
@@ -127,11 +126,10 @@ class TableOrderViewModel extends GetxController{
             return 0;
          }
        }else{
-         print("return 0");
          return 0;
        }
      }else{
-       print("return 0");
+
        return 0;
      }
    }

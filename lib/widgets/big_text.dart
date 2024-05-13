@@ -22,7 +22,8 @@ class BigText extends StatelessWidget {
     ScreenUtil.init(context);
     return AutoSizeText(
       text,
-      maxLines: 2,
+      maxLines: 1,
+
       overflow: overflow,
       style: TextStyle(
         color: color,

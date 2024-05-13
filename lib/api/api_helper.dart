@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 
 
 import 'package:http/http.dart' as http;
+import 'package:my_flutter/models/login/NewLoginResponse.dart';
 import '../constants/my_globals.dart' as global;
 
 
@@ -38,14 +39,23 @@ class ApiHelper {
   //Base headers Supports version
   //Gets Token from singleton class which is set either on login or app startup in main.dart
   static Future<Map<String, String>> _getHeaders(bool useAuth, int apiVersion) async {
-    String? token = global.loginData?.data?.token;
+    String? token="";
+    if(useAuth) {
+      String? data = await SharedPreferencesHelper.getAuthToken();
+      Map<String, dynamic>  loginMap = jsonDecode(data ?? "");
+      token = NewLoginResponse.fromJson(loginMap).data?.jwToken;
+      print("token $token");
+    }
+
+
     Map<String, String> map = {
       //Add or Remove headers from here
+      'charset': 'utf-8',
       'Content-Type': 'application/json',
       'Authorization': useAuth ? 'Bearer $token' : "",
       'apikey' : 'localhost:5233'
     };
-print(useAuth);
+  print(useAuth);
     print(map.toString());
     return map;
   }
@@ -112,12 +122,13 @@ print(useAuth);
     }
 
     var jsonBody = const JsonEncoder().convert(map);
+    print("Post $jsonBody");
     if (await NetworkCheck.isOnline(context!, showConnectivityError)) {
       if (showLoader) LoaderWidget.showLoader(context);
       await http
           .post(requestUri, body: jsonBody, headers: await _getHeaders(useAuth, apiVersion))
           .timeout(const Duration(seconds: _DEFAULT_TIMEOUT))
-          .then((http.Response response) async {
+          .then((response) async {
         if (showLoader) LoaderWidget.hideLoader(context);
        Map<String,dynamic> data =  jsonDecode(response.body);
         if (response.statusCode == 200 || response.statusCode == 201 && data["success"]==true) {
@@ -249,7 +260,6 @@ print(useAuth);
           .timeout(const Duration(seconds: _DEFAULT_TIMEOUT))
           .then((http.Response response) async {
         if (showLoader) LoaderWidget.hideLoader(context);
-
         if (response.statusCode == 200 || response.statusCode == 201) {
           if (showLog) {
            // debugPrint("$responseName Response: ${prettyJson(jsonDecode(response.body))}");

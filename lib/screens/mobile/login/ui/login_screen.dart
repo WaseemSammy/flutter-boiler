@@ -41,36 +41,12 @@ class _LoginScreenState extends State<LoginScreen> {
   void initState() {
     print("inint");
    // fetchAppSetting();
-    usernameController.text = 'sayeedahmad7@gmail.com';
+    usernameController.text = 'xyz';
     passswordController.text = '123456';
     super.initState();
   }
 
-  fetchAppSetting() async {
-    var model = await loginSetting();
-    Map<String, dynamic>? fmap = await SharedPreferencesHelper.getMap(
-        AppConstants.KEY_ORGANISATION_MAP);
-    String? index = await SharedPreferencesHelper.getValue(
-        AppConstants.KEY_SELECTED_LAST_INDEX);
-    listmap = fmap;
-    dropDownText = index;
-    print(dropDownText);
-    print(dropDownText);
-    print(listmap.toString());
 
-    setState(() {
-      appSettingModel = model;
-      listmap = fmap;
-      globals.baseUrl =  listmap?[dropDownText];
-      print("object : ${globals.baseUrl}  "+listmap?[dropDownText]);
-    });
-  }
-
-  Future<AppSettingModel> loginSetting() async {
-    String? json = await SharedPreferencesHelper.getValue(
-        AppConstants.KEY_APPSETTINGS);
-    return AppSettingModel.fromJson(jsonDecode(json!));
-  }
 
 
 

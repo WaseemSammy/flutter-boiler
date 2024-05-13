@@ -22,10 +22,19 @@ class ApiService {
   }
 
 
-  Future<ResponseData> getDashboardData({required BuildContext context,required Map map}) {
-    Uri uri = Uri.parse(globals.baseUrl + ApiConstants.DASHBOARD_DATA);
-    return ApiHelper().postRequest(context, uri, map,
-        useAuth: true, showLoader: true, responseName: ApiConstants.DASHBOARD_DATA, showLog: true, showError: true);
+  Future<ResponseData> getDashboardData({required BuildContext context, required int resId}) {
+    Uri uri = Uri.parse(globals.baseUrl + ApiConstants.HOME_DATA+resId.toString());
+
+    return ApiHelper().getRequest(context, uri,
+        useAuth: true, showLoader: true, responseName: ApiConstants.HOME_DATA, showLog: true, showError: true);
+
+  }
+  Future<ResponseData> getAllTable({required BuildContext context, required int resId}) {
+    Uri uri = Uri.parse(globals.baseUrl + ApiConstants.ALLTABLE_DATA+resId.toString());
+
+    return ApiHelper().getRequest(context, uri,
+        useAuth: true, showLoader: true, responseName: ApiConstants.ALLTABLE_DATA, showLog: true, showError: true);
+
   }
 
 
