@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:my_flutter/constants/color_constants.dart';
 import 'package:my_flutter/routes/routes.dart';
 import 'package:my_flutter/screens/mobile/common/common_app_bar.dart';
 
@@ -8,7 +7,6 @@ import 'package:my_flutter/utils/responsive.dart';
 
 import '../../../../widgets/big_text.dart';
 import '../screens/mobile/dashboard/viewmodels/dashboard_view_model.dart';
-import '../screens/mobile/dashboard/widgets/your_order.dart';
 
 
 
@@ -59,9 +57,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       Get.toNamed(RouteClass.alltable);
                     },
                     label: BigText(text: 'Make Order',color: Colors.white,),
-                    icon: Icon(Icons.restaurant,color: Colors.white,),
+                    icon: const Icon(Icons.restaurant,color: Colors.white,),
                   ),
-                  appBar: PreferredSize(
+                  appBar: const PreferredSize(
                     preferredSize: Size.fromHeight(50), child: CommonAppBar("RESTAURANT",false),
                   ),
                   body: ,

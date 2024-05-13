@@ -36,16 +36,16 @@ class NewLoginResponse {
   bool? _success;
   String? _message;
   num? _statusCode;
-  dynamic? _remarks;
+  dynamic _remarks;
   String? _traceId;
-  dynamic? _errors;
+  dynamic _errors;
   Data? _data;
 NewLoginResponse copyWith({  bool? success,
   String? message,
   num? statusCode,
-  dynamic? remarks,
+  dynamic remarks,
   String? traceId,
-  dynamic? errors,
+  dynamic errors,
   Data? data,
 }) => NewLoginResponse(  success: success ?? _success,
   message: message ?? _message,
@@ -58,9 +58,9 @@ NewLoginResponse copyWith({  bool? success,
   bool? get success => _success;
   String? get message => _message;
   num? get statusCode => _statusCode;
-  dynamic? get remarks => _remarks;
+  dynamic get remarks => _remarks;
   String? get traceId => _traceId;
-  dynamic? get errors => _errors;
+  dynamic get errors => _errors;
   Data? get data => _data;
 
   Map<String, dynamic> toJson() {

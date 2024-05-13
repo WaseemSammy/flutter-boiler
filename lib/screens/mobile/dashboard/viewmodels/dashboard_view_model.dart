@@ -5,7 +5,6 @@ import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:my_flutter/constants/app_constants.dart';
 import 'package:my_flutter/models/dashboard_response.dart';
-import 'package:my_flutter/utils/request_map_utils.dart';
 import 'package:my_flutter/utils/shared_preferences_helper.dart';
 
 import '../../../../api/ApiResponse.dart';

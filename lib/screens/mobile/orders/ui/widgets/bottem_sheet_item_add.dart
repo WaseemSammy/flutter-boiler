@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:my_flutter/constants/color_constants.dart';
 import 'package:my_flutter/models/cartItems.dart';
@@ -55,7 +54,7 @@ class _BottemSheetItemAddPopupState extends State<BottemSheetItemAddPopup> {
                       });
                     },
                     child: Container(
-                      margin: EdgeInsets.all(5),
+                      margin: const EdgeInsets.all(5),
                       width: 100,
                       height: 50,
                       decoration: BoxDecoration(
@@ -83,7 +82,7 @@ class _BottemSheetItemAddPopupState extends State<BottemSheetItemAddPopup> {
                       });
                     },
                     child: Container(
-                      margin: EdgeInsets.all(5),
+                      margin: const EdgeInsets.all(5),
                       width: 100,
                       height: 50,
                       decoration: BoxDecoration(
@@ -163,8 +162,8 @@ class _BottemSheetItemAddPopupState extends State<BottemSheetItemAddPopup> {
                   //Get.toNamed(RouteClass.alltable);
                 },
                 child: Container(
-                  margin: EdgeInsets.all(10),
-                  padding: EdgeInsets.symmetric(
+                  margin: const EdgeInsets.all(10),
+                  padding: const EdgeInsets.symmetric(
                       horizontal: 50, vertical: 5),
                   decoration: BoxDecoration(
                       color: Colors.black,

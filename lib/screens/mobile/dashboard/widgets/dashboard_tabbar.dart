@@ -1,7 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:my_flutter/models/dashboard_response.dart';
-import 'package:my_flutter/widgets/big_text.dart';
 
 import '../../../../constants/color_constants.dart';
 
@@ -17,7 +15,7 @@ class DashboardTabBar extends StatelessWidget {
       child: TabBar(
 
           dividerColor: Colors.transparent,
-          labelPadding: EdgeInsets.symmetric(horizontal: 2),
+          labelPadding: const EdgeInsets.symmetric(horizontal: 2),
           labelColor: Colors.white,
           indicatorSize: TabBarIndicatorSize.label,
           unselectedLabelColor: Colors.black,
@@ -26,7 +24,7 @@ class DashboardTabBar extends StatelessWidget {
               color: Colors.black),
           tabs: orderStatus!.map((e) => Tab(
             child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 5),
+              padding: const EdgeInsets.symmetric(horizontal: 5),
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(50),
                   border: Border.all(color: Colors.black)),

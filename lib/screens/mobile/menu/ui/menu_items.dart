@@ -1,16 +1,12 @@
-import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:lottie/lottie.dart';
 
 import 'package:my_flutter/models/cartItems.dart';
 import 'package:my_flutter/models/running_order_response.dart';
 import 'package:my_flutter/screens/mobile/orders/ui/widgets/bottem_sheet_item_add.dart';
 import 'package:my_flutter/widgets/big_text.dart';
-import 'package:my_flutter/widgets/big_text_for_heading.dart';
 import 'package:my_flutter/widgets/small_text.dart';
 
-import '../../../../routes/routes.dart';
 import '../../orders/viewmodel/table_order_viewmodel.dart';
 
 
@@ -77,50 +73,44 @@ class _MenuItemsState extends State<MenuItems> {
                    "assets/images/biryani_image.webp",
                    width: 100, height: 100,fit: BoxFit.fill,),
                ),
-                   Padding(
-                     padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                     child: Column(
-
-                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                       crossAxisAlignment: CrossAxisAlignment.start,
-                       children: [
-                         BigText(text: widget.menu?.itemName??"", size: 16,color: Colors.black54,),
-                         InkWell(
-                           onTap: (){
-                             showModalBottomSheet(
-                               context: context,
-                               // color is applied to main screen when modal bottom screen is displayed
-                               //background color for modal bottom screen
-                               backgroundColor: Colors.yellow,
-                               //elevates modal bottom screen
-                               elevation: 10,
-                               // gives rounded corner to modal bottom screen
-                               shape: RoundedRectangleBorder(
-                                 borderRadius: BorderRadius.circular(10.0),
-                               ),
-                               builder: (BuildContext context) {
-                                 // UDE : SizedBox instead of Container for whitespaces
-                                 return BottemSheetItemAddPopup(widget.menu);
-                               },
-                             );
-                           },
-                           child: Container(
-                             padding: EdgeInsets.symmetric(horizontal: 20,vertical: 10),
-                             decoration: BoxDecoration(
-                                 color: Colors.black,
-                                 borderRadius: BorderRadius.all(Radius.circular(20))
+                   Column(
+                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                     children: [
+                       BigText(text: widget.menu?.itemName??"", size: 16,color: Colors.black54,),
+                       InkWell(
+                         onTap: (){
+                           showModalBottomSheet(
+                             context: context,
+                             // color is applied to main screen when modal bottom screen is displayed
+                             //background color for modal bottom screen
+                             backgroundColor: Colors.yellow,
+                             //elevates modal bottom screen
+                             elevation: 10,
+                             // gives rounded corner to modal bottom screen
+                             shape: RoundedRectangleBorder(
+                               borderRadius: BorderRadius.circular(10.0),
                              ),
-                             child: BigText(text: "Add",
-                               color: Colors.white,),
+                             builder: (BuildContext context) {
+                               // UDE : SizedBox instead of Container for whitespaces
+                               return BottemSheetItemAddPopup(widget.menu);
+                             },
+                           );
+                         },
+                         child: Container(
+                           padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 10),
+                           decoration: const BoxDecoration(
+                               color: Colors.black,
+                               borderRadius: BorderRadius.all(Radius.circular(20))
                            ),
-                         )
-                       ],
-                     ),
-                   )
-                    ]
-             ),
-             SmallText(text: widget.visibility == true ? "${widget.menu?.itemPrice}" : "${widget.menu?.count}", size: 16,
-               color: Colors.black54,),
+                           child: BigText(text: "Add",
+                             color: Colors.white,),
+                         ),
+                       )
+                     ],
+                   )]),
+             SmallText(text: widget.visibility == true ? "${widget.menu?.itemPrice}" : "${widget.menu?.count}",
+                      size: 16,
+                      color: Colors.black54,),
 
              /*Expanded(
                child: Center(

@@ -1,15 +1,9 @@
-import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:my_flutter/constants/app_constants.dart';
-import 'package:my_flutter/constants/color_constants.dart';
-import 'package:my_flutter/models/login/org_setting_response.dart';
 import 'package:my_flutter/utils/responsive.dart';
-import 'package:my_flutter/utils/shared_preferences_helper.dart';
 import 'package:my_flutter/widgets/big_text.dart';
 
-import '../constants/my_globals.dart' as global;
 import '../models/clients/object_type_response.dart';
 import '../widgets/big_text_center.dart';
 

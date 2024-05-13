@@ -1,4 +1,3 @@
-import 'package:buttons_tabbar/buttons_tabbar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_flutter/api/Status.dart';
@@ -9,7 +8,6 @@ import 'package:my_flutter/screens/mobile/common/common_app_bar.dart';
 import 'package:my_flutter/screens/mobile/dashboard/widgets/list_order_type.dart';
 
 import 'package:my_flutter/utils/responsive.dart';
-import 'package:my_flutter/widgets/small_text.dart';
 
 import '../../../../widgets/big_text.dart';
 import '../viewmodels/dashboard_view_model.dart';
@@ -57,9 +55,9 @@ class _HomeScreenState extends State<HomeScreen> {
             Get.toNamed(RouteClass.alltable);
           },
           label: BigText(text: 'Make Order',color: Colors.white,),
-          icon: Icon(Icons.restaurant,color: Colors.white,),
+          icon: const Icon(Icons.restaurant,color: Colors.white,),
         ),
-        appBar: PreferredSize(
+        appBar: const PreferredSize(
           preferredSize: Size.fromHeight(50), child: CommonAppBar("RESTAURANT",false),
         ),
         body: GetBuilder<DashboardViewModel>(
@@ -74,7 +72,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     color: ColorConstants.AppBackgroundColor,
                     child: Column(
                       children: [
-                        SizedBox(height: 20,),
+                        const SizedBox(height: 20,),
 
                         Expanded(
                           child: DefaultTabController(
@@ -84,9 +82,9 @@ class _HomeScreenState extends State<HomeScreen> {
                               mainAxisSize: MainAxisSize.min,
                               children: [
                                 DashboardTabBar(response.data?.orderStatus),
-                                SizedBox(height: 20,),
+                                const SizedBox(height: 20,),
                                 DashboardFloorFilter(response.data?.areas),
-                                SizedBox(height: 20,),
+                                const SizedBox(height: 20,),
                                 Expanded(
                                   child: TabBarView(
                                       children: [

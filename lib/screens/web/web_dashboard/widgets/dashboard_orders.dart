@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../widgets/big_text.dart';
@@ -23,14 +22,14 @@ class _DashboardOrdersState extends State<DashboardOrders> {
           BigText(text: "Status"),
           BigText(text: "Time"),
           Container(
-            margin: EdgeInsets.all(5),
-            padding: EdgeInsets.symmetric(horizontal: 20,vertical: 5),
+            margin: const EdgeInsets.all(5),
+            padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 5),
             decoration: BoxDecoration(
-                color: Color(0xFF077bd7),
+                color: const Color(0xFF077bd7),
                 borderRadius: BorderRadius.circular(5)
             ),
               child: BigText(text: "Print",color: Colors.white,)),
-          Icon(
+          const Icon(
             Icons.arrow_drop_down,
             color: Colors.grey,
             size: 30,

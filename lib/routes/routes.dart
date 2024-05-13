@@ -1,6 +1,5 @@
 import 'package:get/get_navigation/src/routes/get_route.dart';
 import 'package:my_flutter/screens/mobile/running/ui/running_screen.dart';
-import 'package:my_flutter/screens/web/web_dashboard/web_dashboard_screen.dart';
 
 import '../screens/mobile/allTable/ui/alltable_screen.dart';
 import '../screens/mobile/dashboard/ui/dashboard_main_screen.dart';

@@ -8,13 +8,10 @@ import 'package:get/get.dart';
 import 'package:my_flutter/api/Status.dart';
 import 'package:my_flutter/constants/app_constants.dart';
 import 'package:my_flutter/constants/color_constants.dart';
-import 'package:my_flutter/constants/dummyJson.dart';
 import 'package:my_flutter/models/all_table_response.dart';
-import 'package:my_flutter/models/dashboard_response.dart';
 import 'package:my_flutter/screens/mobile/allTable/alltable_view_model.dart';
 import 'package:my_flutter/utils/responsive.dart';
 import 'package:my_flutter/utils/shared_preferences_helper.dart';
-import 'package:my_flutter/widgets/big_text.dart';
 import 'package:my_flutter/widgets/small_text.dart';
 
 
@@ -74,7 +71,7 @@ class _RunningOrdersState extends State<AllTableScreen> {
                     child: Container(
                         child: Column(
                           children: [
-                            Container(
+                            SizedBox(
                               width: MediaQuery.of(context).size.width,
 
                               child: Wrap(
@@ -90,7 +87,7 @@ class _RunningOrdersState extends State<AllTableScreen> {
 
                                       },
                                       child: Container(
-                                        padding: EdgeInsets.all(10),
+                                        padding: const EdgeInsets.all(10),
                                         width: w,
                                         decoration: BoxDecoration(
                                             color: selectedIndex==index?Colors.black : Colors.transparent,

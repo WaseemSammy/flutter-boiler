@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:my_flutter/models/running_order_response.dart';
 import 'package:my_flutter/routes/routes.dart';
 import 'package:my_flutter/utils/utils_helper.dart';
 import 'package:my_flutter/widgets/big_text.dart';
@@ -46,7 +45,7 @@ class _RunningGridItemsState extends State<RunningGridItems> {
           padding: const EdgeInsets.all(5),
            decoration: BoxDecoration(
                color: Utils.intence.getTableBackgroundColor(widget.data.tableStatusId),
-             borderRadius: BorderRadius.all(Radius.circular(10))
+             borderRadius: const BorderRadius.all(Radius.circular(10))
            ),
            child: Column(
              crossAxisAlignment: CrossAxisAlignment.start,

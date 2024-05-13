@@ -1,4 +1,3 @@
-import 'package:buttons_tabbar/buttons_tabbar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getwidget/components/dropdown/gf_dropdown.dart';
@@ -9,7 +8,6 @@ import 'package:my_flutter/routes/routes.dart';
 import 'package:my_flutter/screens/mobile/common/common_app_bar.dart';
 
 import 'package:my_flutter/utils/responsive.dart';
-import 'package:my_flutter/widgets/big_text.dart';
 import 'package:my_flutter/widgets/big_text_for_heading.dart';
 import 'package:my_flutter/widgets/bottem_price_and_add.dart';
 import 'package:my_flutter/widgets/common_order_widget.dart';
@@ -101,14 +99,14 @@ class _OrdersScreenState extends State<OrdersScreen> {
       color: ColorConstants.AppBackgroundColor,
       child: Column(
         children: [
-          Divider(),
+          const Divider(),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Column(
                 children: [
                   BigTextForHeading(text: "Floor",color: Colors.black,size: 16),
-                  Container(
+                  SizedBox(
 
                     width: 100,
                     child: DropdownButtonHideUnderline(
@@ -148,7 +146,7 @@ class _OrdersScreenState extends State<OrdersScreen> {
               Column(
                 children: [
                   BigTextForHeading(text: "Table",color: Colors.black,size: 16),
-                  Container(
+                  SizedBox(
 
                     width: 100,
                     child: DropdownButtonHideUnderline(
@@ -190,7 +188,7 @@ class _OrdersScreenState extends State<OrdersScreen> {
           const SizedBox(height: 20,),
           Container(
             height: 70,
-            padding: EdgeInsets.all(10),
+            padding: const EdgeInsets.all(10),
             child: TextFormField(
               onChanged: (value) => {},//filter(value),
               decoration: const InputDecoration(
@@ -217,7 +215,7 @@ class _OrdersScreenState extends State<OrdersScreen> {
                  child: ListView(
                    scrollDirection: Axis.horizontal,
                    children: DummyJson.dummyCategory.data!.map((e) =>Container(
-                     margin: EdgeInsets.all(5),
+                     margin: const EdgeInsets.all(5),
                      width: 100,
                      decoration: BoxDecoration(
                          borderRadius: BorderRadius.circular(50),

@@ -1,11 +1,11 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class TabControllerHandler extends InheritedWidget {
   final TabController tabController;
+  @override
   final Widget child;
 
-  TabControllerHandler({
+  const TabControllerHandler({
     Key? key,
     required this.tabController,
     required this.child,

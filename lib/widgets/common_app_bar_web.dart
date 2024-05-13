@@ -1,8 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_flutter/routes/routes.dart';
-import 'package:my_flutter/widgets/big_text.dart';
 
 class WebAppBar extends StatefulWidget {
   const WebAppBar({super.key});
@@ -22,12 +20,12 @@ class _WebAppBarState extends State<WebAppBar> {
     return  Container(
       color: Colors.white.withOpacity(0.5),
       child: Padding(
-        padding: EdgeInsets.all(5),
+        padding: const EdgeInsets.all(5),
         child:
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            SizedBox(width: 20),
+            const SizedBox(width: 20),
             InkWell(
               onHover: (value) {
                 setState(() {
@@ -44,13 +42,13 @@ class _WebAppBarState extends State<WebAppBar> {
                     'Home',
                     style: TextStyle(
                         color: _isHovering[0]
-                            ? Color(0xFF077bd7)
-                            : Color(0xFF077bd7),
+                            ? const Color(0xFF077bd7)
+                            : const Color(0xFF077bd7),
                         fontWeight: FontWeight.bold,
                         fontSize: 16
                     ),
                   ),
-                  SizedBox(height: 5),
+                  const SizedBox(height: 5),
                   Visibility(
                     maintainAnimation: true,
                     maintainState: true,
@@ -59,13 +57,13 @@ class _WebAppBarState extends State<WebAppBar> {
                     child: Container(
                       height: 2,
                       width: 20,
-                      color: Color(0xFF051441),
+                      color: const Color(0xFF051441),
                     ),
                   )
                 ],
               ),
             ),
-            SizedBox(width: 20),
+            const SizedBox(width: 20),
             InkWell(
               onHover: (value) {
                 setState(() {
@@ -84,13 +82,13 @@ class _WebAppBarState extends State<WebAppBar> {
                     'Offline',
                     style: TextStyle(
                         color: _isHovering[1]
-                            ? Color(0xFF077bd7)
-                            : Color(0xFF077bd7),
+                            ? const Color(0xFF077bd7)
+                            : const Color(0xFF077bd7),
                         fontWeight: FontWeight.bold,
                         fontSize: 16
                     ),
                   ),
-                  SizedBox(height: 5),
+                  const SizedBox(height: 5),
                   Visibility(
                     maintainAnimation: true,
                     maintainState: true,
@@ -99,13 +97,13 @@ class _WebAppBarState extends State<WebAppBar> {
                     child: Container(
                       height: 2,
                       width: 20,
-                      color: Color(0xFF051441),
+                      color: const Color(0xFF051441),
                     ),
                   )
                 ],
               ),
             ),
-            SizedBox(width: 20),
+            const SizedBox(width: 20),
             InkWell(
               onHover: (value) {
                 setState(() {
@@ -122,13 +120,13 @@ class _WebAppBarState extends State<WebAppBar> {
                     'Online',
                     style: TextStyle(
                         color: _isHovering[2]
-                            ? Color(0xFF077bd7)
-                            : Color(0xFF077bd7),
+                            ? const Color(0xFF077bd7)
+                            : const Color(0xFF077bd7),
                         fontWeight: FontWeight.bold,
                         fontSize: 16
                     ),
                   ),
-                  SizedBox(height: 5),
+                  const SizedBox(height: 5),
                   Visibility(
                     maintainAnimation: true,
                     maintainState: true,
@@ -137,7 +135,7 @@ class _WebAppBarState extends State<WebAppBar> {
                     child: Container(
                       height: 2,
                       width: 20,
-                      color: Color(0xFF051441),
+                      color: const Color(0xFF051441),
                     ),
                   )
                 ],

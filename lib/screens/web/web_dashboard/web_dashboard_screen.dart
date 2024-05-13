@@ -1,23 +1,14 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:my_flutter/screens/mobile/allTable/ui/alltable_screen.dart';
-import 'package:my_flutter/screens/mobile/login/ui/login_screen.dart';
 import 'package:my_flutter/screens/mobile/running/ui/running_screen.dart';
 import 'package:my_flutter/screens/web/web_dashboard/web_home_view.dart';
-import 'package:my_flutter/screens/web/web_dashboard/widgets/dashboard_orders.dart';
 import 'package:my_flutter/utils/responsive.dart';
-import 'package:my_flutter/widgets/common_app_bar_web.dart';
 import 'package:my_flutter/widgets/tab_controller_handler.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
-import '../../../routes/routes.dart';
-import '../../../widgets/big_text.dart';
 import '../../../widgets/content_view.dart';
 import '../../../widgets/custom_tab.dart';
 import '../../../widgets/custom_tab_bar.dart';
-import '../../mobile/dashboard/widgets/your_order.dart';
 
 class WebDashboardScreen extends StatefulWidget {
   const WebDashboardScreen({super.key});
@@ -40,16 +31,16 @@ class _WebDashboardScreenState extends State<WebDashboardScreen> with SingleTick
 
   List<ContentView> contentViews = [
     ContentView(
-      tab: CustomTab(title: 'Home'),
-      content: WebHomeScreem(),
+      tab: const CustomTab(title: 'Home'),
+      content: const WebHomeScreem(),
     ),
     ContentView(
-      tab: CustomTab(title: 'Ordes'),
-      content: AllTableScreen(),
+      tab: const CustomTab(title: 'Ordes'),
+      content: const AllTableScreen(),
     ),
     ContentView(
-      tab: CustomTab(title: 'Online'),
-      content: RunningOrders(),
+      tab: const CustomTab(title: 'Online'),
+      content: const RunningOrders(),
     )
   ];
 
@@ -121,21 +112,21 @@ class _WebDashboardScreenState extends State<WebDashboardScreen> with SingleTick
         children: [
           IconButton(
               iconSize: screenHeight * 0.05,
-              icon: Icon(Icons.menu_rounded),
+              icon: const Icon(Icons.menu_rounded),
               color: Colors.black,
               splashColor: Colors.transparent,
               onPressed: () {
                 print("drawer");
                 scaffoldKey.currentState?.openEndDrawer();
               }),
-          Expanded(child: WebHomeScreem())
+          const Expanded(child: WebHomeScreem())
         ],
       ),
     );
   }
 
   Widget drawer() {
-    return Container(
+    return SizedBox(
       width: screenWidth * 0.5,
       child: Drawer(
         child: ListView(
@@ -145,13 +136,13 @@ class _WebDashboardScreenState extends State<WebDashboardScreen> with SingleTick
                 child: ListTile(
                   title: Text(
                     e.tab.title,
-                    style: Theme.of(context).textTheme.button,
+                    style: Theme.of(context).textTheme.labelLarge,
                   ),
                   onTap: () {
                     print("drwe");
                     itemScrollController.scrollTo(
                         index: contentViews.indexOf(e),
-                        duration: Duration(milliseconds: 300));
+                        duration: const Duration(milliseconds: 300));
                     Navigator.pop(context);
                   },
                 ),

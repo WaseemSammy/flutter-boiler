@@ -1,13 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:my_flutter/constants/color_constants.dart';
-import 'package:my_flutter/constants/dummyJson.dart';
 import 'package:my_flutter/models/dashboard_response.dart';
 import 'package:my_flutter/utils/responsive.dart';
 import 'package:my_flutter/widgets/big_text_for_heading.dart';
 import 'package:my_flutter/widgets/small_text.dart';
 
-import '../../../../widgets/big_text.dart';
 
 class ListOrders extends StatefulWidget {
   final CurrentOrders? currentOrders;
@@ -31,7 +27,7 @@ class _ListOrdersState extends State<ListOrders> {
               child: Row(
                 children: [
                   SmallText(text: "${widget.currentOrders?.restaurantArea}",color: Colors.grey.shade400,),
-                  SizedBox(width: 10,),
+                  const SizedBox(width: 10,),
                   Expanded(child: Divider(height: .2, color: Colors.grey.shade200,)),
 
                 ],
@@ -51,13 +47,13 @@ class _ListOrdersState extends State<ListOrders> {
               return Column(
                 children: [
                   Container(
-                    margin: EdgeInsets.symmetric(vertical: 10),
+                    margin: const EdgeInsets.symmetric(vertical: 10),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
 
                       children: [
                         Container(
-                          padding: EdgeInsets.all(5),
+                          padding: const EdgeInsets.all(5),
                           color:Colors.white,
                           child: Wrap(
                             spacing: 10,
@@ -69,7 +65,7 @@ class _ListOrdersState extends State<ListOrders> {
                         ),
                         SmallText(text: "12:00",),
                         SmallText(text: "12:00",),
-                        Icon(Icons.arrow_forward_ios_sharp,size: 20,color: Colors.grey,)
+                        const Icon(Icons.arrow_forward_ios_sharp,size: 20,color: Colors.grey,)
                       ],
                     ),
                   ),

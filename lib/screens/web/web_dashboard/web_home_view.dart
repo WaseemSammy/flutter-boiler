@@ -1,7 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:my_flutter/routes/routes.dart';
 import 'package:my_flutter/screens/web/web_dashboard/widgets/dashboard_orders.dart';
 import 'package:my_flutter/widgets/big_text.dart';
@@ -18,7 +16,7 @@ class _WebHomeScreemState extends State<WebHomeScreem> {
   Widget build(BuildContext context) {
     return  Container(
       color: Colors.grey.shade100,
-      padding: EdgeInsets.symmetric(horizontal: 10,vertical: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 10),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -68,14 +66,14 @@ class _WebHomeScreemState extends State<WebHomeScreem> {
                 BigText(text: "Status",color: Colors.black),
                 BigText(text: "Time",color: Colors.black),
                 Container(
-                    margin: EdgeInsets.all(5),
-                    padding: EdgeInsets.symmetric(horizontal: 20,vertical: 5),
+                    margin: const EdgeInsets.all(5),
+                    padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 5),
                     decoration: BoxDecoration(
 
                         borderRadius: BorderRadius.circular(5)
                     ),
                     child: BigText(text: "Print",color: Colors.black,)),
-                Icon(
+                const Icon(
                   Icons.arrow_drop_down,
                   color: Colors.white,
                   size: 30,
@@ -87,7 +85,7 @@ class _WebHomeScreemState extends State<WebHomeScreem> {
           Expanded(
             child: ListView.builder(itemBuilder: (context,index) => Container(
               color: (index % 2 == 0) ? Colors.grey.shade100 : Colors.white,
-              child: DashboardOrders(),
+              child: const DashboardOrders(),
             )
               ,itemCount: 10,
             shrinkWrap: true,),

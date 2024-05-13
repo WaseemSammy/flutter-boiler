@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:my_flutter/models/dashboard_response.dart';
 
@@ -34,7 +33,7 @@ class _DashboardFloorFilterState extends State<DashboardFloorFilter> {
 
             },
             child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 5,vertical: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 5,vertical: 10),
               width: w,
               decoration: BoxDecoration(
                   color: selectedIndex==index?Colors.black : Colors.transparent,

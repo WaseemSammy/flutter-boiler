@@ -1,15 +1,11 @@
-import 'dart:convert';
 
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:my_flutter/constants/app_constants.dart';
 import 'package:my_flutter/constants/color_constants.dart';
 import 'package:my_flutter/models/AppSettingModel.dart';
 import 'package:my_flutter/models/login_model.dart';
 
-import 'package:my_flutter/utils/shared_preferences_helper.dart';
-import 'package:my_flutter/constants/my_globals.dart' as globals;
 import 'package:my_flutter/widgets/big_text.dart';
 import 'package:my_flutter/widgets/common_text_field.dart';
 import 'package:my_flutter/widgets/small_text.dart';
