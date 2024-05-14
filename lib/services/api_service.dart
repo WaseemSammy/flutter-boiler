@@ -37,6 +37,14 @@ class ApiService {
 
   }
 
+  Future<ResponseData> getProcessNewOrder({required BuildContext context, required int resId}) {
+    Uri uri = Uri.parse(globals.baseUrl + ApiConstants.ALLTABLE_DATA+resId.toString());
+
+    return ApiHelper().getRequest(context, uri,
+        useAuth: true, showLoader: true, responseName: ApiConstants.ALLTABLE_DATA, showLog: true, showError: true);
+
+  }
+
 
 
 
