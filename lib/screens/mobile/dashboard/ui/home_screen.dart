@@ -5,6 +5,7 @@ import 'package:my_flutter/constants/color_constants.dart';
 import 'package:my_flutter/models/dashboard_response.dart';
 import 'package:my_flutter/routes/routes.dart';
 import 'package:my_flutter/screens/mobile/common/common_app_bar.dart';
+import 'package:my_flutter/screens/mobile/dashboard/widgets/DrawerMenu.dart';
 import 'package:my_flutter/screens/mobile/dashboard/widgets/list_order_type.dart';
 
 import 'package:my_flutter/utils/responsive.dart';
@@ -49,6 +50,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget getUi(){
     return SafeArea(
       child: Scaffold(
+
         floatingActionButton: FloatingActionButton.extended(
           backgroundColor: Colors.black,
           onPressed: (){
@@ -57,6 +59,7 @@ class _HomeScreenState extends State<HomeScreen> {
           label: BigText(text: 'Make Order',color: Colors.white,),
           icon: const Icon(Icons.restaurant,color: Colors.white,),
         ),
+        endDrawer : DrawerMenu(),
         appBar: const PreferredSize(
           preferredSize: Size.fromHeight(50), child: CommonAppBar("RESTAURANT",false),
         ),
