@@ -17,7 +17,9 @@ class AllTableViewModel extends GetxController{
     try {
       //var map = RequestMapUtils.intence.makePostRequestDashboard(restaurantId);
       ResponseData response = await ApiService().getAllTable(context: context,  resId: restaurantId);
-      print(response.body);
+      if (kDebugMode) {
+        print(response.body);
+      }
       if (response.statusCode == 200) {
         var data = AllTableResponse.fromJson(response.body!);
         allTableResponse  = ApiResponse.completed(data);

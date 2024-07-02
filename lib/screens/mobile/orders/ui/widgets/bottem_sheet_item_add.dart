@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:my_flutter/constants/color_constants.dart';
 import 'package:my_flutter/models/cartItems.dart';
+import 'package:my_flutter/utils/utils_helper.dart';
 
 import '../../../../../widgets/big_text.dart';
 import '../../../../../widgets/big_text_for_heading.dart';
 
 class BottemSheetItemAddPopup extends StatefulWidget {
   final Orders? menu;
-  const BottemSheetItemAddPopup(this.menu, {super.key});
+  final  Function selectedMenu;
+  const BottemSheetItemAddPopup(this.menu,this.selectedMenu, {super.key});
 
   @override
   State<BottemSheetItemAddPopup> createState() => _BottemSheetItemAddPopupState();
@@ -15,12 +18,11 @@ class BottemSheetItemAddPopup extends StatefulWidget {
 
 class _BottemSheetItemAddPopupState extends State<BottemSheetItemAddPopup> {
 
-  int count = 0;
+  int count = 1;
   int type = 0;
 
   @override
   Widget build(BuildContext context) {
-    print("Build $count");
     return SizedBox(
       height: 500,
       child: Center(
@@ -159,7 +161,13 @@ class _BottemSheetItemAddPopupState extends State<BottemSheetItemAddPopup> {
             Center(
               child: InkWell(
                 onTap: () {
-                  //Get.toNamed(RouteClass.alltable);
+                  if(Utils.intence.itemAddValidaion(count,type)) {
+                    widget.selectedMenu(widget.menu, count, type);
+                    Get.back();
+                  }else{
+                    print("false");
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: count==0 ? const Text("Please select quantity") : const Text("Please select type")));
+                  }
                 },
                 child: Container(
                   margin: const EdgeInsets.all(10),

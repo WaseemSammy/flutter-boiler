@@ -1,9 +1,11 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getwidget/components/dropdown/gf_dropdown.dart';
 import 'package:my_flutter/api/Status.dart';
 import 'package:my_flutter/constants/color_constants.dart';
 import 'package:my_flutter/constants/dummyJson.dart';
+import 'package:my_flutter/models/cartItems.dart';
 import 'package:my_flutter/models/running_order_response.dart';
 import 'package:my_flutter/routes/routes.dart';
 import 'package:my_flutter/screens/mobile/common/common_app_bar.dart';
@@ -58,11 +60,11 @@ class _OrdersScreenState extends State<OrdersScreen> {
 
 
 
-  selectedMenu(CategoryData? data){
-    categoryData = data;
-    setState(() {
-      viewType = 1;
-    });
+  selectedMenu(Orders order,int count, int type){
+    if (kDebugMode) {
+      print("$order $count $type");
+    }
+    _viewModel.add(order, count, type==1 ?"Half" : "Full");
   }
 
   selectedCategory(){
@@ -79,7 +81,6 @@ class _OrdersScreenState extends State<OrdersScreen> {
   @override
   Widget build(BuildContext context) {
 
-    _viewModel.calCulateTotal(data);
     return Responsive(
       mobile: getWidget(1),
       tablet: getWidget(2),

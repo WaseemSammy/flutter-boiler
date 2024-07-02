@@ -169,4 +169,13 @@ class Utils{
         }
     );
   }
+
+  bool itemAddValidaion(int count , int type){
+    print("$count $type");
+     if(count>0 && type>0){
+       return true;
+     }else{
+       return false;
+     }
+  }
 }

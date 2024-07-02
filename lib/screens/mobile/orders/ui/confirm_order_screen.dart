@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_flutter/constants/color_constants.dart';
+import 'package:my_flutter/models/cartItems.dart';
 import 'package:my_flutter/models/running_order_response.dart';
+import 'package:my_flutter/screens/mobile/orders/ui/widgets/order_summary.dart';
 import 'package:my_flutter/widgets/big_text.dart';
 import 'package:my_flutter/widgets/big_text_center.dart';
 import 'package:my_flutter/widgets/custome_bottem_sheet.dart';
+import 'package:my_flutter/widgets/small_text.dart';
 
 
 import '../../common/common_app_bar.dart';
@@ -31,12 +34,20 @@ class _ConfirmOrderScreenState extends State<ConfirmOrderScreen> {
   @override
   void initState() {
     data = Get.arguments;
-   _viewModel.getOrdersByTableId(data);
+   _viewModel.getCartData();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+
+    void add(Orders cartItem ,int tableItem,String portionType){
+      _viewModel.add(cartItem, tableItem, portionType);
+    }
+
+    void remove(String itemName,String portionType){
+      _viewModel.removeFromCart(itemName, portionType);
+    }
 
     refresh(){
       setState(() {
@@ -67,104 +78,35 @@ class _ConfirmOrderScreenState extends State<ConfirmOrderScreen> {
        ),
         body: Container(
         color: ColorConstants.AppBackgroundColor,
-        child: Column(
-          children: [
-
-            Container(
-              padding: const EdgeInsets.only(left: 10,top: 10,bottom: 10,right: 10),
-              margin: const EdgeInsets.symmetric(horizontal: 5),
-              height: 80,
-              decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(5)
+        child: GetBuilder<TableOrderViewModel>(
+          init: TableOrderViewModel(),
+          builder: (viewmodel){
+            return  Column(
+              children: [
+                ListView.builder(
+                  shrinkWrap: true,
+                  itemCount:viewmodel.cartItemData.length??0,
+                  itemBuilder: (context, index) {
+                    return OrderSummary(viewmodel.cartItemData[index],add,remove);
+                  }
               ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Wrap (
-                    spacing: 5,
-                    crossAxisAlignment: WrapCrossAlignment.center,
-                    children: [
-                      Image.asset("assets/icons/table.png",width: 40,height: 40,),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          BigText(text: "Table No.", size: 16,),
-                          BigText(text: "${data?.tableNo}", size: 27,),
-                        ],
-                      )
-
-                    ],),
-                  Wrap (
-                    spacing: 5,
-                    crossAxisAlignment: WrapCrossAlignment.center,
-                    children: [
-                      const Icon(Icons.people_alt_outlined,color: Colors.deepOrangeAccent,
-                        size: 40,),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          BigText(text: "Customers.", size: 16,),
-                          BigText(text: "${data?.noOfPerson}", size: 27,),
-                        ],
-                      )
-
-                    ],),
-
-
-                ],
-              ),
-            ),
-            const SizedBox(height: 20,),
-            Container(
-                padding: const EdgeInsets.symmetric(vertical: 10,horizontal: 15),
-                width: MediaQuery.of(context).size.width,
-                decoration: const BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.only(topLeft: Radius.circular(15),topRight: Radius.circular(15))
-
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    BigTextCenter(text: "Items",color: Colors.black,size: 20,),
-                    Obx(() {
-                     return BigTextCenter(text: "Total-${_viewModel.total}", color: Colors.black, size: 20,);
-                    })
-                  ],
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: Container(margin: const EdgeInsets.only(right: 10),
+                      child: SmallText(text: "Total : ${viewmodel.calculateTotalAmount()}",)),
                 )
-            ),
-              SizedBox(
-                  height: 500,
-                child: Obx(() {
-                  return  Container(
-                                  padding: const EdgeInsets.all(5),
-                                  height: MediaQuery.of(context).size.height,
-                                  decoration: const BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.zero
-                                  ),
-                    child : MediaQuery.removePadding(
-                                  removeTop: true,
-                                  context: context,
-                                  child: ListView.separated(itemBuilder: (context, index) {
-                                    return MenuItems(_viewModel.cartItembytable?.value.orders?[index],data,false);
-                                  }, separatorBuilder: (context, index) {
-                                    return const Divider(height: 0.5,color: Colors.grey,);
-                                  }, itemCount: _viewModel.cartItembytable?.value.orders?.length??0)
-                  ));
-                }),
-              )
-          ],
+              ],
+            );     }
+        )
+
         ),
-      ),
         bottomNavigationBar: InkWell(
 
           child: Container(
 
             decoration: const BoxDecoration(
               borderRadius: BorderRadius.zero,
-              color: Colors.deepOrangeAccent,
+              color: Colors.black,
             ),
             padding: const EdgeInsets.all(10),
             width: double.infinity,

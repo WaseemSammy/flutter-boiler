@@ -110,7 +110,9 @@ class DashboardViewModel extends GetxController{
      try {
        //var map = RequestMapUtils.intence.makePostRequestDashboard(restaurantId);
        ResponseData response = await ApiService().getDashboardData(context: context,  resId: restaurantId);
-        print(response.body);
+        if (kDebugMode) {
+          print(response.body);
+        }
        if (response.statusCode == 200) {
          var data = DashboardResponse.fromJson(response.body!);
          SharedPreferencesHelper.saveValue(AppConstants.KEY_AREA, jsonEncode(data.data?.areas));

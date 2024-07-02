@@ -90,7 +90,7 @@ class _CommonOrderWidgetState extends State<CommonOrderWidget> {
                     child: ListView.separated(
                       shrinkWrap: true,
                         itemBuilder: (context, index) {
-                      return MenuItems(_searchedItems?[index],widget.data,true);
+                      return MenuItems(_searchedItems?[index],widget.data,true,widget.selectedMenu);
                     }, separatorBuilder: (context, index) {
                       return const Divider(height: 0.5,color: Colors.grey,);
                     }, itemCount: _searchedItems?.length??0)

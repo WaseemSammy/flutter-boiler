@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 
@@ -43,7 +44,9 @@ class ApiHelper {
       String? data = await SharedPreferencesHelper.getAuthToken();
       Map<String, dynamic>  loginMap = jsonDecode(data ?? "");
       token = NewLoginResponse.fromJson(loginMap).data?.jwToken;
-      print("token $token");
+      if (kDebugMode) {
+        print("token $token");
+      }
     }
 
 

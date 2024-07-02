@@ -1,12 +1,14 @@
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:my_flutter/models/cartItems.dart';
+import 'package:my_flutter/models/new_cart_Items.dart';
 import 'package:my_flutter/models/running_order_response.dart';
 
 
 class TableOrderViewModel extends GetxController{
-   List<CartItemData?> cartItemData = <CartItemData>[].obs;
+   List<NewCartItems?> cartItemData = [];
    Rx<CartItemData>? cartItembytable = CartItemData().obs;
    Rx<CartItemData>?  tempCartItem = CartItemData().obs;
 
@@ -14,150 +16,80 @@ class TableOrderViewModel extends GetxController{
 
    RxDouble? total = 0.0.obs;
 
-   add(Orders? cartItem,Data? data){
-     print(jsonEncode(cartItemData));
+   add(Orders? cartItem,int tableItem,String portionType){
 
-     List<CartItemData?> mydata = cartItemData.where((element) => element?.tableId == data?.tableId).toList();
-     if(mydata.isNotEmpty) {
-       bool found = false;
-       int lenth= cartItemData.length??0;
-       for (var i = 0; i < lenth; i++) {
-          if(cartItemData[i]?.tableId == data?.tableId){
-            int orderlenght= cartItemData[i]?.orders?.length??0;
-             for(var j=0;j < orderlenght;j++){
-               if(cartItemData[i]?.orders?[j].itemId == cartItem?.itemId){
-                 int count = cartItemData[i]?.orders?[j].count??1;
-                 cartItemData[i]?.orders?[j].count = count+1;
-                 found=true;
-                 break;
-               }
-             }
-             if(found){
-               break;
-             }else{
-               cartItem?.count = 1;
-               cartItemData[i]?.orders?.add(cartItem!);
-               found=true;
-               break;
-             }
-          }
+
+     if (portionType != 'Half' && portionType != 'Full') {
+       if (kDebugMode) {
+         print('Invalid portion type. Please choose "Half" or "Full".');
        }
-     }else{
-       var dummycart = CartItemData();
-       dummycart.tableId = data?.tableId;
-       dummycart.tableName = data?.tableNo.toString();
-       dummycart.orders = [];
-       cartItem?.count = 1;
-       dummycart.orders?.add(cartItem!);
-       cartItemData.add(dummycart);
+       return;
      }
-     calCulateTotal(data);
-     getOrdersByTableId(data);
+
+     NewCartItems? newCartItems = cartItemData.firstWhereOrNull((Item)=> Item?.itemId == cartItem?.itemId && Item?.ItemType == portionType);
+     if (newCartItems != null) {
+       newCartItems.quantity++;
+     } else {
+       cartItemData.add(NewCartItems(cartItem?.itemId,cartItem?.itemName, portionType, 1,(cartItem?.itemPrice)!/2,cartItem?.itemPrice));
+     }
+
+     if (kDebugMode) {
+       print('${cartItem?.itemName} ($portionType) added to cart.');
+     }
+
+     update();
+
    }
 
-   remove(Orders? cartItem,Data? data) {
-     List<CartItemData?> mydata = cartItemData.where((element) => element?.tableId == data?.tableId).toList();
+   void removeFromCart(String itemName, String portionType) {
+     NewCartItems? newCartItems =  cartItemData.firstWhereOrNull(
+           (item) => item?.itemName == itemName && item?.ItemType == portionType,
+     );
+     if (newCartItems != null) {
+       if(newCartItems.quantity>1){
+         newCartItems.quantity--;
+       } else {
+         cartItemData.removeWhere(
+               (item) =>
+           item?.itemName == itemName && item?.ItemType == portionType,
+         );
+       }
+     }
+     else {
+       cartItemData.removeWhere(
+             (item) => item?.itemName == itemName && item?.ItemType == portionType,
+       );
+     }
 
-     if(mydata.isNotEmpty) {
-       bool found = false;
-       int lenth= cartItemData.length??0;
-       for (var i = 0; i < lenth; i++) {
-         if(cartItemData[i]?.tableId == data?.tableId){
-           int orderlenght= cartItemData[i]?.orders?.length??0;
-           for(var j=0;j < orderlenght;j++){
-             if(cartItemData[i]?.orders?[j].itemId == cartItem?.itemId){
-               int count = cartItemData[i]?.orders?[j].count??1;
-               if(count>1) {
-                 cartItemData[i]?.orders?[j].count = count - 1;
-               }else if(count==1){
-                 cartItemData[i]?.orders?.removeAt(j);
-               }else{
-                 cartItemData[i]?.orders?.removeAt(j);
-               }
-               found=true;
-               break;
-             }
-           }
-           if(found){
-             break;
-           }
+     if (kDebugMode) {
+       print('$itemName ($portionType) removed from cart.');
+     }
+     update();
+   }
+
+   double calculateTotalAmount() {
+     double totalAmount = 0.0;
+     for (var item in cartItemData) {
+         if (item?.ItemType == 'Half') {
+           var price = item?.priceHalf??0.0;
+           var qty = item!.quantity??1;
+           totalAmount +=  price * qty;
+         } else if (item?.ItemType == 'Full') {
+           var price = item?.priceFull??0.0;
+           var qty = item!.quantity??1;
+           totalAmount +=  price * qty;
+
          }
-       }
-     }
-     cartItemData = mydata;
-     calCulateTotal(data);
-     getOrdersByTableId(data);
-   }
-
-   calCulateTotal(Data? data){
-     print(jsonEncode(cartItemData));
-     double? Total = 0.0;
-     for (var element in cartItemData) {
-        if(element?.tableId == data?.tableId){
-          if(element?.orders?.isNotEmpty==true) {
-            Total =
-                element?.orders?.map((item) => item.itemPrice! * item.count!)
-                    .reduce((ele1, ele2) => ele1 + ele2);
-          }
-        }
-     }
-     total?.value = Total??0.0;
-   }
-
-   getOrdersByTableId(Data? data){
-     if(cartItemData.isNotEmpty) {
-       CartItemData? cardItem = cartItemData.firstWhere((item) =>
-       item?.tableId == data?.tableId);
-       cartItembytable?.value = cardItem ?? CartItemData();
-     }
-   }
-
-   getItemCountByTableIdAndItems(Data? data,int? itemId){
-     if(cartItemData.isNotEmpty) {
-       List<CartItemData?> mydata = cartItemData.where((element) =>
-       element?.tableId == data?.tableId).toList();
-       int cartCount = mydata.length??0;
-       if (cartCount > 0) {
-         List<Orders>? myorders = mydata.first?.orders?.where((element) => element.itemId == itemId).toList();
-         if(myorders?.length.isGreaterThan(0) == true) {
-           print("return ${myorders?.first.count ?? 0}");
-           return myorders?.first.count ?? 0;
-         }else{
-            return 0;
-         }
-       }else{
-         return 0;
-       }
-     }else{
-
-       return 0;
-     }
-   }
-
-   getAllOrders(){
-      return cartItemData;
-   }
-
-   confirmOrders(Data? data){
-     bool found = false;
-     for (var index = 0; index < cartItemData.length; index++) {
-       if(cartItemData[index]?.tableId == data?.tableId){
-         cartItemData[index]?.orders = tempCartItem?.value.orders;
-         found = true;
-         break;
-       }
      }
 
-     if(!found){
-       var dummycart = CartItemData();
-       dummycart.tableId = data?.tableId;
-       dummycart.tableName = data?.tableNo.toString();
-       dummycart.orders = [];
-       dummycart.orders = tempCartItem?.value.orders;
-       cartItemData.add(dummycart);
-     }
-
-
-
+     return totalAmount;
    }
+
+  List<NewCartItems?> getCartData(){
+     return cartItemData;
+  }
+
+
+
+
 }

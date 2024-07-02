@@ -10,6 +10,7 @@ import 'package:my_flutter/screens/mobile/dashboard/widgets/list_order_type.dart
 
 import 'package:my_flutter/utils/responsive.dart';
 
+import '../../../../constants/app_constants.dart';
 import '../../../../widgets/big_text.dart';
 import '../viewmodels/dashboard_view_model.dart';
 import '../widgets/dashboard_filter.dart';
@@ -29,10 +30,21 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
 
+  void onSelect(int index,String menuName){
+    //print(index);
+    setState(() {
+      if(menuName==AppConstants.Clients) {
+       // arrowEnable = true;
+      }else{
+       // arrowEnable = false;
+      }
+     // selectedIndex = index;
+    });
+  }
+
   final _viewModel  = Get.put(DashboardViewModel());
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _viewModel.getDashboardData(context, 1);
   }
@@ -59,7 +71,7 @@ class _HomeScreenState extends State<HomeScreen> {
           label: BigText(text: 'Make Order',color: Colors.white,),
           icon: const Icon(Icons.restaurant,color: Colors.white,),
         ),
-        endDrawer : DrawerMenu(),
+        endDrawer : DrawerMenu(callback: onSelect,),
         appBar: const PreferredSize(
           preferredSize: Size.fromHeight(50), child: CommonAppBar("RESTAURANT",false),
         ),

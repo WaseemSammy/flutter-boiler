@@ -15,7 +15,8 @@ class MenuItems extends StatefulWidget {
   final Orders? menu;
   final Data? data;
   final bool visibility;
-  const MenuItems(this.menu, this.data, this.visibility, {Key? key}) : super(key: key);
+  final Function selectedMenu;
+  const MenuItems(this.menu, this.data, this.visibility,  this.selectedMenu, {Key? key}) : super(key: key);
 
   @override
   State<MenuItems> createState() => _MenuItemsState();
@@ -49,8 +50,7 @@ class _MenuItemsState extends State<MenuItems> {
   remove(data){
     final copyMenu = Orders.clone(
         widget.menu);
-    _viewModel.remove(
-        copyMenu, widget.data);
+
   }
 
   @override
@@ -117,7 +117,7 @@ class _MenuItemsState extends State<MenuItems> {
                          ),
                          builder: (BuildContext context) {
                            // UDE : SizedBox instead of Container for whitespaces
-                           return BottemSheetItemAddPopup(widget.menu);
+                           return Scaffold(body: BottemSheetItemAddPopup(widget.menu,widget.selectedMenu));
                          },
                        );
                      },
