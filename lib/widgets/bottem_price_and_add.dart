@@ -20,43 +20,34 @@ class _BottemOrderScreenState extends State<BottemOrderScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return
-      Obx(() {
-        return Container(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Expanded(
-                child: Container(
-                  child: BigTextCenter(text: "Rs ${_viewModel.total?.value}"
-                    ,size: 20,),
-                ),
+    return GetBuilder<TableOrderViewModel>(
+      init: TableOrderViewModel(),
+        builder: (viewmodel){
+      return Visibility(
+        visible: viewmodel.getTotalCartItemCount()>0 ? true:false,
+        child: GestureDetector(
+          onTap: (){
+            widget.callback();
+          },
+          child: Container(
+            color: Colors.black,
+            child: Padding(
+              padding: const EdgeInsets.all(10),
+              child: Wrap(
+                  alignment: WrapAlignment.center,
+                  children:[
+                    BigTextCenter(text:"${viewmodel.getTotalCartItemCount()} item added"
+                      ,color: Colors.white,
+                      size: 15,),
+                    const Icon(Icons.arrow_forward,size: 25,color: Colors.white,)
+                  ]
               ),
-              GestureDetector(
-                onTap: (){
-                  widget.callback();
-                },
-                child: Container(
-                  width: 150,
-                  color: Colors.black,
-                  child: Padding(
-                    padding: const EdgeInsets.all(10),
-                    child: Wrap(
-                      alignment: WrapAlignment.spaceBetween,
-                      children:[
-                        BigTextCenter(text:"Confirm"
-                          ,color: Colors.white,
-                          size: 20,),
-                        const Icon(Icons.arrow_forward,size: 25,color: Colors.white,)
-                      ]
-                    ),
-                  ),
-                ),
-              )
-            ],
+            ),
           ),
-        );
-      });
+        ),
+      );
+    });
+      
 
   }
 }

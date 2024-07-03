@@ -38,16 +38,18 @@ class _ConfirmOrderScreenState extends State<ConfirmOrderScreen> {
     super.initState();
   }
 
+  void add(Orders cartItem ,int tableItem,String portionType){
+    _viewModel.add(cartItem, tableItem, portionType);
+  }
+
+  void remove(String itemName,String portionType){
+    _viewModel.removeFromCart(itemName, portionType);
+  }
+
   @override
   Widget build(BuildContext context) {
 
-    void add(Orders cartItem ,int tableItem,String portionType){
-      _viewModel.add(cartItem, tableItem, portionType);
-    }
 
-    void remove(String itemName,String portionType){
-      _viewModel.removeFromCart(itemName, portionType);
-    }
 
     refresh(){
       setState(() {
@@ -83,6 +85,7 @@ class _ConfirmOrderScreenState extends State<ConfirmOrderScreen> {
           builder: (viewmodel){
             return  Column(
               children: [
+                BigText(text: "Orders",size: 20,),
                 ListView.builder(
                   shrinkWrap: true,
                   itemCount:viewmodel.cartItemData.length??0,

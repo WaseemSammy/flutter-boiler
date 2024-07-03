@@ -136,8 +136,6 @@ class _BottemSheetItemAddPopupState extends State<BottemSheetItemAddPopup> {
                   BigText(text: "$count"),
                   InkWell(
                     onTap: () {
-
-                      print("$count");
                       setState(() {
                         count++;
                       });

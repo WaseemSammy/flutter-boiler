@@ -28,7 +28,7 @@ class _OrderSummaryState extends State<OrderSummary> {
       ),
       child: Row(
        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Expanded(
             child: Align(

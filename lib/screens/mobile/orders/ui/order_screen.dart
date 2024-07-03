@@ -279,9 +279,7 @@ class _OrdersScreenState extends State<OrdersScreen> {
 
         }
       ),
-      bottomNavigationBar: Visibility(
-          visible: viewType==1 ? true : false,
-          child: BottemOrderScreen(confirmOrder)),
+      bottomNavigationBar: BottemOrderScreen(confirmOrder),
     );
 
   }

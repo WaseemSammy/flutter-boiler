@@ -17,8 +17,6 @@ class TableOrderViewModel extends GetxController{
    RxDouble? total = 0.0.obs;
 
    add(Orders? cartItem,int tableItem,String portionType){
-
-
      if (portionType != 'Half' && portionType != 'Full') {
        if (kDebugMode) {
          print('Invalid portion type. Please choose "Half" or "Full".');
@@ -28,9 +26,9 @@ class TableOrderViewModel extends GetxController{
 
      NewCartItems? newCartItems = cartItemData.firstWhereOrNull((Item)=> Item?.itemId == cartItem?.itemId && Item?.ItemType == portionType);
      if (newCartItems != null) {
-       newCartItems.quantity++;
+       newCartItems.quantity += tableItem;
      } else {
-       cartItemData.add(NewCartItems(cartItem?.itemId,cartItem?.itemName, portionType, 1,(cartItem?.itemPrice)!/2,cartItem?.itemPrice));
+       cartItemData.add(NewCartItems(cartItem?.itemId,cartItem?.itemName, portionType, tableItem,(cartItem?.itemPrice)!/2,cartItem?.itemPrice));
      }
 
      if (kDebugMode) {
@@ -83,6 +81,15 @@ class TableOrderViewModel extends GetxController{
      }
 
      return totalAmount;
+   }
+
+   int getTotalCartItemCount() {
+     int totalCount = 0;
+     for (var item in cartItemData) {
+       int qty = item?.quantity??1;
+       totalCount += qty;
+     }
+     return totalCount;
    }
 
   List<NewCartItems?> getCartData(){
