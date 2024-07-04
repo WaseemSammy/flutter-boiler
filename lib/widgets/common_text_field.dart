@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class CommonTextField extends StatefulWidget {
-  const CommonTextField({Key? key, required this.controller, required this.label, required this.hint, required this.isPassword}) : super(key: key);
+  const CommonTextField({super.key, required this.controller, required this.label, required this.hint, required this.isPassword});
 
   final TextEditingController controller;
   final String label;

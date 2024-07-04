@@ -60,7 +60,7 @@ class Utils{
     }
   }
 
-  void showCustomerDialog(BuildContext ctx, void Function(int number) selectPerson){
+  void showCustomerDialog(BuildContext ctx,  Function selectPerson){
    showDialog(context: ctx, builder: (BuildContext context){
      
       return Responsive(
@@ -71,7 +71,7 @@ class Utils{
    });
   }
 
-  Widget getWidget(type,BuildContext ctx, void Function(int number) selectPerson){
+  Widget getWidget(type,BuildContext ctx,  Function selectPerson){
     int selectedCard = -1;
     return StatefulBuilder(
         builder: (context, setState) {

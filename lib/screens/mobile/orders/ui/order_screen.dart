@@ -89,6 +89,7 @@ class _OrdersScreenState extends State<OrdersScreen> {
   }
 
   Widget getWidget(type){
+
    return Scaffold(
       appBar: const PreferredSize(
         preferredSize: Size.fromHeight(50),

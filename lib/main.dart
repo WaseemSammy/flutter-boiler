@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_flutter/routes/routes.dart';
+import 'package:my_flutter/utils/myscrollbehavior.dart';
 import 'package:url_strategy/url_strategy.dart';
 
 void main() {
@@ -16,6 +17,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: 'Flutter Demo',
+      scrollBehavior: MyCustomScrollBehavior(),
       theme: ThemeData(
         pageTransitionsTheme: const PageTransitionsTheme(
           builders: <TargetPlatform, PageTransitionsBuilder>{
