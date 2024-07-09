@@ -1,6 +1,7 @@
 import 'package:get/get_navigation/src/routes/get_route.dart';
 import 'package:my_flutter/screens/mobile/running/ui/running_screen.dart';
 import 'package:my_flutter/screens/newDesign/dashboard/web_dashboard.dart';
+import 'package:my_flutter/utils/utils_helper.dart';
 
 import '../screens/mobile/allTable/ui/alltable_screen.dart';
 import '../screens/mobile/dashboard/ui/dashboard_main_screen.dart';
@@ -35,7 +36,7 @@ class RouteClass{
   static String getAllTable()=> alltable;
 
   static List<GetPage> routes =[
-      GetPage(name: home, page: ()=>const WebDashboard(), ),
+      GetPage(name: home, page: ()=> Utils.intence.getWidgetWthResponsive(const WebDashboard()), ),
       GetPage(name: start, page: ()=>const EnterUrlScreen()),
       GetPage(name: login, page: ()=>const LoginScreen(),),
       GetPage(name: dashboard, page: ()=>const DashboadMainScreen(),  ),

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_flutter/utils/responsive.dart';
 import 'package:my_flutter/widgets/big_text.dart';
+import 'package:responsive_framework/responsive_framework.dart';
 
 import '../models/clients/object_type_response.dart';
 import '../widgets/big_text_center.dart';
@@ -177,5 +178,14 @@ class Utils{
      }else{
        return false;
      }
+  }
+
+  Widget getWidgetWthResponsive(Widget widget){
+    return ResponsiveBreakpoints(breakpoints: const [
+      Breakpoint(start: 0, end: 480, name: MOBILE),
+      Breakpoint(start: 481, end: 1200, name: TABLET),
+      Breakpoint(start: 1201, end: double.infinity, name: DESKTOP),
+    ], child: widget);
+
   }
 }

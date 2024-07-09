@@ -56,16 +56,17 @@ class _WebDashboardState extends State<WebDashboard> {
   }
 
   Widget  getMainView(type){
+    print("Web dash$type");
    return Scaffold(
         key: _key,
-        appBar: type==1 ? const PreferredSize(
+        appBar: type==1 || type==2 ? const PreferredSize(
           preferredSize: Size.fromHeight(50), child: CommonAppBar("",false),
         ) : null,
         drawer: SideBar(),
         body: Row(
           children: [
-            if(type !=1) SideBar(),
-            const Expanded(child: WebOrderScreen())
+            if(type !=1 && type!=2) SideBar(),
+            const Expanded(child: WebOrdersMain())
           ],
         )
     );

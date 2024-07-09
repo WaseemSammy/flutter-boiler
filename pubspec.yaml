@@ -65,6 +65,8 @@ dependencies:
   url_strategy: ^0.2.0
   dio: ^5.4.0
   sidebarx: ^0.17.1
+  dotted_line: ^3.2.2
+  responsive_framework: ^1.4.0
 
 
 

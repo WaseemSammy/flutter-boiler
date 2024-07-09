@@ -11,9 +11,8 @@ class SmallText extends StatelessWidget {
   TextDecoration decoration = TextDecoration.none;
 
    SmallText({Key? key,
-
      this.color = Colors.black,
-    required this.text,
+     required this.text,
      this.height = 1.2,
     this.size = 13,
   }) : super(key: key);

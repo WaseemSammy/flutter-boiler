@@ -22,7 +22,6 @@ class BigText extends StatelessWidget {
     return AutoSizeText(
       text,
       maxLines: 1,
-
       overflow: overflow,
       style: TextStyle(
         color: color,

@@ -23,167 +23,165 @@ class _BottemSheetItemAddPopupState extends State<BottemSheetItemAddPopup> {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 500,
-      child: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment
-              .spaceEvenly,
-          children: <Widget>[
-            Center(
-                child: BigText(
-                  text: "${widget.menu?.itemName}",
-                  size: 20,
-                  color: Colors.black,)
-            ), Center(
-                child: Image.asset(
-                  "assets/images/biryani_image.webp",
-                  width: 250, height: 200,)
-            ),
-            Center(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment
-                    .center,
-                children: [
-                  InkWell(
-                    hoverColor: Colors.transparent,
-                    focusColor: Colors.transparent,
-                    splashColor: Colors.transparent,
-                    highlightColor: Colors.transparent,
-                    onTap: (){
-                      setState(() {
-                        type = 1;
-                      });
-                    },
-                    child: Container(
-                      margin: const EdgeInsets.all(5),
-                      width: 100,
-                      height: 50,
-                      decoration: BoxDecoration(
-                        color: type==1? Colors.black : ColorConstants.AppBackgroundColor,
-                          borderRadius: BorderRadius
-                              .circular(50),
-                          border: Border.all(
-                              color: Colors.black)),
-                      child: Align(
-                        alignment: Alignment.center,
-                        child: BigTextForHeading(
-                          text: "HALF",
-                          color: type==1? Colors.white : Colors.black,),
-                      ),
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment
+            .spaceEvenly,
+        children: <Widget>[
+          Center(
+              child: BigText(
+                text: "${widget.menu?.itemName}",
+                size: 20,
+                color: Colors.black,)
+          ),
+          Center(
+              child: Image.asset(
+                "assets/images/biryani_image.webp",
+                width: 250, height: 200,)
+          ),
+          Center(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment
+                  .center,
+              children: [
+                InkWell(
+                  hoverColor: Colors.transparent,
+                  focusColor: Colors.transparent,
+                  splashColor: Colors.transparent,
+                  highlightColor: Colors.transparent,
+                  onTap: (){
+                    setState(() {
+                      type = 1;
+                    });
+                  },
+                  child: Container(
+                    margin: const EdgeInsets.all(5),
+                    width: 100,
+                    height: 50,
+                    decoration: BoxDecoration(
+                      color: type==1? Colors.black : ColorConstants.AppBackgroundColor,
+                        borderRadius: BorderRadius
+                            .circular(50),
+                        border: Border.all(
+                            color: Colors.black)),
+                    child: Align(
+                      alignment: Alignment.center,
+                      child: BigTextForHeading(
+                        text: "HALF",
+                        color: type==1? Colors.white : Colors.black,),
                     ),
                   ),
-                  InkWell(
-                    hoverColor: Colors.transparent,
-                    focusColor: Colors.transparent,
-                    splashColor: Colors.transparent,
-                    highlightColor: Colors.transparent,
-                    onTap: (){
-                      setState(() {
-                        type = 2;
-                      });
-                    },
-                    child: Container(
-                      margin: const EdgeInsets.all(5),
-                      width: 100,
-                      height: 50,
-                      decoration: BoxDecoration(
-                          color: type==2? Colors.black : ColorConstants.AppBackgroundColor,
-                          borderRadius: BorderRadius
-                              .circular(50),
-                          border: Border.all(
-                              color: Colors.black)),
-                      child: Align(
-                        alignment: Alignment.center,
-                        child: BigTextForHeading(
-                          text: "FULL",
-                          color:  type==2? Colors.white : Colors.black,),
-                      ),
-                    ),
-                  )
-                ],
-              ),
-            ),
-            Center(
-              child: Wrap(
-                spacing: 7,
-                crossAxisAlignment: WrapCrossAlignment
-                    .center,
-                children: [
-                  InkWell(
-                    onTap: () {
-                      /*final copyMenu = Orders.clone(
-                          widget.menu);
-                      _viewModel.remove(
-                          copyMenu, widget.data);
-                      refresh();*/
-                      if(count>0){
-                        setState(() {
-                          count--;
-                        });
-
-                      }
-
-                    },
-                    child: const CircleAvatar(
-                      maxRadius: 20,
-                      backgroundColor: Colors.black,
-                      child: Icon(Icons.remove,
-                        color: Colors.white,
-                        size: 20,),
-                    ),
-                  ),
-                  BigText(text: "$count"),
-                  InkWell(
-                    onTap: () {
-                      setState(() {
-                        count++;
-                      });
-
-                      /*  final copyMenu = Orders.clone(
-                          widget.menu);
-                      _viewModel.add(
-                          copyMenu, widget.data);
-                      refresh();*/
-                    },
-                    child: const CircleAvatar(
-                      maxRadius: 20,
-                      backgroundColor: Colors.black,
-                      child: Icon(Icons.add,
-                        color: Colors.white,
-                        size: 20,),
-                    ),
-                  )
-                ],),
-            ),
-            Center(
-              child: InkWell(
-                onTap: () {
-                  if(Utils.intence.itemAddValidaion(count,type)) {
-                    widget.selectedMenu(widget.menu, count, type);
-                    Get.back();
-                  }else{
-                    print("false");
-                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: count==0 ? const Text("Please select quantity") : const Text("Please select type")));
-                  }
-                },
-                child: Container(
-                  margin: const EdgeInsets.all(10),
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: 50, vertical: 5),
-                  decoration: BoxDecoration(
-                      color: Colors.black,
-                      borderRadius: BorderRadius
-                          .circular(20)
-                  ),
-                  child: BigText(text: "Add",
-                    color: Colors.white,
-                    size: 20,),
                 ),
+                InkWell(
+                  hoverColor: Colors.transparent,
+                  focusColor: Colors.transparent,
+                  splashColor: Colors.transparent,
+                  highlightColor: Colors.transparent,
+                  onTap: (){
+                    setState(() {
+                      type = 2;
+                    });
+                  },
+                  child: Container(
+                    margin: const EdgeInsets.all(5),
+                    width: 100,
+                    height: 50,
+                    decoration: BoxDecoration(
+                        color: type==2? Colors.black : ColorConstants.AppBackgroundColor,
+                        borderRadius: BorderRadius
+                            .circular(50),
+                        border: Border.all(
+                            color: Colors.black)),
+                    child: Align(
+                      alignment: Alignment.center,
+                      child: BigTextForHeading(
+                        text: "FULL",
+                        color:  type==2? Colors.white : Colors.black,),
+                    ),
+                  ),
+                )
+              ],
+            ),
+          ),
+          Center(
+            child: Wrap(
+              spacing: 7,
+              crossAxisAlignment: WrapCrossAlignment
+                  .center,
+              children: [
+                InkWell(
+                  onTap: () {
+                    /*final copyMenu = Orders.clone(
+                        widget.menu);
+                    _viewModel.remove(
+                        copyMenu, widget.data);
+                    refresh();*/
+                    if(count>0){
+                      setState(() {
+                        count--;
+                      });
+
+                    }
+
+                  },
+                  child: const CircleAvatar(
+                    maxRadius: 20,
+                    backgroundColor: Colors.black,
+                    child: Icon(Icons.remove,
+                      color: Colors.white,
+                      size: 20,),
+                  ),
+                ),
+                BigText(text: "$count"),
+                InkWell(
+                  onTap: () {
+                    setState(() {
+                      count++;
+                    });
+
+                    /*  final copyMenu = Orders.clone(
+                        widget.menu);
+                    _viewModel.add(
+                        copyMenu, widget.data);
+                    refresh();*/
+                  },
+                  child: const CircleAvatar(
+                    maxRadius: 20,
+                    backgroundColor: Colors.black,
+                    child: Icon(Icons.add,
+                      color: Colors.white,
+                      size: 20,),
+                  ),
+                )
+              ],),
+          ),
+          Center(
+            child: InkWell(
+              onTap: () {
+                if(Utils.intence.itemAddValidaion(count,type)) {
+                  widget.selectedMenu(widget.menu, count, type);
+                  Get.back();
+                }else{
+                  print("false");
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: count==0 ? const Text("Please select quantity") : const Text("Please select type")));
+                }
+              },
+              child: Container(
+                margin: const EdgeInsets.all(10),
+                padding: const EdgeInsets.symmetric(
+                    horizontal: 50, vertical: 5),
+                decoration: BoxDecoration(
+                    color: Colors.black,
+                    borderRadius: BorderRadius
+                        .circular(20)
+                ),
+                child: BigText(text: "Add",
+                  color: Colors.white,
+                  size: 20,),
               ),
-            )
-          ],
-        ),
+            ),
+          )
+        ],
       ),
     );
   }
