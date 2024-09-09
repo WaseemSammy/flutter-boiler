@@ -1,10 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:my_flutter/models/cartItems.dart';
 import 'package:my_flutter/widgets/big_text.dart';
 import 'package:my_flutter/widgets/big_text_for_heading.dart';
 
 class AdditemDialog extends StatefulWidget {
-  const AdditemDialog({super.key});
+  final Function selectedMenu;
+  final Orders order;
+
+
+   AdditemDialog( this.selectedMenu,this.order,{super.key});
 
   @override
   State<AdditemDialog> createState() => _AdditemDialogState();
@@ -13,11 +18,17 @@ class AdditemDialog extends StatefulWidget {
 class _AdditemDialogState extends State<AdditemDialog> {
   int quantity = 3;
   int pepsiQuantity = 3;
+  int? selectedQtygroup = 2;
+
+  double getTotal(){
+    return (quantity?? 1) * (widget.order.itemPrice??0);
+  }
+
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
-      body: SizedBox(
-
+      body: Container(
+        width: MediaQuery.of(context).size.width * 1.5,
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
@@ -40,11 +51,11 @@ class _AdditemDialogState extends State<AdditemDialog> {
                         'Spicy Ramen',
                       ),
                       Text('⭐ 4.5'),
-                      const Row(
+                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           Text(
-                            '\$200',
+                            "\$ ${widget.order.itemPrice}",
                             style: TextStyle(
                               decoration: TextDecoration.lineThrough,
                               color: Colors.grey,
@@ -52,7 +63,7 @@ class _AdditemDialogState extends State<AdditemDialog> {
                           ),
                           SizedBox(width: 10,),
                           Text(
-                            '\$150',
+                            "\$ ${widget.order.itemPrice}",
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               color: Colors.red,
@@ -84,9 +95,9 @@ class _AdditemDialogState extends State<AdditemDialog> {
                   ),
                 ],
               ),
-               const Text(
-                'Ramen noodles, half boiled egg, deep fried onion rings, salted beet root slices, spinach, special curry, naga spice.',
-                style: TextStyle(fontSize: 16),
+                Text(
+                "${widget.order.itemDescription}",
+                style: const TextStyle(fontSize: 16),
               ),
               const SizedBox(height: 10),
                Row(
@@ -137,8 +148,13 @@ class _AdditemDialogState extends State<AdditemDialog> {
                     children: [
                       Radio(
                         value: 0,
-                        groupValue: 1,
-                        onChanged: (value) {},
+                        groupValue: selectedQtygroup,
+                        onChanged: (value) {
+                          setState(() {
+                            selectedQtygroup = value;
+                          });
+                         print(value);
+                        },
                       ),
                       const Text('Quarter'),
                     ],
@@ -147,8 +163,13 @@ class _AdditemDialogState extends State<AdditemDialog> {
                     children: [
                       Radio(
                         value: 1,
-                        groupValue: 1,
-                        onChanged: (value) {},
+                        groupValue: selectedQtygroup,
+                        onChanged: (value) {
+                          setState(() {
+                            selectedQtygroup = value;
+                          });
+                          print(value);
+                        },
                       ),
                       const Text('Half'),
                     ],
@@ -157,8 +178,14 @@ class _AdditemDialogState extends State<AdditemDialog> {
                     children: [
                       Radio(
                         value: 2,
-                        groupValue: 1,
-                        onChanged: (value) {},
+                        groupValue: selectedQtygroup,
+                        onChanged: (value) {
+                          setState(() {
+                            selectedQtygroup = value;
+                          });
+
+                          print(value);
+                        },
                       ),
                       const Text('Full'),
                     ],
@@ -166,19 +193,19 @@ class _AdditemDialogState extends State<AdditemDialog> {
 
                 ],
               ),
-
-
-              const Spacer(),
+            const Spacer(),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                    BigTextForHeading( text:
-                    'Total \$3489.87',
+                    "Total \$ ${getTotal()}",
                     size: 20,
                   ),
                   ElevatedButton(
-                    onPressed: () {},
-                    child: const Text('Update Cart'),
+                    onPressed: () {
+                      widget.selectedMenu(widget.order, quantity, 2);
+                    },
+                    child: const Text('Add'),
                   ),
                 ],
               )

@@ -192,11 +192,11 @@ class _RunningOrdersState extends State<AllTableScreen> {
 
   getGridViewCount(type){
     if(type == 1){
-      return 3;
+      return 2;
     }else if(type == 2){
-      return 4;
+      return 3;
     }else{
-      return 6;
+      return 4;
     }
 
   }

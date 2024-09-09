@@ -72,51 +72,45 @@ class _WebCheckoutScreenState extends State<WebCheckoutScreen> {
     );
   }
   Widget getView(TableOrderViewModel viewmodel){
-   return Card(
-     elevation: 4,
-     shape: RoundedRectangleBorder(
-       borderRadius: BorderRadius.circular(0),
-     ),
-     child: Padding(
-        padding: const EdgeInsets.all(2.0),
-        child: Column(
-          children: <Widget>[
-            Expanded(
-              child :  ListView.separated(
-                  shrinkWrap: true,
-                  itemCount:viewmodel.cartItemData.length??0,
+   return Padding(
+      padding: const EdgeInsets.all(2.0),
+      child: Column(
+        children: <Widget>[
+          Expanded(
+            child :  ListView.separated(
+                shrinkWrap: true,
+                itemCount:viewmodel.cartItemData.length??0,
 
-                  itemBuilder: (context, index) {
-                    return buildCartItem(viewmodel.cartItemData[index],add,remove);
-                  },
-                separatorBuilder: (BuildContext context, int index) {
-                  return  const DottedLine(
-                      direction: Axis.horizontal,
-                      alignment: WrapAlignment.center,
-                      lineLength: double.infinity,
-                      lineThickness: 1.0,
-                      dashLength: 4.0,
-                      dashColor: Colors.black,
-                      dashRadius: 0.0,
-                      dashGapLength: 4.0,
-                      dashGapColor: Colors.transparent,
-                      dashGapRadius: 0.0,
-                    );
+                itemBuilder: (context, index) {
+                  return buildCartItem(viewmodel.cartItemData[index],add,remove);
                 },
-              ),
-              /*child: ListView(
-                children: <Widget>[
-                  buildCartItem('Fried Chicken With Omlete', '1 x pepsi', 2, 45),
-                  buildCartItem('Sushi With Salmon & Wasabi (Small)', '', 2, 110.10),
-                  buildCartItem('Min Lamonade (30ml)', '', 2, 20),
-                ],
-              ),*/
+              separatorBuilder: (BuildContext context, int index) {
+                return  const DottedLine(
+                    direction: Axis.horizontal,
+                    alignment: WrapAlignment.center,
+                    lineLength: double.infinity,
+                    lineThickness: 1.0,
+                    dashLength: 4.0,
+                    dashColor: Colors.black,
+                    dashRadius: 0.0,
+                    dashGapLength: 4.0,
+                    dashGapColor: Colors.transparent,
+                    dashGapRadius: 0.0,
+                  );
+              },
             ),
-            buildSummarySection(context),
-          ],
-        ),
+            /*child: ListView(
+              children: <Widget>[
+                buildCartItem('Fried Chicken With Omlete', '1 x pepsi', 2, 45),
+                buildCartItem('Sushi With Salmon & Wasabi (Small)', '', 2, 110.10),
+                buildCartItem('Min Lamonade (30ml)', '', 2, 20),
+              ],
+            ),*/
+          ),
+          buildSummarySection(context),
+        ],
       ),
-   );
+    );
   }
   Widget buildCartItem(NewCartItems? cartItem, Function add
   , Function remove) {

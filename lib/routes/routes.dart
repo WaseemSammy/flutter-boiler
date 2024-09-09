@@ -1,6 +1,8 @@
 import 'package:get/get_navigation/src/routes/get_route.dart';
 import 'package:my_flutter/screens/mobile/running/ui/running_screen.dart';
+import 'package:my_flutter/screens/newDesign/Table/table_screen.dart';
 import 'package:my_flutter/screens/newDesign/dashboard/web_dashboard.dart';
+import 'package:my_flutter/screens/newDesign/menuScreen/menu_screen.dart';
 import 'package:my_flutter/utils/utils_helper.dart';
 
 import '../screens/mobile/allTable/ui/alltable_screen.dart';
@@ -11,6 +13,7 @@ import '../screens/mobile/orders/ui/order_screen.dart';
 import '../screens/mobile/otp/otp_screen.dart';
 import '../screens/mobile/splace/ui/enter_url_screen.dart';
 import '../screens/mobile/splace/ui/splaceScreen.dart';
+import '../screens/newDesign/dashboard/create_order_screen.dart';
 
 
 
@@ -24,6 +27,9 @@ class RouteClass{
   static String orderConfirm = "/orderConfirm";
   static String runningOrder = "/runningOrder";
   static String alltable = "/alltable";
+  static String table = "/table";
+  static String createNewOrder = "/createNewOrder";
+  static String menu = "/menu";
 
   static String getHomeRoute()=> home;
   static String getEnterUrlRoute()=> start;
@@ -34,9 +40,10 @@ class RouteClass{
   static String getOrderConfirm()=> orderConfirm;
   static String getRunningOrders()=> runningOrder;
   static String getAllTable()=> alltable;
+  static String getCreateNewOrder()=> alltable;
 
   static List<GetPage> routes =[
-      GetPage(name: home, page: ()=> Utils.intence.getWidgetWthResponsive(const WebDashboard()), ),
+      GetPage(name: home, page: ()=>const WebDashboard()) ,
       GetPage(name: start, page: ()=>const EnterUrlScreen()),
       GetPage(name: login, page: ()=>const LoginScreen(),),
       GetPage(name: dashboard, page: ()=>const DashboadMainScreen(),  ),
@@ -44,6 +51,11 @@ class RouteClass{
       GetPage(name: otpScreen, page: ()=>const OtpScreen(phone: "9643916691")),
       GetPage(name: orderConfirm, page: ()=>const ConfirmOrderScreen()),
       GetPage(name: runningOrder, page: ()=>const RunningOrders()),
-      GetPage(name: alltable, page: ()=>const AllTableScreen())
+      GetPage(name: alltable, page: ()=>const AllTableScreen()),
+      GetPage(name: table, page: ()=> TableScreen(onPressed: () {
+
+      },)),
+      GetPage(name: createNewOrder, page: ()=>const CreateOrderScreen()),
+
   ];
 }

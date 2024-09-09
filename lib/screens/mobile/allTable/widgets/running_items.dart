@@ -41,7 +41,8 @@ class _RunningGridItemsState extends State<RunningGridItems> {
         elevation: 10,
         color: Colors.white,
         child: Container(
-
+          height: 200,
+          width: 200,
           padding: const EdgeInsets.all(5),
            decoration: BoxDecoration(
                color: Utils.intence.getTableBackgroundColor(widget.data.tableStatusId),
@@ -52,15 +53,6 @@ class _RunningGridItemsState extends State<RunningGridItems> {
              mainAxisAlignment: MainAxisAlignment.spaceBetween,
              children: [
                // top items
-               Row(
-                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                 children: [
-                    Icon(Icons.people_outline,color: Utils.intence.getTextAndIconColor(widget.data.tableStatusId),
-                   size: 30,),
-                   BigText(text: "${widget.data.diningTableName}",color: Utils.intence.getTextAndIconColor(widget.data.tableStatusId),
-                   )
-                 ],
-               ),
                BigText(text: "${widget.data.runningGuest} Guests",color: Utils.intence.getTextAndIconColor(widget.data.tableStatusId),),
                Row(
                  mainAxisAlignment: MainAxisAlignment.spaceBetween,

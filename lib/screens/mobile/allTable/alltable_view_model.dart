@@ -9,14 +9,21 @@ import '../../../models/response_data_model.dart';
 import '../../../services/api_service.dart';
 
 class AllTableViewModel extends GetxController{
+
   var allTableResponse = ApiResponse.loading();
+
+  @override
+  void onInit() {
+    // TODO: implement onInit
+    super.onInit();
+  }
 
   Future<void> getAllTableData(BuildContext context,restaurantId) async {
     allTableResponse = ApiResponse.loading();
     update();
     try {
       //var map = RequestMapUtils.intence.makePostRequestDashboard(restaurantId);
-      ResponseData response = await ApiService().getAllTable(context: context,  resId: restaurantId);
+      /*ResponseData response = await ApiService().getAllTable(context: context,  resId: restaurantId);
       if (kDebugMode) {
         print(response.body);
       }
@@ -30,7 +37,11 @@ class AllTableViewModel extends GetxController{
         allTableResponse  = ApiResponse.completed(data);
         // dashboardResponse = ApiResponse.error(response.message);
         update();
-      }
+      }*/
+      var data = AllTableResponse.fromJson(AppConstants.dummyAllTable);
+      allTableResponse  = ApiResponse.completed(data);
+      // dashboardResponse = ApiResponse.error(response.message);
+      update();
     }catch(e){
       if (kDebugMode) {
         print(e);

@@ -42,7 +42,7 @@ class _WebOrderScreenState extends State<WebOrderScreen> {
   ];
   List<bool> isSelected = [true, false, false];
 
-  selectedMenu(Orders order, int count, int type) {
+ void selectedMenu(Orders order, int count, int type) {
     if (kDebugMode) {
       print("$order $count $type");
     }
@@ -192,17 +192,24 @@ class _WebOrderScreenState extends State<WebOrderScreen> {
          },
        );*/
           if(type == 1) {
+            print("botterShowDialog");
             Get.bottomSheet(
                 shape: const RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(Radius.circular(10))
                 ),
 
-                const AdditemDialog()
+               // CommonOrderWidget(viewType,selectedCategory,selectedMenu, categoryData,data))
+                 AdditemDialog(selectedMenu,e)
             );
+
           }else{
-            Get.dialog(
-              const AdditemDialog()
-            );
+            print("ShowDialog");
+            showDialog(context: context, builder: (context) =>   Dialog(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12.0),
+              ),
+              child:  AdditemDialog(selectedMenu,e),
+            ));
           }
         },
         child: SizedBox(

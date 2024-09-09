@@ -188,4 +188,19 @@ class Utils{
     ], child: widget);
 
   }
+
+  Color getRandomColor(String? table) {
+    final colors = [
+      Colors.blue,
+      Colors.purple,
+      Colors.green,
+      Colors.orange,
+      Colors.pink,
+      Colors.teal,
+      Colors.brown,
+      Colors.deepPurple,
+      Colors.red,
+    ];
+    return colors[table.hashCode % colors.length];
+  }
 }

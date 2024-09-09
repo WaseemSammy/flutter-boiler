@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:my_flutter/screens/mobile/allTable/ui/alltable_screen.dart';
 import 'package:my_flutter/screens/mobile/common/common_app_bar.dart';
+import 'package:my_flutter/screens/newDesign/components/infoCard.dart';
 import 'package:my_flutter/screens_web_admin/web_main_body.dart';
 import 'package:my_flutter/screens_web_admin/web_orders/ui/web_checkout_screen.dart';
 import 'package:my_flutter/screens_web_admin/web_orders/ui/web_order_screen.dart';
@@ -12,9 +14,14 @@ import 'package:my_flutter/utils/responsive.dart';
 
 import 'package:sidebarx/sidebarx.dart';
 
+import '../../../constants/app_colors.dart';
+import '../../../routes/routes.dart';
 import '../../mobile/dashboard/viewmodels/dashboard_view_model.dart';
-
-
+import '../components/appBarActionItems.dart';
+import '../components/paymentDetail.dart';
+import '../components/sideMenu.dart';
+import '../sizeConfig.dart';
+import '../style.dart';
 
 const primaryColor = Color(0xFF685BFF);
 const canvasColor = Color(0xFF2E2E48);
@@ -25,8 +32,6 @@ final actionColor = const Color(0xFF5F5FA7).withOpacity(0.6);
 final divider = Divider(color: white.withOpacity(0.3), height: 1);
 
 class WebDashboard extends StatefulWidget {
-
-
   const WebDashboard({super.key});
 
   @override
@@ -34,117 +39,170 @@ class WebDashboard extends StatefulWidget {
 }
 
 class _WebDashboardState extends State<WebDashboard> {
-  int selectedIndex = 0;
-
-  final _viewModel  = Get.put(DashboardViewModel());
-  @override
-  void initState() {
-    super.initState();
-    _viewModel.getDashboardData(context, 1);
-  }
-
-  final _sidebarController = SidebarXController(
-      selectedIndex: 0,extended: true);
-  final _key = GlobalKey<ScaffoldState>();
+  final GlobalKey<ScaffoldState> _drawerKey = GlobalKey();
 
   @override
   Widget build(BuildContext context) {
-    return Responsive(
-        mobile: getMainView(1),
-        tablet: getMainView(2),
-        desktop: getMainView(3));
-  }
-
-  Widget  getMainView(type){
-    print("Web dash$type");
-   return Scaffold(
-        key: _key,
-        appBar: type==1 || type==2 ? const PreferredSize(
-          preferredSize: Size.fromHeight(50), child: CommonAppBar("",false),
-        ) : null,
-        drawer: SideBar(),
-        body: Row(
+    SizeConfig().init(context);
+    return Scaffold(
+      key: _drawerKey,
+      drawer: const SizedBox(width: 100, child: SideMenu()),
+      appBar: !Responsive.isDesktop(context)
+          ? AppBar(
+        elevation: 0,
+        backgroundColor: AppColors.white,
+        leading: IconButton(
+            onPressed: () {
+              _drawerKey.currentState?.openDrawer();
+            },
+            icon: const Icon(Icons.menu, color: AppColors.black)),
+        actions: const [
+          AppBarActionItems(),
+        ],
+      )
+          : const PreferredSize(
+        preferredSize: Size.zero,
+        child: SizedBox(),
+      ),
+      body: SafeArea(
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            if(type !=1 && type!=2) SideBar(),
-            const Expanded(child: WebOrdersMain())
-          ],
-        )
-    );
-  }
+            if (Responsive.isDesktop(context))
+              const Expanded(
+                flex: 1,
+                child: SideMenu(),
+              ),
+            Expanded(
+                flex: 10,
+                child: SafeArea(
+                  child: SingleChildScrollView(
+                    padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 30),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(
+                          height: SizeConfig.blockSizeVertical! * 4,
+                        ),
+                        SizedBox(
+                          width: SizeConfig.screenWidth,
+                          child:  Wrap(
+                            spacing: 20,
+                            runSpacing: 20,
+                            alignment: WrapAlignment.spaceBetween,
+                            children: [
+                              Infocard(
+                                  icon: 'assets/icons/credit-card.svg',
+                                  label: 'Running Tables',
+                                  amount: '4',
+                                onPressed: () {
+                                  print("Button pressed!");
+                                } ),
+                              Infocard(
+                                  icon: 'assets/icons/transfer.svg',
+                                  label: 'Running Orders',
+                                  amount: '4', onPressed: () {
+                                print("Button pressed!");
+                              }),
+                              Infocard(
+                                  icon: 'assets/icons/local_dining.svg',
+                                  label: 'Create New order',
+                                  amount: '', onPressed: () {
+                                  Get.toNamed(RouteClass.createNewOrder);
+                              }),
+                              Infocard(
+                                  icon: 'assets/icons/invoice.svg',
+                                  label: 'Transafer to \nOther Bank',
+                                  amount: '\$1500', onPressed: () {
+                                print("Button pressed!");
+                              }),
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                          height: SizeConfig.blockSizeVertical! * 4,
+                        ),
+                        const Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                PrimaryText(
+                                  text: 'Balance',
+                                  size: 16,
+                                  fontWeight: FontWeight.w400,
+                                  color: AppColors.secondary,
+                                ),
+                                PrimaryText(
+                                    text: '\$1500',
+                                    size: 30,
+                                    fontWeight: FontWeight.w800),
+                              ],
+                            ),
+                            PrimaryText(
+                              text: 'Past 30 DAYS',
+                              size: 16,
+                              fontWeight: FontWeight.w400,
+                              color: AppColors.secondary,
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: SizeConfig.blockSizeVertical! * 3,
+                        ),
 
-  Widget SideBar() {
-    return SidebarX(
-        controller: _sidebarController,
-        theme: SidebarXTheme(
-          margin: const EdgeInsets.all(10),
-          decoration: BoxDecoration(
-            color: canvasColor,
-            borderRadius: BorderRadius.circular(20),
-          ),
-          hoverColor: scaffoldBackgroundColor,
-          textStyle: TextStyle(color: Colors.white.withOpacity(0.7)),
-          selectedTextStyle: const TextStyle(color: Colors.white),
-          hoverTextStyle: const TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.w500,
-          ),
-          itemTextPadding: const EdgeInsets.only(left: 30),
-          selectedItemTextPadding: const EdgeInsets.only(left: 30),
-          itemDecoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            border: Border.all(color: canvasColor),
-          ),
-          selectedItemDecoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            border: Border.all(
-              color: actionColor.withOpacity(0.37),
-            ),
-            gradient: const LinearGradient(
-              colors: [accentCanvasColor, canvasColor],
-            ),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withOpacity(0.28),
-                blurRadius: 30,
-              )
-            ],
-          ),
-          iconTheme: IconThemeData(
-            color: Colors.white.withOpacity(0.7),
-            size: 20,
-          ),
-          selectedIconTheme: const IconThemeData(
-            color: Colors.white,
-            size: 20,
-          ),
+                        SizedBox(
+                          height: SizeConfig.blockSizeVertical! * 5,
+                        ),
+                        const Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            PrimaryText(
+                                text: 'History',
+                                size: 30,
+                                fontWeight: FontWeight.w800),
+                            PrimaryText(
+                              text: 'Transaction of lat 6 month',
+                              size: 16,
+                              fontWeight: FontWeight.w400,
+                              color: AppColors.secondary,
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: SizeConfig.blockSizeVertical! * 3,
+                        ),
+
+                      ],
+                    ),
+                  ),
+                )),
+            if (Responsive.isDesktop(context))
+              Expanded(
+                flex: 4,
+                child: SafeArea(
+                  child: Container(
+                    width: double.infinity,
+                    height: SizeConfig.screenHeight,
+                    decoration: const BoxDecoration(color: AppColors.secondaryBg),
+                    child: const SingleChildScrollView(
+                      padding:
+                      EdgeInsets.symmetric(vertical: 30, horizontal: 30),
+                      child: Column(
+                        children: [
+                          AppBarActionItems(),
+                          PaymentDetailList(),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+          ],
         ),
-        extendedTheme: const SidebarXTheme(
-          width: 200,
-          decoration: BoxDecoration(
-            color: canvasColor,
-          ),
-        ),
-        footerDivider: divider,
-        headerBuilder: (context, extended) {
-          return SizedBox(
-            height: 100,
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Image.asset('assets/images/biryani_image.webp'),
-            ),
-          );
-        },
-      items:  [
-        SidebarXItem(icon: Icons.home,label: "Home",onTap: () => selectedMenu(0)),
-        SidebarXItem(icon: Icons.restaurant_menu,label: "Orders",onTap: () => selectedMenu(1)),
-        SidebarXItem(icon: Icons.restaurant,label: "Menu",onTap: () => selectedMenu(2)),
-        SidebarXItem(icon: Icons.settings,label: "Setting",onTap: () => selectedMenu(3))
-      ],
+      ),
     );
-  }
-  void selectedMenu(int index){
-    setState(() {
-      selectedIndex = index;
-    });
   }
 }
