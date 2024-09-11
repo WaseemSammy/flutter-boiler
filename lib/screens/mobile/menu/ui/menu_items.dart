@@ -16,7 +16,7 @@ class MenuItems extends StatefulWidget {
   final Data? data;
   final bool visibility;
   final Function selectedMenu;
-  const MenuItems(this.menu, this.data, this.visibility,  this.selectedMenu, {Key? key}) : super(key: key);
+  const MenuItems(this.menu, this.data, this.visibility,  this.selectedMenu, {super.key});
 
   @override
   State<MenuItems> createState() => _MenuItemsState();
@@ -71,11 +71,11 @@ class _MenuItemsState extends State<MenuItems> {
                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                children: [
                  BigText(text: widget.menu?.itemName??"", size: 16,color: Colors.black54,),
-                 SizedBox(height: 10,),
+                 const SizedBox(height: 10,),
                  SmallText(text: widget.visibility == true ? "${widget.menu?.itemDescription}" : "${widget.menu?.count}",
                    size: 16,
                    color: Colors.black54,),
-                 SizedBox(height: 10,),
+                 const SizedBox(height: 10,),
                  SmallText(text: widget.visibility == true ? "${widget.menu?.itemPrice}" : "${widget.menu?.count}",
                    size: 16,
                    color: Colors.black54,),

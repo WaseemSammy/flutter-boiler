@@ -9,12 +9,12 @@ class BigTextForHeading extends StatelessWidget {
   final String text;
   double size;
   TextOverflow overflow;
-   BigTextForHeading({Key? key,
+   BigTextForHeading({super.key,
     this.color = const Color(0xFF077bd7),
     required this.text,
     this.overflow = TextOverflow.ellipsis,
     this.size = 14
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

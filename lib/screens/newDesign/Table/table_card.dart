@@ -10,7 +10,7 @@ class TableCard extends StatelessWidget {
   final String status;
   final VoidCallback onPressed;
 
-  const TableCard({required this.table, required this.status,required this.onPressed});
+  const TableCard({super.key, required this.table, required this.status,required this.onPressed});
 
   @override
   Widget build(BuildContext context) {

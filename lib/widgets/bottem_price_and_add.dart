@@ -8,7 +8,7 @@ import 'big_text_center.dart';
 
 class BottemOrderScreen extends StatefulWidget {
   final Function callback;
-  const BottemOrderScreen(this.callback,{Key? key}) : super(key: key);
+  const BottemOrderScreen(this.callback,{super.key});
 
   @override
   State<BottemOrderScreen> createState() => _BottemOrderScreenState();

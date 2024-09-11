@@ -5,6 +5,7 @@
 /// traceId : "4c6e61a9-1e11-4c14-9121-d572eab2fc38"
 /// errors : null
 /// data : {"id":7,"firstName":"Sayeed","lastName":"Ahamad","email":"xyz","roles":["Admin"],"isVerified":true,"jwToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJTYXllZWQiLCJqdGkiOiIzOTdkZmE5Yi00ZGNjLTRlYTUtODQ3ZC01NzVmYjIyM2RiMDYiLCJlbWFpbCI6Inh5eiIsInVpZCI6IjciLCJ0aWQiOiIxIiwicm9sZXMiOiJBZG1pbiIsImV4cCI6MTcxNTE1ODI5MywiaXNzIjoiVGVzdC5jb20iLCJhdWQiOiJUZXN0LmNvbSJ9.2gRBwGtgh_3vPSfemwQ27KbR_mjlT93PZ0v1L2KoCr0","refreshToken":"MyPQKBR3h5frSKtO6OVePNBM9ollWUrk2yCG99bYkwKyQ5qr0gsSJMSxxGhf+1N8hVT+7DJLYQ2vnW1NIFYLsA==","restaurantId":1}
+library;
 
 class NewLoginResponse {
   NewLoginResponse({

@@ -10,12 +10,12 @@ class SmallText extends StatelessWidget {
   double size;
   TextDecoration decoration = TextDecoration.none;
 
-   SmallText({Key? key,
+   SmallText({super.key,
      this.color = Colors.black,
      required this.text,
      this.height = 1.2,
     this.size = 13,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

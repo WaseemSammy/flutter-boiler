@@ -16,7 +16,7 @@ class CommonOrderWidget extends StatefulWidget {
   final Function selectedMenu;
   final CategoryData? categoryData;
   final Data? data;
-  const CommonOrderWidget(this.viewType,  this.selectedCategory, this.selectedMenu, this.categoryData, this.data, {Key? key}) : super(key: key);
+  const CommonOrderWidget(this.viewType,  this.selectedCategory, this.selectedMenu, this.categoryData, this.data, {super.key});
 
   @override
   State<CommonOrderWidget> createState() => _CommonOrderWidgetState();

@@ -7,7 +7,7 @@ import '../../../../routes/routes.dart';
 
 
 class SplaceScreen extends StatefulWidget {
-  const SplaceScreen({Key? key}) : super(key: key);
+  const SplaceScreen({super.key});
 
   @override
   State<SplaceScreen> createState() => _SplaceScreenState();

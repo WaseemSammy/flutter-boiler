@@ -1,22 +1,12 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_state_manager/src/simple/get_state.dart';
-import 'package:my_flutter/routes/routes.dart';
-import 'package:my_flutter/screens/mobile/orders/ui/order_screen.dart';
 import 'package:my_flutter/screens/newDesign/Table/table_card.dart';
 
 import '../../../api/Status.dart';
 import '../../../constants/app_colors.dart';
-import '../../../constants/color_constants.dart';
 import '../../../models/all_table_response.dart';
 import '../../../utils/responsive.dart';
 import '../../mobile/allTable/alltable_view_model.dart';
-import '../../mobile/common/common_app_bar.dart';
-import '../components/customerDetailPopup.dart';
-import '../components/paymentDetail.dart';
-import '../sizeConfig.dart';
 
 class TableScreen extends StatefulWidget {
   final VoidCallback onPressed;
@@ -87,7 +77,7 @@ class _TableScreenState extends State<TableScreen> {
                       mainAxisSpacing: 8.0,
                       childAspectRatio: 2.0,
                     ),
-                    padding: EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(8.0),
                     itemCount: response.data?.tables?.length,
                     itemBuilder: (context, index) {
                       return TableCard(

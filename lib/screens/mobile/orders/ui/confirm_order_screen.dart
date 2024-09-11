@@ -11,11 +11,10 @@ import 'package:my_flutter/widgets/small_text.dart';
 
 
 import '../../common/common_app_bar.dart';
-import '../../menu/ui/menu_items.dart';
 import '../viewmodel/table_order_viewmodel.dart';
 
 class ConfirmOrderScreen extends StatefulWidget {
-  const ConfirmOrderScreen({Key? key}) : super(key: key);
+  const ConfirmOrderScreen({super.key});
 
   @override
   State<ConfirmOrderScreen> createState() => _ConfirmOrderScreenState();

@@ -7,7 +7,7 @@ import 'package:my_flutter/widgets/big_text.dart';
 class CategoryItem extends StatefulWidget {
   final CategoryData categoryData;
   final Function callback;
-  const CategoryItem(this.categoryData, this.callback, {Key? key}) : super(key: key);
+  const CategoryItem(this.categoryData, this.callback, {super.key});
 
   @override
   State<CategoryItem> createState() => _CategoryItemState();

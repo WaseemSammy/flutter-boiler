@@ -1,12 +1,7 @@
 import 'dart:convert';
 
-import 'package:buttons_tabbar/buttons_tabbar.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_state_manager/src/simple/get_state.dart';
-import 'package:my_flutter/screens/newDesign/dashboard/web_dashboard.dart';
 import 'package:my_flutter/screens_web_admin/web_tables/ui/web_table_grid.dart';
 
 import '../../../api/Status.dart';
@@ -14,8 +9,6 @@ import '../../../constants/app_constants.dart';
 import '../../../constants/color_constants.dart';
 import '../../../models/all_table_response.dart';
 import '../../../screens/mobile/allTable/alltable_view_model.dart';
-import '../../../screens/mobile/allTable/widgets/running_items.dart';
-import '../../../screens/mobile/common/common_app_bar.dart';
 import '../../../utils/responsive.dart';
 import '../../../utils/shared_preferences_helper.dart';
 import '../../../widgets/small_text.dart';

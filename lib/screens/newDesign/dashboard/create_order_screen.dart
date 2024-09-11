@@ -30,7 +30,6 @@ class CreateOrderScreen extends StatefulWidget {
 class _CreateOrderScreenState extends State<CreateOrderScreen> {
   Navigationcontroller controller = Get.put(Navigationcontroller());
 
-
   int selectedRoute = 0;
 
   selectedMenu(Orders order, int count, int type) {
@@ -44,43 +43,42 @@ class _CreateOrderScreenState extends State<CreateOrderScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Row(
-          children: [
-            Expanded(
-                flex: 10,
-                child: Navigator(
-                    key: Get.nestedKey(1),
-                    initialRoute: controller.currentPage,
-                    onGenerateRoute: (settings) {
-                      print(" Setting ${settings.name}");
-                      return GetPageRoute(page: () {
-                        if (settings.name == RouteClass.table) {
-                          return TableScreen(onPressed: () {
-                            print("yaahna");
-                            print("${controller.currentPage}}");
-                            controller.changePage(RouteClass.menu);
-                            Get.toNamed(RouteClass.menu, id: 1);
-                          });
-                        } else if (settings.name == RouteClass.menu) {
-                          print("option menu");
-                          return MenuScreen(selectedMenu);
-                        }
-                        return Container();
+      children: [
+        Expanded(
+            flex: 10,
+            child: Navigator(
+                key: Get.nestedKey(1),
+                initialRoute: controller.currentPage,
+                onGenerateRoute: (settings) {
+                  print(" Setting ${settings.name}");
+                  return GetPageRoute(page: () {
+                    if (settings.name == RouteClass.table) {
+                      return TableScreen(onPressed: () {
+                        print("yaahna");
+                        print("${controller.currentPage}}");
+                        controller.changePage(RouteClass.menu);
+                        Get.toNamed(RouteClass.menu, id: 1);
                       });
-                    })),
-            if (Responsive.isDesktop(context) || Responsive.isTablet(context))
-              Expanded(
-                flex: 4,
-                child: SafeArea(
-                  child: Container(
-                    width: double.infinity,
-                    height: SizeConfig.screenHeight,
-                    decoration:
-                        const BoxDecoration(color: AppColors.secondaryBg),
-                    child: WebCheckoutScreen(),
-                  ),
-                ),
+                    } else if (settings.name == RouteClass.menu) {
+                      print("option menu");
+                      return MenuScreen(selectedMenu);
+                    }
+                    return Container();
+                  });
+                })),
+        if (Responsive.isDesktop(context) || Responsive.isTablet(context))
+          Expanded(
+            flex: 4,
+            child: SafeArea(
+              child: Container(
+                width: double.infinity,
+                height: SizeConfig.screenHeight,
+                decoration: const BoxDecoration(color: AppColors.secondaryBg),
+                child: const WebCheckoutScreen(),
               ),
-          ],
-        ));
+            ),
+          ),
+      ],
+    ));
   }
 }

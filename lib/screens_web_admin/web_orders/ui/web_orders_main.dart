@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:my_flutter/screens/mobile/allTable/ui/alltable_screen.dart';
 import 'package:my_flutter/screens_web_admin/web_orders/ui/web_checkout_screen.dart';
 import 'package:my_flutter/screens_web_admin/web_orders/ui/web_order_screen.dart';
 import 'package:my_flutter/utils/responsive.dart';

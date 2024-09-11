@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -13,7 +12,7 @@ class Infocard extends StatelessWidget {
   final String amount;
   final VoidCallback onPressed;
 
-  const Infocard({required this.icon, required this.label, required this.amount, required this.onPressed});
+  const Infocard({super.key, required this.icon, required this.label, required this.amount, required this.onPressed});
 
   @override
   Widget build(BuildContext context) {

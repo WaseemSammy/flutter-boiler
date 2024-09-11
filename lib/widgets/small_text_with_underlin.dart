@@ -10,12 +10,12 @@ class SmallTextWithUnderLine extends StatelessWidget {
   final String text;
   double size;
 
-  SmallTextWithUnderLine({Key? key,
+  SmallTextWithUnderLine({super.key,
     this.color = Colors.black,
     required this.text,
     this.height = 1.2,
     this.size = 13,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

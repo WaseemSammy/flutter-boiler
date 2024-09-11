@@ -4,7 +4,7 @@ import 'package:my_flutter/widgets/big_text.dart';
 
 
 class YourOrder extends StatefulWidget {
-  const YourOrder({Key? key}) : super(key: key);
+  const YourOrder({super.key});
 
   @override
   State<YourOrder> createState() => _YourOrderState();

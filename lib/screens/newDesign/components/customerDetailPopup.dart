@@ -1,11 +1,10 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class CustomerDetailsDialog extends StatelessWidget {
   final String tableNumber;
   final VoidCallback onPressed;
 
-  const CustomerDetailsDialog({required this.tableNumber,required this.onPressed});
+  const CustomerDetailsDialog({super.key, required this.tableNumber,required this.onPressed});
 
   @override
   Widget build(BuildContext context) {

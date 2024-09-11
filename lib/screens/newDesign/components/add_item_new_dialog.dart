@@ -9,8 +9,8 @@ import '../../../../../widgets/big_text_for_heading.dart';
 
 class AddItemNewDialog extends StatefulWidget {
   final Orders? menu;
-  final  Function selectedMenu;
-  const AddItemNewDialog(this.menu,this.selectedMenu, {super.key});
+  final Function selectedMenu;
+  const AddItemNewDialog(this.menu, this.selectedMenu, {super.key});
 
   @override
   State<AddItemNewDialog> createState() => _AddItemNewDialogPopupState();
@@ -21,9 +21,10 @@ class _AddItemNewDialogPopupState extends State<AddItemNewDialog> {
   int pepsiQuantity = 3;
   int? selectedQtygroup = 2;
 
-  double getTotal(){
-    return (quantity?? 1) * (widget.menu?.itemPrice??0);
+  double getTotal() {
+    return (quantity ?? 1) * (widget.menu?.itemPrice ?? 0);
   }
+
   int count = 1;
   int type = 0;
 
@@ -52,12 +53,12 @@ class _AddItemNewDialogPopupState extends State<AddItemNewDialog> {
                       width: 100,
                       fit: BoxFit.fill,
                     ),
-                    SizedBox(width: 20),
+                    const SizedBox(width: 20),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         BigText(text: "${widget.menu?.itemName}"),
-                        Text('⭐ 4.5'),
+                        const Text('⭐ 4.5'),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
@@ -68,7 +69,7 @@ class _AddItemNewDialogPopupState extends State<AddItemNewDialog> {
                                 color: Colors.grey,
                               ),
                             ),
-                            SizedBox(width: 10),
+                            const SizedBox(width: 10),
                             Text(
                               "\$ ${widget.menu?.itemPrice}",
                               style: const TextStyle(
@@ -114,7 +115,7 @@ class _AddItemNewDialogPopupState extends State<AddItemNewDialog> {
                             borderRadius: BorderRadius.circular(100),
                           ),
                           child: IconButton(
-                            icon: Icon(Icons.remove),
+                            icon: const Icon(Icons.remove),
                             onPressed: () {
                               setState(() {
                                 if (quantity > 0) quantity--;
@@ -129,7 +130,7 @@ class _AddItemNewDialogPopupState extends State<AddItemNewDialog> {
                             borderRadius: BorderRadius.circular(100),
                           ),
                           child: IconButton(
-                            icon: Icon(Icons.add),
+                            icon: const Icon(Icons.add),
                             onPressed: () {
                               setState(() {
                                 quantity++;
@@ -199,6 +200,7 @@ class _AddItemNewDialogPopupState extends State<AddItemNewDialog> {
                     ),
                     ElevatedButton(
                       onPressed: () {
+                        Get.back();
                         widget.selectedMenu(widget.menu, quantity, 2);
                       },
                       child: const Text('Add'),
@@ -211,6 +213,5 @@ class _AddItemNewDialogPopupState extends State<AddItemNewDialog> {
         ),
       ),
     );
-
   }
 }

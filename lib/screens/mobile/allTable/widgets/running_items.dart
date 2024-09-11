@@ -10,7 +10,7 @@ import '../../../../models/all_table_response.dart';
 class RunningGridItems extends StatefulWidget {
 
   final Tables data;
-  const RunningGridItems(this.data, {Key? key}) : super(key: key);
+  const RunningGridItems(this.data, {super.key});
 
   @override
   State<RunningGridItems> createState() => _RunningGridItemsState();

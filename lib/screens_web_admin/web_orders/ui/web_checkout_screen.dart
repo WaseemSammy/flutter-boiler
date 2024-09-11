@@ -1,18 +1,11 @@
 import 'package:dotted_line/dotted_line.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_state_manager/src/simple/get_state.dart';
 import 'package:my_flutter/models/new_cart_Items.dart';
 
 import '../../../constants/color_constants.dart';
-import '../../../models/AppSettingModel.dart';
 import '../../../models/cartItems.dart';
-import '../../../screens/mobile/orders/ui/widgets/order_summary.dart';
 import '../../../screens/mobile/orders/viewmodel/table_order_viewmodel.dart';
-import '../../../widgets/big_text.dart';
-import '../../../widgets/big_text_center.dart';
 import '../../../widgets/small_text.dart';
 
 class WebCheckoutScreen extends StatefulWidget {
@@ -166,12 +159,12 @@ class _WebCheckoutScreenState extends State<WebCheckoutScreen> {
 
             ElevatedButton(
               onPressed: () {},
-              child: Text('Place Order'),
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.red, // Use 'backgroundColor' instead of 'primary'
-                padding: EdgeInsets.symmetric(vertical: 16.0),
-                textStyle: TextStyle(fontSize: 16),
+                padding: const EdgeInsets.symmetric(vertical: 16.0),
+                textStyle: const TextStyle(fontSize: 16),
               ),
+              child: const Text('Place Order'),
             ),
           ],
         ),

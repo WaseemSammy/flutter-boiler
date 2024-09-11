@@ -8,7 +8,7 @@ import 'package:my_flutter/widgets/small_text.dart';
 
 class RunningGridItems extends StatefulWidget {
   final Data data;
-  const RunningGridItems(this.data, {Key? key}) : super(key: key);
+  const RunningGridItems(this.data, {super.key});
 
   @override
   State<RunningGridItems> createState() => _RunningGridItemsState();

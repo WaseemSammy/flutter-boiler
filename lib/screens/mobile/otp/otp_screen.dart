@@ -10,7 +10,7 @@ import 'border_box.dart';
 class OtpScreen extends StatefulWidget {
   final String phone;
 
-  const OtpScreen({Key? key, required this.phone}) : super(key: key);
+  const OtpScreen({super.key, required this.phone});
 
   @override
   State<OtpScreen> createState() => _OtpScreenState();

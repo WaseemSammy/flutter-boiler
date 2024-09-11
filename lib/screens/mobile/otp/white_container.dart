@@ -6,11 +6,10 @@ class WhiteContainer extends StatelessWidget {
   final Widget child;
 
   const WhiteContainer(
-      {Key? key,
+      {super.key,
         required this.headerText,
         required this.labelText,
-        required this.child})
-      : super(key: key);
+        required this.child});
 
   @override
   Widget build(BuildContext context) {

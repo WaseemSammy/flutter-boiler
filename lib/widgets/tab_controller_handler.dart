@@ -6,10 +6,10 @@ class TabControllerHandler extends InheritedWidget {
   final Widget child;
 
   const TabControllerHandler({
-    Key? key,
+    super.key,
     required this.tabController,
     required this.child,
-  }) : super(key: key, child: child);
+  }) : super(child: child);
 
   static TabControllerHandler? of(BuildContext context) {
     return context.dependOnInheritedWidgetOfExactType<TabControllerHandler>();

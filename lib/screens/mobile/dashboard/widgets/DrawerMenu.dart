@@ -7,7 +7,7 @@ import 'package:my_flutter/widgets/big_text.dart';
 
 class DrawerMenu extends StatelessWidget {
 
-   const DrawerMenu({Key? key, required this.callback}) : super(key: key);
+   const DrawerMenu({super.key, required this.callback});
    final Function callback;
 
   @override

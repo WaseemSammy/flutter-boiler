@@ -8,14 +8,13 @@ class BorderBox extends StatelessWidget {
   final bool margin;
 
   const BorderBox(
-      {Key? key,
+      {super.key,
         required this.child,
         this.width,
         this.height,
         this.padding,
         required this.color,
-        required this.margin})
-      : super(key: key);
+        required this.margin});
 
   @override
   Widget build(BuildContext context) {

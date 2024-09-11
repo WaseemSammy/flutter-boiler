@@ -225,7 +225,7 @@ class _WebOrderScreenState extends State<WebOrderScreen> {
                 Flexible(
                   flex: 3,
                   child: ClipRRect(
-                    borderRadius: BorderRadius.vertical(top: Radius.circular(0)),
+                    borderRadius: const BorderRadius.vertical(top: Radius.circular(0)),
                     child: Image.asset(
 
                       'assets/images/biryani_image.webp',

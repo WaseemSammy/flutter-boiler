@@ -7,12 +7,12 @@ class BigTextCenter extends StatelessWidget {
   final String text;
   double size;
   TextOverflow overflow;
-  BigTextCenter({Key? key,
+  BigTextCenter({super.key,
     this.color = Colors.black,
     required this.text,
     this.overflow = TextOverflow.ellipsis,
     this.size = 14
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

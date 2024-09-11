@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:my_flutter/models/cartItems.dart';
 import 'package:my_flutter/widgets/big_text.dart';
@@ -9,7 +8,7 @@ class AdditemDialog extends StatefulWidget {
   final Orders order;
 
 
-   AdditemDialog( this.selectedMenu,this.order,{super.key});
+   const AdditemDialog( this.selectedMenu,this.order,{super.key});
 
   @override
   State<AdditemDialog> createState() => _AdditemDialogState();
@@ -27,7 +26,7 @@ class _AdditemDialogState extends State<AdditemDialog> {
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
-      body: Container(
+      body: SizedBox(
         width: MediaQuery.of(context).size.width * 1.5,
         child: Padding(
           padding: const EdgeInsets.all(16.0),
@@ -42,7 +41,7 @@ class _AdditemDialogState extends State<AdditemDialog> {
                     width: 100,
                     fit: BoxFit.fill,
                   ),
-                   SizedBox(width: 20,),
+                   const SizedBox(width: 20,),
                    Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -50,21 +49,21 @@ class _AdditemDialogState extends State<AdditemDialog> {
                         text:
                         'Spicy Ramen',
                       ),
-                      Text('⭐ 4.5'),
+                      const Text('⭐ 4.5'),
                        Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           Text(
                             "\$ ${widget.order.itemPrice}",
-                            style: TextStyle(
+                            style: const TextStyle(
                               decoration: TextDecoration.lineThrough,
                               color: Colors.grey,
                             ),
                           ),
-                          SizedBox(width: 10,),
+                          const SizedBox(width: 10,),
                           Text(
                             "\$ ${widget.order.itemPrice}",
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontWeight: FontWeight.bold,
                               color: Colors.red,
                             ),
@@ -115,7 +114,7 @@ class _AdditemDialogState extends State<AdditemDialog> {
                            borderRadius: BorderRadius.circular(100),
                          ),
                          child: IconButton(
-                           icon: Icon(Icons.remove),
+                           icon: const Icon(Icons.remove),
                            onPressed: () {
                              setState(() {
                                if (quantity > 0) quantity--;
@@ -130,7 +129,7 @@ class _AdditemDialogState extends State<AdditemDialog> {
                            borderRadius: BorderRadius.circular(100),
                          ),
                          child: IconButton(
-                           icon: Icon(Icons.add),
+                           icon: const Icon(Icons.add),
                            onPressed: () {
                              setState(() {
                                quantity++;

@@ -10,7 +10,7 @@ import 'package:my_flutter/constants/my_globals.dart' as global;
 import '../viewmodel/input_url_viewmodel.dart';
 
 class EnterUrlScreen extends StatefulWidget {
-  const EnterUrlScreen({Key? key}) : super(key: key);
+  const EnterUrlScreen({super.key});
 
   @override
   State<EnterUrlScreen> createState() => _EnterUrlScreenState();

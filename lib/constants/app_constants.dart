@@ -1,4 +1,5 @@
 ///Application related constants are set here
+library;
 
 class AppConstants {
 

@@ -8,7 +8,7 @@ import 'home_screen.dart';
 
 
 class DashboadMainScreen extends StatefulWidget {
-  const DashboadMainScreen({Key? key}) : super(key: key);
+  const DashboadMainScreen({super.key});
 
   @override
   State<DashboadMainScreen> createState() => _DashboadMainScreenState();

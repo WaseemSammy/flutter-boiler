@@ -1,4 +1,5 @@
 ///Font Family constants are set here
+library;
 
 class FontFamilyConstants {
   static const String INTER_LIGHT = "Inter-Light";

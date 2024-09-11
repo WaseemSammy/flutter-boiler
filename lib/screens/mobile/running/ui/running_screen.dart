@@ -10,7 +10,7 @@ import 'package:my_flutter/widgets/big_text.dart';
 import '../widgets/running_items.dart';
 
 class RunningOrders extends StatefulWidget {
-  const RunningOrders({Key? key}) : super(key: key);
+  const RunningOrders({super.key});
 
   @override
   State<RunningOrders> createState() => _RunningOrdersState();

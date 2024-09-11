@@ -19,7 +19,7 @@ import '../../common/common_app_bar.dart';
 import '../widgets/running_items.dart';
 
 class AllTableScreen extends StatefulWidget {
-  const AllTableScreen({Key? key}) : super(key: key);
+  const AllTableScreen({super.key});
 
   @override
   State<AllTableScreen> createState() => _RunningOrdersState();
