@@ -8,6 +8,7 @@ import 'package:my_flutter/screens/mobile/orders/viewmodel/table_order_viewmodel
 import 'package:my_flutter/screens/newDesign/components/add_item_new_dialog.dart';
 import 'package:my_flutter/screens/newDesign/menuScreen/category_card.dart';
 import 'package:my_flutter/screens/newDesign/menuScreen/menu_item.dart';
+import 'package:my_flutter/widgets/bottem_price_and_add.dart';
 
 import '../../../constants/app_colors.dart';
 import '../../../constants/dummyJson.dart';
@@ -37,7 +38,7 @@ class _MenuScreenState extends State<MenuScreen> {
   void dispose() {
     // TODO: implement dispose
     super.dispose();
-    Get.delete<AllTableViewModel>();
+
   }
 
   @override
@@ -55,6 +56,7 @@ class _MenuScreenState extends State<MenuScreen> {
           leading: IconButton(
             onPressed: () {
               WidgetsBinding.instance.addPostFrameCallback((_) {
+                Get.delete<TableOrderViewModel>();
                 Get.toNamed(RouteClass.table, id: 1)
                     ?.then((value) => Get.delete<AllTableViewModel>());
               });
@@ -62,11 +64,14 @@ class _MenuScreenState extends State<MenuScreen> {
             icon: const Icon(Icons.arrow_back),
           ),
         ),
+        bottomNavigationBar: type==1 ? BottemOrderScreen((){
+          Get.toNamed(RouteClass.orderConfirm);
+        }):null,
         body: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Expanded(
-              flex: 1,
+              flex: 2,
               child: GridView.builder(
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: getGridViewCount(type),

@@ -2,8 +2,10 @@ import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_flutter/models/new_cart_Items.dart';
-
-import '../../../constants/color_constants.dart';
+import 'package:my_flutter/routes/routes.dart';
+import 'package:my_flutter/screens/newDesign/style.dart';
+import 'package:my_flutter/utils/responsive.dart';
+import '../../../constants/app_colors.dart';
 import '../../../models/cartItems.dart';
 import '../../../screens/mobile/orders/viewmodel/table_order_viewmodel.dart';
 import '../../../widgets/small_text.dart';
@@ -51,8 +53,20 @@ class _WebCheckoutScreenState extends State<WebCheckoutScreen> {
       });
     }
     return Scaffold(
+      appBar: Responsive.isMobile(context) ? AppBar(
+        elevation: 0,
+        backgroundColor: AppColors.white,
+        leading: IconButton(
+          onPressed: () {
+            WidgetsBinding.instance.addPostFrameCallback((_) {
+             Get.back();
+            });
+          },
+          icon: const Icon(Icons.arrow_back),
+        ),
+      ) : null,
       body: Container(
-          color: ColorConstants.AppBackgroundColor,
+          color: AppColors.white,
           child: GetBuilder<TableOrderViewModel>(
               init: TableOrderViewModel(),
               builder: (viewmodel){
@@ -108,30 +122,62 @@ class _WebCheckoutScreenState extends State<WebCheckoutScreen> {
   Widget buildCartItem(NewCartItems? cartItem, Function add
   , Function remove) {
     return Padding(
-      padding: const EdgeInsets.all(10.0),
+      padding: EdgeInsets.all(10.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
          Row(
            mainAxisAlignment: MainAxisAlignment.spaceBetween,
            children: [
-             SmallText(
-               text:
-               '${cartItem?.itemName} ( ${cartItem?.ItemType} )'),
-
-             SmallText(text: '${cartItem?.quantity}'),
-             SmallText(text: '\$${getTotal(cartItem)?.toStringAsFixed(2)}'),
-
+             Column(
+               crossAxisAlignment: CrossAxisAlignment.start,
+               children: [
+                 PrimaryText(text: '${cartItem?.itemName} ( ${cartItem?.ItemType} )',size: 14,),
+                 Padding(
+                   padding: const EdgeInsets.only(top: 5),
+                   child: Wrap(
+                     spacing: 7,
+                     crossAxisAlignment: WrapCrossAlignment
+                         .center,
+                     children: [
+                       InkWell(
+                         onTap: () {
+                         remove(cartItem?.itemName,cartItem?.ItemType);
+                         },
+                         child: const CircleAvatar(
+                           maxRadius: 10,
+                           backgroundColor: Colors.black,
+                           child: Icon(Icons.remove,
+                             color: Colors.white,
+                             size: 15,),
+                         ),
+                       ),
+                       PrimaryText(text: "${cartItem?.quantity}",size: 14),
+                       InkWell(
+                         onTap: () {
+                           print("${cartItem?.quantity??1}");
+                           int qty = cartItem?.quantity??1;
+                           qty+=1;
+                           String? type = cartItem?.ItemType;
+                           add(Orders(itemId: cartItem?.itemId,itemName: cartItem?.itemName), qty,type);
+                         },
+                         child: const CircleAvatar(
+                           maxRadius: 10,
+                           backgroundColor: Colors.black,
+                           child: Icon(Icons.add,
+                             color: Colors.white,
+                             size: 15,),
+                         ),
+                       )
+                     ],),
+                 )
+               ],
+             ),
+              Align(
+               alignment: Alignment.topRight,
+                 child: PrimaryText(text: "${getTotal(cartItem)?.toStringAsFixed(2)}",size: 14)),
            ],
          ),
-
-
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              SmallText(text: '\$${getPrice(cartItem)?.toStringAsFixed(2)}',color: Colors.grey,),
-            ],
-          ),
         ],
       ),
     );
@@ -142,32 +188,44 @@ class _WebCheckoutScreenState extends State<WebCheckoutScreen> {
     double tax = 50;
     double total = subtotal - discount + tax;
 
-    return Card(
-      margin: const EdgeInsets.symmetric(vertical: 8.0),
-      child: Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            buildSummaryRow('Subtotal:', '\$${subtotal.toStringAsFixed(2)}'),
-            buildSummaryRow('Coupon Discount:', '\$0.00'),
-            buildSummaryRow('Discount:', '- \$${discount.toStringAsFixed(2)}'),
-            buildSummaryRow('VAT/TAX:', '+ \$${tax.toStringAsFixed(2)}'),
-            const Divider(),
-            buildSummaryRow('Total:', '\$${total.toStringAsFixed(2)}', isTotal: true),
-            const SizedBox(height: 20),
-
-            ElevatedButton(
-              onPressed: () {},
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.red, // Use 'backgroundColor' instead of 'primary'
-                padding: const EdgeInsets.symmetric(vertical: 16.0),
-                textStyle: const TextStyle(fontSize: 16),
+    return Padding(
+      padding: const EdgeInsets.all(10.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: <Widget>[
+          buildSummaryRow('Subtotal:', '\$${subtotal.toStringAsFixed(2)}'),
+          buildSummaryRow('Coupon Discount:', '\$0.00'),
+          buildSummaryRow('Discount:', '- \$${discount.toStringAsFixed(2)}'),
+          buildSummaryRow('VAT/TAX:', '+ \$${tax.toStringAsFixed(2)}'),
+          const Divider(),
+          buildSummaryRow('Total:', '\$${total.toStringAsFixed(2)}', isTotal: true),
+          const SizedBox(height: 20),
+           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Expanded(
+                child: Container(
+                  height: 25,
+                  padding: EdgeInsets.all(2),
+                    color: AppColors.PrimaryAssentColor,
+                    child: const Align(
+                        alignment: Alignment.center,child: PrimaryText(text: "KOT",size: 14,color: AppColors.white,))
+                ),
               ),
-              child: const Text('Place Order'),
-            ),
-          ],
-        ),
+              Expanded(
+                child: Container(
+                    height: 25,
+                    padding: EdgeInsets.all(2),
+                    color: Colors.deepPurple,
+                    child: const Align(
+                        alignment: Alignment.center,
+                        child: PrimaryText(text: "Place Order",size: 14,color: AppColors.white,))
+                ),
+              ),
+            ],
+          ),
+
+        ],
       ),
     );
   }

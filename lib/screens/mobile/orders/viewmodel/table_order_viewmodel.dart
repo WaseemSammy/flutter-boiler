@@ -24,7 +24,7 @@ class TableOrderViewModel extends GetxController{
 
      NewCartItems? newCartItems = cartItemData.firstWhereOrNull((Item)=> Item?.itemId == cartItem?.itemId && Item?.ItemType == portionType);
      if (newCartItems != null) {
-       newCartItems.quantity += tableItem;
+       newCartItems.quantity = tableItem;
      } else {
        cartItemData.add(NewCartItems(cartItem?.itemId,cartItem?.itemName, portionType, tableItem,(cartItem?.itemPrice)!/2,cartItem?.itemPrice));
      }

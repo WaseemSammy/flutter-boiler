@@ -23,16 +23,21 @@ class SideMenu extends StatelessWidget {
                   iconSize: 20,
                   padding: const EdgeInsets.symmetric(vertical: 20.0),
                   icon: SvgPicture.asset(
-                    'assets/icons/clipboard.svg',
+                    'assets/icons/home.svg',
                     color: AppColors.iconGray,
+                    width: 25, // Set the width of the SVG
+                    height: 25, // Set the height of the SVG
+
                   ),
                   onPressed: () {}),
               IconButton(
                   iconSize: 20,
                   padding: const EdgeInsets.symmetric(vertical: 20.0),
-                  icon: SvgPicture.asset(
-                    'assets/icons/clipboard.svg',
+                  icon: Image.asset(
+                    'assets/icons/order_menu.png',
                     color: AppColors.iconGray,
+                    width: 25, // Set the width of the SVG
+                    height: 25,
                   ),
                   onPressed: () {}),
               IconButton(
